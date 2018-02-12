@@ -21,9 +21,9 @@ import Vision
 class CoreMlController: NSObject, FreSwiftController {
     var TAG: String? = "CoreMlController"
     var context: FreContextSwift!
-    private var model:MLModel?
+    private var model: MLModel?
     private let backgroundQueue = DispatchQueue(label: "com.tuarua.mlane.backgroundQueue", qos: .background)
-    private var maxResults:Int = 5
+    private var maxResults: Int = 5
     convenience init(context: FreContextSwift) {
         self.init()
         self.context = context
@@ -67,9 +67,10 @@ class CoreMlController: NSObject, FreSwiftController {
         }
     }
     
-    // https://github.com/shingt/BeerClassifier/blob/a93224f1a57b948c501fe2d8b210126e032d076f/iOS/BeerClassifier/ClassificationService.swift#L74
+    // https://github.com/shingt/BeerClassifier/blob/a93224f1a57b948c501fe2d8b210126e032d076f/iOS/
+    // BeerClassifier/ClassificationService.swift#L74
     
-    func classifyImage(type: Int, cgImage:CGImage) {
+    func classifyImage(type: Int, cgImage: CGImage) {
         // let orientation = CGImagePropertyOrientation(image.imageOrientation)
         let ciImage = CIImage.init(cgImage: cgImage)
         backgroundQueue.async {
@@ -111,13 +112,12 @@ class CoreMlController: NSObject, FreSwiftController {
         } else {
             let topClassifications = results.prefix(maxResults)
             let descriptions = topClassifications.map { classification in
-                return ["i": classification.identifier,"c": classification.confidence]
+                return ["i": classification.identifier, "c": classification.confidence]
             }
             props["results"] = descriptions
         }
         let json = JSON(props)
         sendEvent(name: VisionClassificationEvent.RESULT, value: json.description)
     }
-    
     
 }

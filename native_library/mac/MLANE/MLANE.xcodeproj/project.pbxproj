@@ -34,8 +34,8 @@
 		CE3A2E801FBA73550058F730 /* Adobe AIR */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "Adobe AIR"; path = "../../../../../sdks/AIR/AIRSDK_28/runtimes/air/mac/Adobe AIR.framework/Versions/1.0/Adobe AIR"; sourceTree = "<group>"; };
 		CE3A2E821FBA735A0058F730 /* Adobe AIR_64 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "Adobe AIR_64"; path = "../../../../../sdks/AIR/AIRSDK_28/runtimes/air/mac/Adobe AIR.framework/Versions/1.0/Adobe AIR_64"; sourceTree = "<group>"; };
 		CE42FD4C203077860011759A /* SwiftController+FreSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SwiftController+FreSwift.swift"; path = "../../../source/swift/SwiftController+FreSwift.swift"; sourceTree = "<group>"; };
-		CE42FD4E203087FA0011759A /* CoreMlController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMlController.swift; sourceTree = "<group>"; };
-		CE42FD50203092D00011759A /* MLEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLEvent.swift; sourceTree = "<group>"; };
+		CE42FD4E203087FA0011759A /* CoreMlController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoreMlController.swift; path = ../../../source/swift/CoreMlController.swift; sourceTree = "<group>"; };
+		CE42FD50203092D00011759A /* MLEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MLEvent.swift; path = ../../../../source/swift/Events/MLEvent.swift; sourceTree = "<group>"; };
 		CE42FD53203120770011759A /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		CE42FD54203120770011759A /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyJSON.h; sourceTree = "<group>"; };
 		CE42FD57203120CD0011759A /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
