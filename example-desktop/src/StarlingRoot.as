@@ -3,22 +3,17 @@ package {
 import com.tuarua.CommonDependencies;
 import com.tuarua.MLANE;
 import com.tuarua.mlane.ClassificationType;
+import com.tuarua.mlane.Model;
+import com.tuarua.mlane.ModelDescription;
 import com.tuarua.mlane.VisionClassification;
 import com.tuarua.mlane.events.CompileEvent;
 import com.tuarua.mlane.events.ModelEvent;
 import com.tuarua.mlane.events.VisionClassificationEvent;
 
 import flash.desktop.NativeApplication;
-import flash.display.Bitmap;
 import flash.events.Event;
 import flash.events.ProgressEvent;
 import flash.filesystem.File;
-import flash.filesystem.FileMode;
-import flash.filesystem.FileStream;
-import flash.net.URLLoader;
-import flash.net.URLLoaderDataFormat;
-import flash.net.URLRequest;
-import flash.utils.ByteArray;
 
 import starling.display.Sprite;
 import starling.events.Touch;
@@ -33,8 +28,8 @@ public class StarlingRoot extends Sprite {
     [Embed(source="ttf/fira-sans-embed.ttf", embedAsCFF="false", fontFamily="Fira Sans", fontWeight="SemiBold")]
     private static const firaSansEmbedded:Class;
 
-     [Embed(source="dog.jpg")]
-     public static const TestImage:Class;
+    [Embed(source="dog.jpg")]
+    public static const TestImage:Class;
 
     //noinspection JSUnusedLocalSymbols
     private var commonDependenciesANE:CommonDependencies = new CommonDependencies();//must create before all others
@@ -42,20 +37,23 @@ public class StarlingRoot extends Sprite {
     private var classifyBtn:SimpleButton;
     private var statusLabel:TextField = new TextField(800, 400, "");
     private var coreml:MLANE;
-    private var modelDownloader:URLLoader;
 
-    private static const modelUrl:String = "https://docs-assets.developer.apple.com/coreml/models/MobileNet.mlmodel";
-    private static const modelFileName:String = "MobileNet.mlmodel";
-    private static const modelCompiledFileName:String = "MobileNet.mlmodelc";
+    private static const modelFileName:String = "MobileNet.mlmodel"; //SqueezeNet.mlmodel - GoogLeNetPlaces.mlmodel
+    private static const modelCompiledFileName:String = modelFileName + "c";
+    private static const modelUrl:String = "https://docs-assets.developer.apple.com/coreml/models/" + modelFileName;
 
-    // https://docs-assets.developer.apple.com/coreml/models/SqueezeNet.mlmodel
-    // https://docs-assets.developer.apple.com/coreml/models/GoogLeNetPlaces.mlmodel
+    private var model:Model;
+
     public function StarlingRoot() {
         super();
         NativeApplication.nativeApplication.addEventListener(Event.EXITING, onExiting);
     }
 
     public function start():void {
+
+
+        trace(File.applicationStorageDirectory.nativePath);
+
         loadBtn = new SimpleButton("Get Model");
         loadBtn.addEventListener(TouchEvent.TOUCH, onLoadTouch);
         loadBtn.useHandCursor = true;
@@ -70,12 +68,12 @@ public class StarlingRoot extends Sprite {
         classifyBtn.visible = false;
 
         coreml = MLANE.coreml;
-        coreml.addEventListener(ModelEvent.LOADED, onModelLoaded);
-        coreml.addEventListener(CompileEvent.ERROR, onCompileError);
-        coreml.addEventListener(CompileEvent.COMPLETE, onCompileComplete);
+        // coreml.addEventListener(ModelEvent.LOADED, onModelLoaded);
+        // coreml.addEventListener(CompileEvent.ERROR, onCompileError);
+        // coreml.addEventListener(CompileEvent.COMPLETE, onCompileComplete);
         coreml.addEventListener(VisionClassificationEvent.RESULT, onVisionClassificationResult);
 
-        // only add buttons if
+
         if (coreml.isSupported) {
             addChild(loadBtn);
             addChild(classifyBtn);
@@ -89,14 +87,11 @@ public class StarlingRoot extends Sprite {
 
     }
 
-    private function onModelLoaded(event:ModelEvent):void {
-        statusLabel.text = "model loaded";
-    }
 
     private function onVisionClassificationResult(event:VisionClassificationEvent):void {
         statusLabel.text = "";
         for each (var classification:VisionClassification in event.results) {
-            statusLabel.text += classification.confidence.toFixed(3) + " " +classification.identifier + "\n";
+            statusLabel.text += classification.confidence.toFixed(3) + " " + classification.identifier + "\n";
         }
     }
 
@@ -110,52 +105,53 @@ public class StarlingRoot extends Sprite {
         }
     }
 
-    private function onCompileComplete(event:CompileEvent):void {
-        statusLabel.text = "model compiled";
-        loadModel();
-    }
-
-    private function onCompileError(event:CompileEvent):void {
-        trace(event.error);
-    }
-
     private function onLoadTouch(event:TouchEvent):void {
         event.stopPropagation();
         var touch:Touch = event.getTouch(loadBtn, TouchPhase.ENDED);
         if (touch && touch.phase == TouchPhase.ENDED) {
             loadBtn.touchable = false;
             loadBtn.alpha = 0.5;
-            if (File.applicationStorageDirectory.resolvePath(modelCompiledFileName).exists) {
+            var modelFile:File = File.applicationStorageDirectory.resolvePath(modelCompiledFileName);
+            if (modelFile.exists) {
                 statusLabel.text = "already compiled, load model";
-                loadModel();
+                loadBtn.visible = false;
+                classifyBtn.visible = true;
+                model = new Model(modelFile.nativePath);
+                model.load(onModelLoaded);
             } else {
-                // download model
-                var request:URLRequest = new URLRequest(modelUrl);
-                modelDownloader = new URLLoader();
-                modelDownloader.dataFormat = URLLoaderDataFormat.BINARY;
-                modelDownloader.addEventListener(ProgressEvent.PROGRESS, onDownloadProgress);
-                modelDownloader.addEventListener(Event.COMPLETE, onDownloadComplete);
-                modelDownloader.load(request);
+                statusLabel.text = "downloading model";
+                model = Model.fromUrl(modelUrl, onDownloadProgress, onDownloadComplete, onCompiled);
             }
-
         }
     }
 
-    private function compileModel():void {
-        var model:File = File.applicationStorageDirectory.resolvePath(modelFileName);
-        if (model.exists) {
-            coreml.compileModel(model.nativePath);
-        }
+    private function onCompiled(event:CompileEvent):void {
+        statusLabel.text = "Compile complete";
+        model.load(onModelLoaded);
     }
 
-    private function loadModel():void {
-        var model:File = File.applicationStorageDirectory.resolvePath(modelCompiledFileName);
-        if (model.exists) {
-            coreml.loadModel(model.nativePath);
-            loadBtn.visible = false;
-            classifyBtn.visible = true;
-        }
+    private function onDownloadProgress(event:ProgressEvent):void {
+        statusLabel.text = Math.floor((event.bytesLoaded / event.bytesTotal) * 100) + "% downloaded";
     }
+
+    private function onDownloadComplete(event:Event):void {
+        statusLabel.text = "Download complete, start compile";
+    }
+
+    private function onModelLoaded(event:ModelEvent):void {
+        statusLabel.text = "model loaded";
+        loadBtn.visible = false;
+        classifyBtn.visible = true;
+
+        var modelDescription:ModelDescription = model.description;
+        trace(model.description);
+        if (modelDescription) {
+            trace(modelDescription.predictedFeatureName);
+            trace(modelDescription.predictedProbabilitiesName);
+        }
+
+    }
+
 
     private function classifyWithVision():void {
         //
@@ -168,24 +164,6 @@ public class StarlingRoot extends Sprite {
         }
     }
 
-    private function onDownloadComplete(event:Event):void {
-        writeBytesToFile(File.applicationStorageDirectory.resolvePath(modelFileName).nativePath,
-                event.target.data as ByteArray);
-        compileModel();
-    }
-
-    private function onDownloadProgress(event:ProgressEvent):void {
-        statusLabel.text = Math.floor((event.bytesLoaded / event.bytesTotal) * 100) + "% downloaded";
-    }
-
-    private static function writeBytesToFile(fileName:String, data:ByteArray):void {
-        var outFile:File = File.desktopDirectory;
-        outFile = outFile.resolvePath(fileName);
-        var outStream:FileStream = new FileStream();
-        outStream.open(outFile, FileMode.WRITE);
-        outStream.writeBytes(data, 0, data.length);
-        outStream.close();
-    }
 
     private function onExiting(event:Event):void {
 

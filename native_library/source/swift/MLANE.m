@@ -31,6 +31,8 @@ CONTEXT_INIT(TRCML) {
          MAP_FUNCTION(TRCML, init)
         ,MAP_FUNCTION(TRCML, compileModel)
         ,MAP_FUNCTION(TRCML, loadModel)
+        ,MAP_FUNCTION(TRCML, prediction)
+        ,MAP_FUNCTION(TRCML, getDescription)
         ,MAP_FUNCTION(TRCML, classifyImage)
     };
     /**************************************************************************/

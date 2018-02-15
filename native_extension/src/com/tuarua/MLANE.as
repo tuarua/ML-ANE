@@ -51,18 +51,6 @@ public class MLANE extends EventDispatcher {
         return _coreml;
     }
 
-    public function compileModel(path:String):void {
-        if (safetyCheck()) {
-            MLANEContext.context.call("compileModel", path);
-        }
-    }
-
-    public function loadModel(path:String):void {
-        if (safetyCheck()) {
-            MLANEContext.context.call("loadModel", path);
-        }
-    }
-
     public function classifyImage(type:int, path:String, bitmapData:BitmapData = null):void {
         if (safetyCheck()) {
             MLANEContext.context.call("classifyImage", type, path, bitmapData);

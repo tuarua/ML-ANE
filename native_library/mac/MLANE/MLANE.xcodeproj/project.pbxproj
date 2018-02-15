@@ -20,6 +20,10 @@
 		CE42FD51203092D00011759A /* MLEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE42FD50203092D00011759A /* MLEvent.swift */; };
 		CE42FD55203120770011759A /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE42FD53203120770011759A /* SwiftyJSON.swift */; };
 		CE42FD56203120770011759A /* SwiftyJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = CE42FD54203120770011759A /* SwiftyJSON.h */; };
+		CEF04AE820350B6900E495E6 /* FreMLImageConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF04AE720350B6900E495E6 /* FreMLImageConstraint.swift */; };
+		CEF04AEB20350CF800E495E6 /* FreMLDictionaryConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF04AEA20350CF800E495E6 /* FreMLDictionaryConstraint.swift */; };
+		CEF04AED20350DC800E495E6 /* FreMLFeatureDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF04AEC20350DC800E495E6 /* FreMLFeatureDescription.swift */; };
+		CEF04AEF20350F4800E495E6 /* FreMLModelDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF04AEE20350F4800E495E6 /* FreMLModelDescription.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,10 +39,14 @@
 		CE3A2E821FBA735A0058F730 /* Adobe AIR_64 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "Adobe AIR_64"; path = "../../../../../sdks/AIR/AIRSDK_28/runtimes/air/mac/Adobe AIR.framework/Versions/1.0/Adobe AIR_64"; sourceTree = "<group>"; };
 		CE42FD4C203077860011759A /* SwiftController+FreSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SwiftController+FreSwift.swift"; path = "../../../source/swift/SwiftController+FreSwift.swift"; sourceTree = "<group>"; };
 		CE42FD4E203087FA0011759A /* CoreMlController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoreMlController.swift; path = ../../../source/swift/CoreMlController.swift; sourceTree = "<group>"; };
-		CE42FD50203092D00011759A /* MLEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MLEvent.swift; path = ../../../../source/swift/Events/MLEvent.swift; sourceTree = "<group>"; };
+		CE42FD50203092D00011759A /* MLEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLEvent.swift; sourceTree = "<group>"; };
 		CE42FD53203120770011759A /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		CE42FD54203120770011759A /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyJSON.h; sourceTree = "<group>"; };
 		CE42FD57203120CD0011759A /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		CEF04AE720350B6900E495E6 /* FreMLImageConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreMLImageConstraint.swift; sourceTree = "<group>"; };
+		CEF04AEA20350CF800E495E6 /* FreMLDictionaryConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreMLDictionaryConstraint.swift; sourceTree = "<group>"; };
+		CEF04AEC20350DC800E495E6 /* FreMLFeatureDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreMLFeatureDescription.swift; sourceTree = "<group>"; };
+		CEF04AEE20350F4800E495E6 /* FreMLModelDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreMLModelDescription.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +69,8 @@
 			children = (
 				CE42FD50203092D00011759A /* MLEvent.swift */,
 			);
-			path = Events;
+			name = Events;
+			path = ../../../source/swift/Events;
 			sourceTree = "<group>";
 		};
 		CE3A2E5B1FBA700F0058F730 = {
@@ -93,6 +102,7 @@
 				CE42FD4C203077860011759A /* SwiftController+FreSwift.swift */,
 				CE42FD4E203087FA0011759A /* CoreMlController.swift */,
 				285FE30C4D1A701008E8D226 /* Events */,
+				CEF04AE920350B7600E495E6 /* Extensions */,
 			);
 			path = MLANE;
 			sourceTree = "<group>";
@@ -125,6 +135,18 @@
 			);
 			name = SwiftyJSON;
 			path = ../../../source/swift/SwiftyJSON;
+			sourceTree = "<group>";
+		};
+		CEF04AE920350B7600E495E6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CEF04AE720350B6900E495E6 /* FreMLImageConstraint.swift */,
+				CEF04AEA20350CF800E495E6 /* FreMLDictionaryConstraint.swift */,
+				CEF04AEC20350DC800E495E6 /* FreMLFeatureDescription.swift */,
+				CEF04AEE20350F4800E495E6 /* FreMLModelDescription.swift */,
+			);
+			name = Extensions;
+			path = ../../../source/swift/Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,8 +251,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEF04AE820350B6900E495E6 /* FreMLImageConstraint.swift in Sources */,
+				CEF04AEF20350F4800E495E6 /* FreMLModelDescription.swift in Sources */,
 				CE3A2E781FBA70E60058F730 /* MLANE.m in Sources */,
+				CEF04AED20350DC800E495E6 /* FreMLFeatureDescription.swift in Sources */,
 				CE42FD51203092D00011759A /* MLEvent.swift in Sources */,
+				CEF04AEB20350CF800E495E6 /* FreMLDictionaryConstraint.swift in Sources */,
 				CE3A2E711FBA705A0058F730 /* SwiftController.swift in Sources */,
 				CE42FD55203120770011759A /* SwiftyJSON.swift in Sources */,
 				CE42FD4D203077860011759A /* SwiftController+FreSwift.swift in Sources */,

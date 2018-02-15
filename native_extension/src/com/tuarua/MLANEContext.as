@@ -15,8 +15,6 @@
 
 package com.tuarua {
 import com.tuarua.mlane.VisionClassification;
-import com.tuarua.mlane.events.CompileEvent;
-import com.tuarua.mlane.events.ModelEvent;
 import com.tuarua.mlane.events.VisionClassificationEvent;
 
 import flash.events.StatusEvent;
@@ -35,7 +33,6 @@ public class MLANEContext {
         if (_context == null) {
             try {
                 _context = ExtensionContext.createExtensionContext("com.tuarua." + NAME, null);
-                trace(context);
                 if (_context == null) {
                     throw new Error("ANE " + NAME + " not created properly.  Future calls will fail.");
                 }
@@ -48,38 +45,34 @@ public class MLANEContext {
     }
 
     private static function gotEvent(event:StatusEvent):void {
+
         switch (event.level) {
             case TRACE:
                 trace("[" + NAME + "]", event.code);
                 break;
-            case CompileEvent.COMPLETE:
-                MLANE.coreml.dispatchEvent(new CompileEvent(event.level, event.code));
-                break;
-            case CompileEvent.ERROR:
-                MLANE.coreml.dispatchEvent(new CompileEvent(event.level, null, event.code));
-                break;
-            case ModelEvent.LOADED:
-                MLANE.coreml.dispatchEvent(new ModelEvent(event.level, event.code));
-                break;
-            case ModelEvent.ERROR:
-                MLANE.coreml.dispatchEvent(new ModelEvent(event.level, null, event.code));
-                break;
-            case VisionClassificationEvent.RESULT:
-                try {
-                    argsAsJSON = JSON.parse(event.code);
-                    var results:Array = argsAsJSON.results;
-                    var vec:Vector.<VisionClassification> = new Vector.<VisionClassification>();
-                    for each (var classification:Object in results) {
-                        vec.push(new VisionClassification(classification.c, classification.i));
-                    }
-                    MLANE.coreml.dispatchEvent(new VisionClassificationEvent(event.level, vec));
-                } catch (e:Error) {
-                    trace(e.message);
-                }
-                break;
-            case VisionClassificationEvent.ERROR:
-                MLANE.coreml.dispatchEvent(new VisionClassificationEvent(event.level, null, event.code));
-                break;
+
+//            case CompileEvent.ERROR:
+//                MLANE.coreml.dispatchEvent(new CompileEvent(event.level, null, event.code));
+//                break;
+//            case ModelEvent.ERROR:
+//                MLANE.coreml.dispatchEvent(new ModelEvent(event.level, null, event.code));
+//                break;
+//            case VisionClassificationEvent.RESULT:
+//                try {
+//                    argsAsJSON = JSON.parse(event.code);
+//                    var results:Array = argsAsJSON.results;
+//                    var vec:Vector.<VisionClassification> = new Vector.<VisionClassification>();
+//                    for each (var classification:Object in results) {
+//                        vec.push(new VisionClassification(classification.c, classification.i));
+//                    }
+//                    MLANE.coreml.dispatchEvent(new VisionClassificationEvent(event.level, vec));
+//                } catch (e:Error) {
+//                    trace(e.message);
+//                }
+//                break;
+//            case VisionClassificationEvent.ERROR:
+//                MLANE.coreml.dispatchEvent(new VisionClassificationEvent(event.level, null, event.code));
+//                break;
         }
     }
 

@@ -23,6 +23,8 @@ extension SwiftController: FreSwiftMainController {
         functionsToSet["\(prefix)init"] = initController
         functionsToSet["\(prefix)compileModel"] = compileModel
         functionsToSet["\(prefix)loadModel"] = loadModel
+        functionsToSet["\(prefix)prediction"] = prediction
+        functionsToSet["\(prefix)getDescription"] = getDescription
         functionsToSet["\(prefix)classifyImage"] = classifyImage
         
         var arr: [String] = []

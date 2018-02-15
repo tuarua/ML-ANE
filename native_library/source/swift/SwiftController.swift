@@ -55,6 +55,18 @@ public class SwiftController: NSObject {
         return nil
     }
     
+    func prediction(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+        return nil
+    }
+    
+    func getDescription(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+        guard let mc = mlController
+            else {
+                return ArgCountError(message: "getDescription").getError(#file, #line, #column)
+        }
+        return mc.modelDescription?.toFREObject()
+    }
+    
     func classifyImage(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
         guard argc > 0,
             let mc = mlController,
