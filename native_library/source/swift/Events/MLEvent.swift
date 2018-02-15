@@ -17,7 +17,6 @@ import Foundation
 
 public struct CompileEvent {
     public static let COMPLETE: String = "MLANE.OnModelCompiled"
-    public static let ERROR: String = "MLANE.OnModelCompileError"
 }
 
 public struct ModelEvent {

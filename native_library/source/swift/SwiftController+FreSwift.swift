@@ -18,7 +18,7 @@ import FreSwift
 extension SwiftController: FreSwiftMainController {
     
     // must have this function !!
-    // Make sure these funcs match those in WebViewANE.m
+    // Make sure these funcs match those in MLANE.m
     @objc public func getFunctions(prefix: String) -> [String] {
         functionsToSet["\(prefix)init"] = initController
         functionsToSet["\(prefix)compileModel"] = compileModel

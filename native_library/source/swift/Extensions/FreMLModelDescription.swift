@@ -25,12 +25,7 @@ public extension MLModelDescription {
                                    value: self.predictedFeatureName)
             try ret?.setProp(name: "predictedProbabilitiesName",
                                    value: self.predictedProbabilitiesName)
-            let freMeta = try FREObject(className: "com.tuarua.mlane.ModelMetadata")
-            try freMeta?.setProp(name: "author", value: self.metadata[.author])
-            try freMeta?.setProp(name: "license", value: self.metadata[.license])
-            try freMeta?.setProp(name: "version", value: self.metadata[.versionString])
-            try freMeta?.setProp(name: "description", value: self.metadata[.description])
-            try ret?.setProp(name: "metadata", value: freMeta)
+            try ret?.setProp(name: "metadata", value: self.metadata.toFREObject())
             let freInputDict = try FREObject(className: "flash.utils.Dictionary")
             for input in self.inputDescriptionsByName {
                 try freInputDict?.setProp(name: input.key, value: input.value.toFREObject())

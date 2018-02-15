@@ -53,33 +53,35 @@ public class Model extends EventDispatcher {
         return (MLANEContext.context);
     }
 
-    public function load(onLoaded:Function = null):void { //TODO onError
+    public function load(onLoaded:Function = null, onError:Function = null):void {
         if (safetyCheck()) {
-            if (onLoaded) {
-                MLANEContext.context.addEventListener(StatusEvent.STATUS, function (event:StatusEvent):void {
-                    switch (event.level) {
-                        case ModelEvent.LOADED:
-                            _description = MLANEContext.context.call("getDescription") as ModelDescription;
+            MLANEContext.context.addEventListener(StatusEvent.STATUS, function (event:StatusEvent):void {
+                switch (event.level) {
+                    case ModelEvent.LOADED:
+                        _description = MLANEContext.context.call("getDescription") as ModelDescription;
+                        if (onLoaded) {
                             onLoaded.call(null, new ModelEvent(event.level, event.code));
-                            break;
-                        default:
-                            break;
-                    }
-                });
-            }
+                        }
+                        break;
+                    case ModelEvent.ERROR:
+                        if (onError) {
+                            onError.call(null, new ModelEvent(event.level, null, event.code));
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            });
             MLANEContext.context.call("loadModel", _path);
         }
     }
 
     public static function fromUrl(url:String, onProgress:Function = null, onComplete:Function = null,
-                                   onCompiled:Function = null):Model {  //TODO onError
+                                   onCompiled:Function = null, onError:Function = null):Model {
         if (!MLANEContext.context) throw new Error("NO ANE context");
         if (getExtension(url) != "mlmodel") {
             throw new Error("contentsOf must be of file type mlmodelc");
         }
-
-        trace("fromUrl", url);
-
         var request:URLRequest = new URLRequest(url);
         var downloader:URLLoader = new URLLoader();
         downloader.dataFormat = URLLoaderDataFormat.BINARY;
@@ -92,7 +94,6 @@ public class Model extends EventDispatcher {
         downloader.addEventListener(Event.COMPLETE, function (event:Event):void {
             var path:String = File.applicationStorageDirectory.resolvePath(fileNameFromUrl(url)).nativePath;
             writeBytesToFile(path, event.target.data as ByteArray);
-
             MLANEContext.context.addEventListener(StatusEvent.STATUS, function (event:StatusEvent):void {
                 switch (event.level) {
                     case CompileEvent.COMPLETE:
@@ -105,10 +106,8 @@ public class Model extends EventDispatcher {
                         break;
                 }
             });
-
             MLANEContext.context.call("compileModel", path);
         });
-        trace("downloading", request.url);
         downloader.load(request);
         return new Model();
     }

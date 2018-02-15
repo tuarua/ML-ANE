@@ -40,7 +40,7 @@ class CoreMlController: NSObject, FreSwiftController {
         }
         guard let modelUrl = urlPath else {
             self.trace("invalid path")
-            self.sendEvent(name: CompileEvent.ERROR, value: "invalid path")
+            self.sendEvent(name: ModelEvent.ERROR, value: "invalid path")
             return
         }
         backgroundQueue.async {
@@ -61,11 +61,11 @@ class CoreMlController: NSObject, FreSwiftController {
                     self.sendEvent(name: CompileEvent.COMPLETE, value: compiledUrl.absoluteString)
                 } catch {
                     self.trace(error.localizedDescription)
-                    self.sendEvent(name: CompileEvent.ERROR, value: error.localizedDescription)
+                    self.sendEvent(name: ModelEvent.ERROR, value: error.localizedDescription)
                 }
             } catch let error {
                 self.trace(error.localizedDescription)
-                self.sendEvent(name: CompileEvent.ERROR, value: error.localizedDescription)
+                self.sendEvent(name: ModelEvent.ERROR, value: error.localizedDescription)
             }
         }
     }

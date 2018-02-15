@@ -20,6 +20,7 @@
 		CE42FD51203092D00011759A /* MLEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE42FD50203092D00011759A /* MLEvent.swift */; };
 		CE42FD55203120770011759A /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE42FD53203120770011759A /* SwiftyJSON.swift */; };
 		CE42FD56203120770011759A /* SwiftyJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = CE42FD54203120770011759A /* SwiftyJSON.h */; };
+		CEAB62EA203614C600D86416 /* FreMLModelMetadataKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAB62E9203614C600D86416 /* FreMLModelMetadataKey.swift */; };
 		CEF04AE820350B6900E495E6 /* FreMLImageConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF04AE720350B6900E495E6 /* FreMLImageConstraint.swift */; };
 		CEF04AEB20350CF800E495E6 /* FreMLDictionaryConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF04AEA20350CF800E495E6 /* FreMLDictionaryConstraint.swift */; };
 		CEF04AED20350DC800E495E6 /* FreMLFeatureDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF04AEC20350DC800E495E6 /* FreMLFeatureDescription.swift */; };
@@ -43,6 +44,7 @@
 		CE42FD53203120770011759A /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		CE42FD54203120770011759A /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyJSON.h; sourceTree = "<group>"; };
 		CE42FD57203120CD0011759A /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		CEAB62E9203614C600D86416 /* FreMLModelMetadataKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreMLModelMetadataKey.swift; sourceTree = "<group>"; };
 		CEF04AE720350B6900E495E6 /* FreMLImageConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreMLImageConstraint.swift; sourceTree = "<group>"; };
 		CEF04AEA20350CF800E495E6 /* FreMLDictionaryConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreMLDictionaryConstraint.swift; sourceTree = "<group>"; };
 		CEF04AEC20350DC800E495E6 /* FreMLFeatureDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreMLFeatureDescription.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				CEF04AEA20350CF800E495E6 /* FreMLDictionaryConstraint.swift */,
 				CEF04AEC20350DC800E495E6 /* FreMLFeatureDescription.swift */,
 				CEF04AEE20350F4800E495E6 /* FreMLModelDescription.swift */,
+				CEAB62E9203614C600D86416 /* FreMLModelMetadataKey.swift */,
 			);
 			name = Extensions;
 			path = ../../../source/swift/Extensions;
@@ -260,6 +263,7 @@
 				CE3A2E711FBA705A0058F730 /* SwiftController.swift in Sources */,
 				CE42FD55203120770011759A /* SwiftyJSON.swift in Sources */,
 				CE42FD4D203077860011759A /* SwiftController+FreSwift.swift in Sources */,
+				CEAB62EA203614C600D86416 /* FreMLModelMetadataKey.swift in Sources */,
 				CE42FD4F203087FA0011759A /* CoreMlController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

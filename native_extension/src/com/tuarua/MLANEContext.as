@@ -50,29 +50,22 @@ public class MLANEContext {
             case TRACE:
                 trace("[" + NAME + "]", event.code);
                 break;
-
-//            case CompileEvent.ERROR:
-//                MLANE.coreml.dispatchEvent(new CompileEvent(event.level, null, event.code));
-//                break;
-//            case ModelEvent.ERROR:
-//                MLANE.coreml.dispatchEvent(new ModelEvent(event.level, null, event.code));
-//                break;
-//            case VisionClassificationEvent.RESULT:
-//                try {
-//                    argsAsJSON = JSON.parse(event.code);
-//                    var results:Array = argsAsJSON.results;
-//                    var vec:Vector.<VisionClassification> = new Vector.<VisionClassification>();
-//                    for each (var classification:Object in results) {
-//                        vec.push(new VisionClassification(classification.c, classification.i));
-//                    }
-//                    MLANE.coreml.dispatchEvent(new VisionClassificationEvent(event.level, vec));
-//                } catch (e:Error) {
-//                    trace(e.message);
-//                }
-//                break;
-//            case VisionClassificationEvent.ERROR:
-//                MLANE.coreml.dispatchEvent(new VisionClassificationEvent(event.level, null, event.code));
-//                break;
+            case VisionClassificationEvent.RESULT:
+                try {
+                    argsAsJSON = JSON.parse(event.code);
+                    var results:Array = argsAsJSON.results;
+                    var vec:Vector.<VisionClassification> = new Vector.<VisionClassification>();
+                    for each (var classification:Object in results) {
+                        vec.push(new VisionClassification(classification.c, classification.i));
+                    }
+                    MLANE.coreml.dispatchEvent(new VisionClassificationEvent(event.level, vec));
+                } catch (e:Error) {
+                    trace(e.message);
+                }
+                break;
+            case VisionClassificationEvent.ERROR:
+                MLANE.coreml.dispatchEvent(new VisionClassificationEvent(event.level, null, event.code));
+                break;
         }
     }
 
