@@ -29,6 +29,7 @@ import flash.net.URLLoader;
 import flash.net.URLLoaderDataFormat;
 import flash.net.URLRequest;
 import flash.utils.ByteArray;
+import flash.utils.Dictionary;
 
 public class Model extends EventDispatcher {
     private var _description:ModelDescription;
@@ -134,8 +135,8 @@ public class Model extends EventDispatcher {
         return new Model();
     }
 
-    public function prediction():void {
-        MLANEContext.context.call("prediction", _fileName);
+    public function prediction(inputs:Object):void {
+        MLANEContext.context.call("prediction", inputs);
     }
 
     private static function fileNameFromUrl(path:String):String {
