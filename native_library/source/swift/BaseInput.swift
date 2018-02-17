@@ -19,53 +19,21 @@ import FreSwift
 
 @available(macOS 10.13, iOS 11.0, tvOS 11.0, watchOS 4.0, *)
 class BaseInput: MLFeatureProvider {
-    private var inputs: [String: Any?] = [:]
-    private var modelDescription: MLModelDescription
-    
+    private var inputs: [String: MLFeatureValue] = [:]
     var featureNames: Set<String> = []
     
     func featureValue(for featureName: String) -> MLFeatureValue? {
-        for item in modelDescription.inputDescriptionsByName {
-            switch item.value.type {
-            case .dictionary:
-                if let val = inputs[featureName] as? [AnyHashable: NSNumber] {
-                    return try? MLFeatureValue(dictionary: val)
-                }
-            case .double:
-                if let val = inputs[featureName] as? Double {
-                    return MLFeatureValue(double: val)
-                }
-            case .image:
-                let val = inputs[featureName] as! CVPixelBuffer
-                return MLFeatureValue(pixelBuffer: val)
-            case .int64:
-                if let val = inputs[featureName] as? Int64 {
-                    return MLFeatureValue(int64: val)
-                }
-            case .invalid:
-                break
-            case .multiArray:
-                if let val = inputs[featureName] as? MLMultiArray {
-                    return MLFeatureValue(multiArray: val)
-                }
-            case .string:
-                if let val = inputs[featureName] as? String {
-                    return MLFeatureValue(string: val)
-                }
-            }
-        }
-        return nil
+        return inputs[featureName]
     }
     
     init(modelDescription: MLModelDescription) {
-        self.modelDescription = modelDescription
         for item in modelDescription.inputDescriptionsByName {
             featureNames.insert(item.value.name)
         }
     }
     
-    func setValues(dictionary: [String: Any?]) {
-        // TODO
+    func setValues(dictionary: [String: MLFeatureValue], _ context: FreContextSwift? = nil) {
+        inputs = dictionary
     }
     
 }

@@ -17,30 +17,23 @@ import Foundation
 import FreSwift
 import CoreML
 import Vision
-
 class CoreMlController: NSObject, FreSwiftController {
     var TAG: String? = "CoreMlController"
     var context: FreContextSwift!
-    private var model: MLModel?
-    private let backgroundQueue = DispatchQueue(label: "com.tuarua.mlane.compileQueue", qos: .background)
-    private var maxResults: Int = 5
+    private var models: [String: MLModel] = [:]
+    private let backgroundQueue = DispatchQueue(label: "com.tuarua.mlane.backgroundQueue", qos: .background)
     convenience init(context: FreContextSwift) {
         self.init()
         self.context = context
     }
 
-    func compileModel(path: String) {
-        trace("compile this", path)
-        // https://www.appcoda.com/grand-central-dispatch/
-        var urlPath: URL?
-        if path.starts(with: "file:") {
-            urlPath = URL(string: path)
-        } else {
-            urlPath = URL(fileURLWithPath: path)
-        }
-        guard let modelUrl = urlPath else {
-            self.trace("invalid path")
-            self.sendEvent(name: ModelEvent.ERROR, value: "invalid path")
+    func compileModel(id: String, path: String) {
+        var props: [String: Any] = Dictionary()
+        props["id"] = id
+        guard let modelUrl = URL(safe: path) else {
+            props["error"] = "invalid path"
+            let json = JSON(props)
+            self.sendEvent(name: ModelEvent.ERROR, value: json.description)
             return
         }
         backgroundQueue.async {
@@ -57,117 +50,95 @@ class CoreMlController: NSObject, FreSwiftController {
                     } else {
                         try fileManager.copyItem(at: tmpUrl, to: compiledUrl)
                     }
-                    
-                    self.sendEvent(name: CompileEvent.COMPLETE, value: compiledUrl.absoluteString)
+                    props["path"] = compiledUrl.absoluteString
+                    let json = JSON(props)
+                    self.sendEvent(name: ModelEvent.COMPILED, value: json.description)
                 } catch {
-                    self.trace(error.localizedDescription)
-                    self.sendEvent(name: ModelEvent.ERROR, value: error.localizedDescription)
+                    props["error"] = error.localizedDescription
+                    let json = JSON(props)
+                    self.sendEvent(name: ModelEvent.ERROR, value: json.description)
                 }
             } catch let error {
-                self.trace(error.localizedDescription)
-                self.sendEvent(name: ModelEvent.ERROR, value: error.localizedDescription)
+                props["error"] = error.localizedDescription
+                let json = JSON(props)
+                self.sendEvent(name: ModelEvent.ERROR, value: json.description)
             }
         }
     }
     
-    // this loads the COMPILED MODEL
-    func loadModel(path: String) {
+    func loadModel(id: String, path: String) {
+        var props: [String: Any] = Dictionary()
+        props["id"] = id
         backgroundQueue.async {
             do {
-                var urlPath: URL?
-                if path.starts(with: "file:") {
-                    urlPath = URL(string: path)
-                } else {
-                    urlPath = URL(fileURLWithPath: path)
-                }
-                guard let url = urlPath else {
-                    self.trace("invalid path")
-                    self.sendEvent(name: ModelEvent.ERROR, value: "invalid path")
+                guard let url = URL(safe: path) else {
+                    props["error"] = "invalid path"
+                    let json = JSON(props)
+                    self.sendEvent(name: ModelEvent.ERROR, value: json.description)
                     return
                 }
-                self.model = try MLModel(contentsOf: url)
-                if let md = self.model?.modelDescription {
-                    let fp = BaseInput.init(modelDescription: md)
-                    self.trace(fp.featureValue(for: "image").debugDescription)
-                }
-                
-                
-                // try model?.prediction(from: 66 as! MLFeatureProvider)
-                // props["description"] = self.model?.modelDescription.debugDescription
-                
-                
-// self.trace("inputDescriptionsByName", self.model?.modelDescription.inputDescriptionsByName.debugDescription)
-// self.trace("outputDescriptionsByName", self.model?.modelDescription.outputDescriptionsByName.debugDescription)
-// self.trace("predictedFeatureName", self.model?.modelDescription.predictedFeatureName)
-// self.trace("predictedProbabilitiesName", self.model?.modelDescription.predictedProbabilitiesName)
-// self.trace("metadata", self.model?.modelDescription.metadata.debugDescription)
-                
-                // self.trace(self.model?.modelDescription.debugDescription ?? "")
-
-                self.sendEvent(name: ModelEvent.LOADED, value: path)
+                self.models[id] = try MLModel(contentsOf: url)
+                props["path"] = path
+                let json = JSON(props)
+                self.sendEvent(name: ModelEvent.LOADED, value: json.description)
             } catch let error {
-                self.trace(error.localizedDescription)
-                self.sendEvent(name: ModelEvent.ERROR, value: error.localizedDescription)
+                props["error"] = error.localizedDescription
+                let json = JSON(props)
+                self.sendEvent(name: ModelEvent.ERROR, value: json.description)
             }
         }
     }
     
-    var modelDescription: MLModelDescription? {
-        return model?.modelDescription
-    }
-    
-    // https://github.com/shingt/BeerClassifier/blob/a93224f1a57b948c501fe2d8b210126e032d076f/iOS/
-    // BeerClassifier/ClassificationService.swift#L74
-    
-    func classifyImage(type: Int, cgImage: CGImage) {
-        // let orientation = CGImagePropertyOrientation(image.imageOrientation)
-        let ciImage = CIImage.init(cgImage: cgImage)
-        backgroundQueue.async {
-            let handler = VNImageRequestHandler(ciImage: ciImage)
-            do {
-                if let cr = self.classificationRequest {
-                   try handler.perform([cr])
+    func prediction(id: String, input: [String: MLFeatureValue], maxResults: Int) {
+        if let model = models[id] {
+            var props: [String: Any] = Dictionary()
+            props["id"] = id
+            let modelDescription = model.modelDescription
+            let featureProvider = BaseInput.init(modelDescription: modelDescription)
+            featureProvider.setValues(dictionary: input, context)
+            DispatchQueue.main.async {
+                do {
+                    let prediction = try model.prediction(from: featureProvider)
+                    for featureName in prediction.featureNames {
+                        var feature: [String: Any] = Dictionary()
+                        if let val = prediction.featureValue(for: featureName) {
+                            switch val.type {
+                            case .dictionary:
+                                let dictionaryValue = val.dictionaryValue
+                                if dictionaryValue.isEmpty {
+                                    feature["dictionaryV"] = [:]
+                                } else {
+                                    let slicedArray = dictionaryValue.sorted { $0.value > $1.value }.prefix(maxResults)
+                                    feature["dictionaryV"] = slicedArray.map { item in
+                                        return ["k": item.key, "v": item.value]
+                                    }
+                                }
+                            case .double:
+                                feature["doubleV"] = val.doubleValue
+                            case .string:
+                                feature["stringV"] = val.stringValue
+                            case .int64:
+                                feature["int64V"] = val.int64Value
+                            default:
+                                break
+                            }
+                            // TODO val.imageBufferValue
+                            // TODO val.multiArrayValue
+                            props[featureName] = feature
+                        }
+                    }
+                    let json = JSON(props)
+                    self.sendEvent(name: ModelEvent.RESULT, value: json.description)
+                } catch let error {
+                    props["error"] = error.localizedDescription
+                    let json = JSON(props)
+                    self.sendEvent(name: ModelEvent.ERROR, value: json.description)
                 }
-            } catch {
-                self.sendEvent(name: VisionClassificationEvent.ERROR, value: error.localizedDescription)
             }
         }
     }
     
-    lazy private var classificationRequest: VNCoreMLRequest? = {
-        do {
-            guard let sourceModel = self.model else { return nil }
-            let model = try VNCoreMLModel(for: sourceModel)
-            let request = VNCoreMLRequest(model: model, completionHandler: { [weak self] request, error in
-                self?.processClassifications(for: request, error: error)
-            })
-            request.imageCropAndScaleOption = .centerCrop
-            return request
-        } catch {
-            self.sendEvent(name: ModelEvent.ERROR, value: error.localizedDescription)
-            return nil
-        }
-    }()
-    
-    private func processClassifications(for request: VNRequest, error: Error?) {
-        guard let results = request.results as? [VNClassificationObservation] else {
-            if let e = error {
-                sendEvent(name: VisionClassificationEvent.ERROR, value: e.localizedDescription)
-            }
-            return
-        }
-        var props: [String: Any] = Dictionary()
-        if results.isEmpty {
-            props["results"] = []
-        } else {
-            let topClassifications = results.prefix(maxResults)
-            let descriptions = topClassifications.map { classification in
-                return ["i": classification.identifier, "c": classification.confidence]
-            }
-            props["results"] = descriptions
-        }
-        let json = JSON(props)
-        sendEvent(name: VisionClassificationEvent.RESULT, value: json.description)
+    func getModelDescription(id: String) -> MLModelDescription? {
+        return models[id]?.modelDescription
     }
-    
 }

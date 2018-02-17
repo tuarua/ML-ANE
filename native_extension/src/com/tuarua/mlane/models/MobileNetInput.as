@@ -13,22 +13,13 @@
  limitations under the License.
  */
 
-package com.tuarua.mlane {
-public class VisionClassification {
-    private var _confidence:Number;
-    private var _identifier:String;
+package com.tuarua.mlane.models {
+import flash.display.BitmapData;
 
-    public function VisionClassification(confidence:Number, identifier:String) {
-        this._confidence = confidence;
-        this._identifier = identifier;
-    }
-
-    public function get confidence():Number {
-        return _confidence;
-    }
-
-    public function get identifier():String {
-        return _identifier;
+public class MobileNetInput {
+    public var image:BitmapData;
+    public function MobileNetInput(image:BitmapData) {
+        this.image = image;
     }
 }
 }

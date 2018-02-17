@@ -21,11 +21,11 @@ extension SwiftController: FreSwiftMainController {
     // Make sure these funcs match those in MLANE.m
     @objc public func getFunctions(prefix: String) -> [String] {
         functionsToSet["\(prefix)init"] = initController
+        functionsToSet["\(prefix)createGUID"] = createGUID
         functionsToSet["\(prefix)compileModel"] = compileModel
         functionsToSet["\(prefix)loadModel"] = loadModel
         functionsToSet["\(prefix)prediction"] = prediction
         functionsToSet["\(prefix)getDescription"] = getDescription
-        functionsToSet["\(prefix)classifyImage"] = classifyImage
         
         var arr: [String] = []
         for key in functionsToSet.keys {
@@ -33,6 +33,10 @@ extension SwiftController: FreSwiftMainController {
         }
         
         return arr
+    }
+    
+    func createGUID(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+        return UUID().uuidString.toFREObject()
     }
     
     @objc public func dispose() {

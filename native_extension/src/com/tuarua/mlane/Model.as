@@ -15,13 +15,11 @@
 
 package com.tuarua.mlane {
 import com.tuarua.MLANEContext;
-import com.tuarua.mlane.events.CompileEvent;
-import com.tuarua.mlane.events.ModelEvent;
+import com.tuarua.fre.ANEError;
 
 import flash.events.Event;
 import flash.events.EventDispatcher;
 import flash.events.ProgressEvent;
-import flash.events.StatusEvent;
 import flash.filesystem.File;
 import flash.filesystem.FileMode;
 import flash.filesystem.FileStream;
@@ -29,21 +27,26 @@ import flash.net.URLLoader;
 import flash.net.URLLoaderDataFormat;
 import flash.net.URLRequest;
 import flash.utils.ByteArray;
-import flash.utils.Dictionary;
 
 public class Model extends EventDispatcher {
     private var _description:ModelDescription;
     private static var _path:String;
     private static var _fileName:String;
-    private var argsAsJSON:Object;
+    private static var _id:String;
+    private static var _onLoaded:Function;
+    private static var _onError:Function;
+    private static var _onCompiled:Function;
+    private static var _onResult:Function;
 
     public function Model(contentsOf:String = null) {
         if (!MLANEContext.context) throw new Error("NO ANE context");
+        _id = MLANEContext.context.call("createGUID") as String;
         if (contentsOf && getExtension(contentsOf) != "mlmodelc") {
             throw new Error("contentsOf must be of file type mlmodelc");
         }
         _path = contentsOf;
         _fileName = fileNameFromUrl(_path);
+        MLANEContext.models[_id] = this;
     }
 
     public function get description():ModelDescription {
@@ -56,33 +59,24 @@ public class Model extends EventDispatcher {
 
     public function load(onLoaded:Function = null, onError:Function = null):void {
         if (safetyCheck()) {
-            MLANEContext.context.addEventListener(StatusEvent.STATUS, function (event:StatusEvent):void {
-                switch (event.level) {
-                    case ModelEvent.LOADED:
-                        _description = MLANEContext.context.call("getDescription") as ModelDescription;
-                        if (onLoaded) {
-                            onLoaded.call(null, new ModelEvent(event.level, event.code));
-                        }
-                        break;
-                    case ModelEvent.ERROR:
-                        if (onError) {
-                            onError.call(null, new ModelEvent(event.level, null, event.code));
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            });
-            MLANEContext.context.call("loadModel", _path);
+            _onLoaded = onLoaded;
+            _onError = onError;
+            var theRet:* = MLANEContext.context.call("loadModel", _id, _path);
+            if (theRet is ANEError) {
+                throw theRet as ANEError;
+            }
         }
     }
 
     public static function fromUrl(url:String, onProgress:Function = null, onComplete:Function = null,
-                                   onCompiled:Function = null, onError:Function = null):Model {
+                                   onCompiled:Function = null, onError:Function = null):Model { //TODO onError
         if (!MLANEContext.context) throw new Error("NO ANE context");
         if (getExtension(url) != "mlmodel") {
             throw new Error("contentsOf must be of file type mlmodelc");
         }
+        _onCompiled = onCompiled;
+        var model:Model = new Model();
+        MLANEContext.models[model.id] = model;
         var request:URLRequest = new URLRequest(url);
         var downloader:URLLoader = new URLLoader();
         downloader.dataFormat = URLLoaderDataFormat.BINARY;
@@ -95,22 +89,10 @@ public class Model extends EventDispatcher {
         downloader.addEventListener(Event.COMPLETE, function (event:Event):void {
             var path:String = File.applicationStorageDirectory.resolvePath(fileNameFromUrl(url)).nativePath;
             writeBytesToFile(path, event.target.data as ByteArray);
-            MLANEContext.context.addEventListener(StatusEvent.STATUS, function (event:StatusEvent):void {
-                switch (event.level) {
-                    case CompileEvent.COMPLETE:
-                        _path = event.code;
-                        if (onCompiled) {
-                            onCompiled.call(null, new CompileEvent(event.level, event.code));
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            });
-            MLANEContext.context.call("compileModel", path);
+            MLANEContext.context.call("compileModel", model.id, path);
         });
         downloader.load(request);
-        return new Model();
+        return model;
     }
 
     public static function fromPath(path:String, onCompiled:Function = null):Model {
@@ -118,28 +100,26 @@ public class Model extends EventDispatcher {
         if (getExtension(path) != "mlmodel") {
             throw new Error("contentsOf must be of file type mlmodelc");
         }
-        MLANEContext.context.addEventListener(StatusEvent.STATUS, function (event:StatusEvent):void {
-            switch (event.level) {
-                case CompileEvent.COMPLETE:
-                    _path = event.code;
-                    _fileName = fileNameFromUrl(_path);
-                    if (onCompiled) {
-                        onCompiled.call(null, new CompileEvent(event.level, event.code));
-                    }
-                    break;
-                default:
-                    break;
-            }
-        });
-        MLANEContext.context.call("compileModel", path);
-        return new Model();
+        _onCompiled = onCompiled;
+        var model:Model = new Model();
+        MLANEContext.models[model.id] = model;
+        var theRet:* = MLANEContext.context.call("compileModel", model.id, path);
+        if (theRet is ANEError) {
+            throw theRet as ANEError;
+        }
+        return model;
     }
 
-    public function prediction(inputs:Object):void {
-        MLANEContext.context.call("prediction", inputs);
+    public function prediction(provider:Object, onResult:Function, maxResults:int = 5):void {
+        _onResult = onResult;
+        var theRet:* = MLANEContext.context.call("prediction", _id, provider, maxResults);
+        if (theRet is ANEError) {
+            throw theRet as ANEError;
+        }
     }
 
     private static function fileNameFromUrl(path:String):String {
+        if (path == null) return null;
         var arr:Array = path.split("/");
         return arr[arr.length - 1];
     }
@@ -161,8 +141,36 @@ public class Model extends EventDispatcher {
         return _path;
     }
 
+    public function set path(value:String):void {
+        _path = value;
+    }
+
     public function get fileName():String {
         return _fileName;
+    }
+
+    public function get id():String {
+        return _id;
+    }
+
+    public function get onCompiled():Function {
+        return _onCompiled;
+    }
+
+    public function get onResult():Function {
+        return _onResult;
+    }
+
+    public function get onError():Function {
+        return _onError;
+    }
+
+    public function get onLoaded():Function {
+        return _onLoaded;
+    }
+
+    public function set description(value:ModelDescription):void {
+        _description = value;
     }
 }
 }
