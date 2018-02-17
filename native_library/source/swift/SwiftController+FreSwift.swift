@@ -18,12 +18,14 @@ import FreSwift
 extension SwiftController: FreSwiftMainController {
     
     // must have this function !!
-    // Make sure these funcs match those in WebViewANE.m
+    // Make sure these funcs match those in MLANE.m
     @objc public func getFunctions(prefix: String) -> [String] {
         functionsToSet["\(prefix)init"] = initController
+        functionsToSet["\(prefix)createGUID"] = createGUID
         functionsToSet["\(prefix)compileModel"] = compileModel
         functionsToSet["\(prefix)loadModel"] = loadModel
-        functionsToSet["\(prefix)classifyImage"] = classifyImage
+        functionsToSet["\(prefix)prediction"] = prediction
+        functionsToSet["\(prefix)getDescription"] = getDescription
         
         var arr: [String] = []
         for key in functionsToSet.keys {
@@ -31,6 +33,10 @@ extension SwiftController: FreSwiftMainController {
         }
         
         return arr
+    }
+    
+    func createGUID(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+        return UUID().uuidString.toFREObject()
     }
     
     @objc public func dispose() {

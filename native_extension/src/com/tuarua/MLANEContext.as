@@ -14,19 +14,21 @@
  */
 
 package com.tuarua {
-import com.tuarua.mlane.VisionClassification;
-import com.tuarua.mlane.events.CompileEvent;
+import com.tuarua.mlane.Model;
+import com.tuarua.mlane.ModelDescription;
 import com.tuarua.mlane.events.ModelEvent;
-import com.tuarua.mlane.events.VisionClassificationEvent;
 
 import flash.events.StatusEvent;
 import flash.external.ExtensionContext;
+import flash.utils.Dictionary;
 
 public class MLANEContext {
     internal static const NAME:String = "MLANE";
     internal static const TRACE:String = "TRACE";
     private static var _context:ExtensionContext;
     private static var argsAsJSON:Object;
+
+    private static var _models:Dictionary = new Dictionary();
 
     public function MLANEContext() {
     }
@@ -35,7 +37,6 @@ public class MLANEContext {
         if (_context == null) {
             try {
                 _context = ExtensionContext.createExtensionContext("com.tuarua." + NAME, null);
-                trace(context);
                 if (_context == null) {
                     throw new Error("ANE " + NAME + " not created properly.  Future calls will fail.");
                 }
@@ -52,33 +53,50 @@ public class MLANEContext {
             case TRACE:
                 trace("[" + NAME + "]", event.code);
                 break;
-            case CompileEvent.COMPLETE:
-                MLANE.coreml.dispatchEvent(new CompileEvent(event.level, event.code));
-                break;
-            case CompileEvent.ERROR:
-                MLANE.coreml.dispatchEvent(new CompileEvent(event.level, null, event.code));
-                break;
-            case ModelEvent.LOADED:
-                MLANE.coreml.dispatchEvent(new ModelEvent(event.level, event.code));
-                break;
-            case ModelEvent.ERROR:
-                MLANE.coreml.dispatchEvent(new ModelEvent(event.level, null, event.code));
-                break;
-            case VisionClassificationEvent.RESULT:
+            case ModelEvent.COMPILED:
                 try {
                     argsAsJSON = JSON.parse(event.code);
-                    var results:Array = argsAsJSON.results;
-                    var vec:Vector.<VisionClassification> = new Vector.<VisionClassification>();
-                    for each (var classification:Object in results) {
-                        vec.push(new VisionClassification(classification.c, classification.i));
+                    var modelA:Model = _models[argsAsJSON.id];
+                    if (modelA) {
+                        modelA.path = argsAsJSON.path;
+                        if (modelA.onCompiled) {
+                            modelA.onCompiled.call(null, new ModelEvent(event.level, argsAsJSON.id, argsAsJSON.path));
+                        }
                     }
-                    MLANE.coreml.dispatchEvent(new VisionClassificationEvent(event.level, vec));
                 } catch (e:Error) {
                     trace(e.message);
                 }
                 break;
-            case VisionClassificationEvent.ERROR:
-                MLANE.coreml.dispatchEvent(new VisionClassificationEvent(event.level, null, event.code));
+            case ModelEvent.LOADED:
+                try {
+                    argsAsJSON = JSON.parse(event.code);
+                    var modelB:Model = _models[argsAsJSON.id];
+                    if (modelB) {
+                        modelB.description = MLANEContext.context.call("getDescription", modelB.id) as ModelDescription;
+                        if (modelB.onLoaded) {
+                            modelB.onLoaded.call(null, new ModelEvent(event.level, argsAsJSON.id, argsAsJSON.path));
+                        }
+                    }
+                } catch (e:Error) {
+                    trace(e.message);
+                }
+                break;
+            case ModelEvent.RESULT:
+                try {
+                    argsAsJSON = JSON.parse(event.code);
+                    var modelC:Model = _models[argsAsJSON.id];
+                    if (modelC) {
+                        if (modelC.onResult) {
+                            modelC.onResult.call(null, new ModelEvent(event.level, argsAsJSON.id, null, null,
+                                    argsAsJSON));
+                        }
+                    }
+                } catch (e:Error) {
+                    trace(e.message);
+                }
+                break;
+            case ModelEvent.ERROR:
+                trace(event.code);
                 break;
         }
     }
@@ -91,6 +109,10 @@ public class MLANEContext {
         _context.removeEventListener(StatusEvent.STATUS, gotEvent);
         _context.dispose();
         _context = null;
+    }
+
+    public static function get models():Dictionary {
+        return _models;
     }
 }
 }

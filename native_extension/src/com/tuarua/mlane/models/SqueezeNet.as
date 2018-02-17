@@ -13,8 +13,13 @@
  limitations under the License.
  */
 
-package com.tuarua.mlane {
-public final class ClassificationType {
-    public static const VISION:int = 0;
+package com.tuarua.mlane.models {
+import flash.display.BitmapData;
+
+public class SqueezeNet extends Object {
+    public var input:SqueezeNetInput;
+    public function SqueezeNet(image:BitmapData) {
+        input = new SqueezeNetInput(image);
+    }
 }
 }

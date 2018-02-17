@@ -16,8 +16,19 @@
 #import <Foundation/Foundation.h>
 #import "FreMacros.h"
 #import "MLANE_oc.h"
+#ifdef OSX
 #import <MLANE/MLANE-Swift.h>
-
+#else
+#import <MLANE_FW/MLANE_FW.h>
+#define FRE_OBJC_BRIDGE TRCML_FlashRuntimeExtensionsBridge // use unique prefix throughout to prevent clashes with other ANEs
+@interface FRE_OBJC_BRIDGE : NSObject<FreSwiftBridgeProtocol>
+@end
+@implementation FRE_OBJC_BRIDGE {
+}
+FRE_OBJC_BRIDGE_FUNCS
+@end
+#endif
+@implementation MLANE_LIB
 SWIFT_DECL(TRCML) // use unique prefix throughout to prevent clashes with other ANEs
 
 CONTEXT_INIT(TRCML) {
@@ -29,9 +40,11 @@ CONTEXT_INIT(TRCML) {
     static FRENamedFunction extensionFunctions[] =
     {
          MAP_FUNCTION(TRCML, init)
+        ,MAP_FUNCTION(TRCML, createGUID)
         ,MAP_FUNCTION(TRCML, compileModel)
         ,MAP_FUNCTION(TRCML, loadModel)
-        ,MAP_FUNCTION(TRCML, classifyImage)
+        ,MAP_FUNCTION(TRCML, prediction)
+        ,MAP_FUNCTION(TRCML, getDescription)
     };
     /**************************************************************************/
     /**************************************************************************/
@@ -43,7 +56,13 @@ CONTEXT_INIT(TRCML) {
 CONTEXT_FIN(TRCML) {
     [TRCML_swft dispose];
     TRCML_swft = nil;
+#ifdef OSX
+#else
+    TRCML_freBridge = nil;
+    TRCML_swftBridge = nil;
+#endif
     TRCML_funcArray = nil;
 }
 EXTENSION_INIT(TRCML)
 EXTENSION_FIN(TRCML)
+@end

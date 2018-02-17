@@ -15,17 +15,9 @@
 
 import Foundation
 
-public struct CompileEvent {
-    public static let COMPLETE: String = "MLANE.OnModelCompiled"
-    public static let ERROR: String = "MLANE.OnModelCompileError"
-}
-
 public struct ModelEvent {
+    public static let COMPILED: String = "MLANE.OnModelCompiled"
+    public static let RESULT: String = "MLANE.OnModelResult"
     public static let LOADED: String = "MLANE.OnModelLoaded"
     public static let ERROR: String = "MLANE.OnModelLoadError"
-}
-
-public struct VisionClassificationEvent {
-    public static let RESULT: String = "MLANE.OnVisionClassified"
-    public static let ERROR: String = "MLANE.OnVisionClassifationError"
 }
