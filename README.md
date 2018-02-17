@@ -62,7 +62,7 @@ private function onDownloadComplete(event:Event):void {
 //
 }
 private function onModelCompiled(event:ModelEvent):void {
-model.load();
+    model.load();
 }
 ````
 
@@ -70,7 +70,7 @@ model.load();
 ````actionscript
 var model:Model = Model.fromPath(File.applicationStorageDirectory.resolvePath("MobileNet.mlmodel").nativePath, onCompiled);
 private function onModelCompiled(event:ModelEvent):void {
-model.load();
+    model.load();
 }
 ``````
 
