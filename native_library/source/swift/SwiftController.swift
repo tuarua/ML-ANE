@@ -14,7 +14,6 @@
  */
 
 import Foundation
-import Cocoa
 import FreSwift
 import CoreML
 
@@ -126,6 +125,7 @@ public class SwiftController: NSObject {
         } catch {
             
         }
+
         if !input.isEmpty {
             mc.prediction(id: id, input: input, maxResults: maxResults)
         }

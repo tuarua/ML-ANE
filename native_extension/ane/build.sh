@@ -46,6 +46,10 @@ fi
 if [ ! -d "$pathtome/platforms/ios/device/Frameworks" ]; then
 mkdir "$pathtome/platforms/ios/device/Frameworks"
 fi
+if [ ! -d "$pathtome/platforms/mac" ]; then
+mkdir "$pathtome/platforms/mac"
+mkdir "$pathtome/platforms/mac/release"
+fi
 
 
 #Copy SWC into place.
@@ -60,6 +64,61 @@ unzip "$pathtome/$PROJECTNAME.swc" "library.swf" -d "$pathtome"
 echo "Copying library.swf into place."
 cp "$pathtome/library.swf" "$pathtome/platforms/ios/simulator"
 cp "$pathtome/library.swf" "$pathtome/platforms/ios/device"
+cp "$pathtome/library.swf" "$pathtome/platforms/mac/release"
+
+FWPATH="$pathtome/../../native_library/mac/$PROJECTNAME/Build/Products/Release/$PROJECTNAME.framework/Versions/A/Frameworks"
+if [ -f "$FWPATH/libswiftAppKit.dylib" ]; then
+rm "$FWPATH/libswiftAppKit.dylib"
+fi
+if [ -f "$FWPATH/libswiftCore.dylib" ]; then
+rm "$FWPATH/libswiftCore.dylib"
+fi
+if [ -f "$FWPATH/libswiftCoreData.dylib" ]; then
+rm "$FWPATH/libswiftCoreData.dylib"
+fi
+if [ -f "$FWPATH/libswiftCoreFoundation.dylib" ]; then
+rm "$FWPATH/libswiftCoreFoundation.dylib"
+fi
+if [ -f "$FWPATH/libswiftCoreGraphics.dylib" ]; then
+rm "$FWPATH/libswiftCoreGraphics.dylib"
+fi
+if [ -f "$FWPATH/libswiftCoreImage.dylib" ]; then
+rm "$FWPATH/libswiftCoreImage.dylib"
+fi
+if [ -f "$FWPATH/libswiftDarwin.dylib" ]; then
+rm "$FWPATH/libswiftDarwin.dylib"
+fi
+if [ -f "$FWPATH/libswiftDispatch.dylib" ]; then
+rm "$FWPATH/libswiftDispatch.dylib"
+fi
+if [ -f "$FWPATH/libswiftFoundation.dylib" ]; then
+rm "$FWPATH/libswiftFoundation.dylib"
+fi
+if [ -f "$FWPATH/libswiftIOKit.dylib" ]; then
+rm "$FWPATH/libswiftIOKit.dylib"
+fi
+if [ -f "$FWPATH/libswiftMetal.dylib" ]; then
+rm "$FWPATH/libswiftMetal.dylib"
+fi
+if [ -f "$FWPATH/libswiftObjectiveC.dylib" ]; then
+rm "$FWPATH/libswiftObjectiveC.dylib"
+fi
+if [ -f "$FWPATH/libswiftos.dylib" ]; then
+rm "$FWPATH/libswiftos.dylib"
+fi
+if [ -f "$FWPATH/libswiftQuartzCore.dylib" ]; then
+rm "$FWPATH/libswiftQuartzCore.dylib"
+fi
+if [ -f "$FWPATH/libswiftXPC.dylib" ]; then
+rm "$FWPATH/libswiftXPC.dylib"
+fi
+
+#Copy native libraries into place.
+echo "Copying native libraries into place."
+cp -R -L "$pathtome/../../native_library/mac/$PROJECTNAME/Build/Products/Release/$PROJECTNAME.framework" "$pathtome/platforms/mac/release"
+mv "$pathtome/platforms/mac/release/$PROJECTNAME.framework/Versions/A/Frameworks" "$pathtome/platforms/mac/release/$PROJECTNAME.framework"
+rm -r "$pathtome/platforms/mac/release/$PROJECTNAME.framework/Versions"
+
 
 #Copy native libraries into place.
 echo "Copying native libraries into place."
@@ -121,16 +180,20 @@ cp -R -L "$pathtome/platforms/ios/device/Frameworks/$PROJECTNAME$fwSuffix.framew
 #Run the build command.
 echo "Building ANE."
 "$AIR_SDK"/bin/adt -package \
--target ane "$pathtome/$PROJECTNAME.ane" "$pathtome/extension_ios.xml" \
+-target ane "$pathtome/$PROJECTNAME.ane" "$pathtome/extension.xml" \
 -swc "$pathtome/$PROJECTNAME.swc" \
 -platform iPhone-x86  -C "$pathtome/platforms/ios/simulator" "library.swf" "Frameworks" "lib$PROJECTNAME.a" \
 -platformoptions "$pathtome/platforms/ios/platform.xml" \
 -platform iPhone-ARM  -C "$pathtome/platforms/ios/device" "library.swf" "Frameworks" "lib$PROJECTNAME.a" \
 -platformoptions "$pathtome/platforms/ios/platform.xml" \
+-platform MacOS-x86-64 -C "$pathtome/platforms/mac/release" "$PROJECTNAME.framework" "library.swf"
+
+zip "$pathtome/$PROJECTNAME.ane" -u docs/*
 
 #remove the frameworks from sim and device, as not needed any more
 rm -r "$pathtome/platforms/ios/simulator"
 rm -r "$pathtome/platforms/ios/device"
+rm -r "$pathtome/platforms/mac"
 rm "$pathtome/$PROJECTNAME.swc"
 rm "$pathtome/library.swf"
 echo "Finished."

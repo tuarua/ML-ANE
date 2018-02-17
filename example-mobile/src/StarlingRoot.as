@@ -1,6 +1,5 @@
 package {
 
-import com.tuarua.CommonDependencies;
 import com.tuarua.MLANE;
 import com.tuarua.mlane.Model;
 import com.tuarua.mlane.ModelDescription;
@@ -33,8 +32,6 @@ public class StarlingRoot extends Sprite {
     [Embed(source="dog.jpg")]
     public static const TestImage:Class;
 
-    //noinspection JSUnusedLocalSymbols
-    private var commonDependenciesANE:CommonDependencies = new CommonDependencies(); //must create before all others
     private var loadMobileNetBtn:SimpleButton;
     private var predictMobileNetBtn:SimpleButton;
     private var predictMarsBtn:SimpleButton;

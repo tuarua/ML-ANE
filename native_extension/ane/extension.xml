@@ -19,5 +19,12 @@
              <finalizer>TRCMLExtFinizer</finalizer>
          </applicationDeployment>
      </platform>
+     <platform name="MacOS-x86-64">
+         <applicationDeployment>
+             <nativeLibrary>MLANE.framework</nativeLibrary>
+             <initializer>TRCMLExtInizer</initializer>
+             <finalizer>TRCMLExtFinizer</finalizer>
+         </applicationDeployment>
+     </platform>
     </platforms>
 </extension>

@@ -13,7 +13,6 @@
  limitations under the License.
  */
 
-import Cocoa
 import CoreML
 import FreSwift
 
