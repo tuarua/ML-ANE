@@ -97,7 +97,7 @@ public class StarlingRoot extends Sprite {
             addChild(loadMarsBtn);
             addChild(predictMarsBtn);
         } else {
-            trace("Core ML is only supported on Mac OSX 10.13+");
+            trace("Core ML is only supported on Mac OSX 10.13+ and iOS 11.0+");
         }
 
         mobileNetStatusLabel.format.setTo("Fira Sans", 13, 0x222222, Align.CENTER, Align.TOP);
