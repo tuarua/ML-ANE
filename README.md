@@ -97,15 +97,15 @@ You will need:
     - [x] Image
     - [x] Double
     - [x] String
-    - [  ] Dictionary
-    - [  ] MultiArray
-    - [  ] Camera
-    - [  ] Camera Roll (iOS)
+    - [ ] Dictionary
+    - [ ] MultiArray
+    - [ ] Camera
+    - [ ] Camera Roll (iOS)
 * Outputs
     - [ ] Image
     - [x] Double
     - [x] String
-    - [  ] MultiArray
+    - [ ] MultiArray
     - [ x] Dictionary
 
 ### References
