@@ -106,7 +106,7 @@ You will need:
     - [x] Double
     - [x] String
     - [ ] MultiArray
-    - [ x] Dictionary
+    - [x] Dictionary
 
 ### References
 * [https://developer.apple.com/documentation/coreml]
