@@ -78,7 +78,7 @@ private function onModelCompiled(event:ModelEvent):void {
 ````actionscript
 var testImage:Bitmap = new TestImage() as Bitmap;
 var mobileNet:MobileNet = new MobileNet(testImage.bitmapData);
-model.prediction(mobileNet, onMobileNetResult);
+    model.prediction(mobileNet, onMobileNetResult);
 }
 ``````
 
