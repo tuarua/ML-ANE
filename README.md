@@ -74,7 +74,7 @@ private function onModelCompiled(event:ModelEvent):void {
 }
 ``````
 
-#### perform predictiomn with bitmapData as input
+#### perform prediction with bitmapData as input
 ````actionscript
 var testImage:Bitmap = new TestImage() as Bitmap;
 var mobileNet:MobileNet = new MobileNet(testImage.bitmapData);
