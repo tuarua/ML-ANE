@@ -17,11 +17,18 @@ import Foundation
 import FreSwift
 import CoreML
 import Vision
+#if os(iOS)
+import AVFoundation
+#endif
 class CoreMlController: NSObject, FreSwiftController {
     var TAG: String? = "CoreMlController"
     var context: FreContextSwift!
     private var models: [String: MLModel] = [:]
     private let backgroundQueue = DispatchQueue(label: "com.tuarua.mlane.backgroundQueue", qos: .background)
+#if os(iOS)
+    internal var captureSession: AVCaptureSession!
+    internal var videoPreviewLayer: AVCaptureVideoPreviewLayer!
+#endif
     convenience init(context: FreContextSwift) {
         self.init()
         self.context = context
@@ -90,52 +97,56 @@ class CoreMlController: NSObject, FreSwiftController {
     }
     
     func prediction(id: String, input: [String: MLFeatureValue], maxResults: Int) {
-        if let model = models[id] {
-            var props: [String: Any] = Dictionary()
-            props["id"] = id
-            let modelDescription = model.modelDescription
-            let featureProvider = BaseInput.init(modelDescription: modelDescription)
-            featureProvider.setValues(dictionary: input, context)
-            DispatchQueue.main.async {
-                do {
-                    let prediction = try model.prediction(from: featureProvider)
-                    for featureName in prediction.featureNames {
-                        var feature: [String: Any] = Dictionary()
-                        if let val = prediction.featureValue(for: featureName) {
-                            switch val.type {
-                            case .dictionary:
-                                let dictionaryValue = val.dictionaryValue
-                                if dictionaryValue.isEmpty {
-                                    feature["dictionaryV"] = [:]
-                                } else {
-                                    let slicedArray = dictionaryValue.sorted { $0.value > $1.value }.prefix(maxResults)
-                                    feature["dictionaryV"] = slicedArray.map { item in
-                                        return ["k": item.key, "v": item.value]
-                                    }
+        guard let model = models[id] else { return  }
+
+        var props: [String: Any] = Dictionary()
+        props["id"] = id
+        let modelDescription = model.modelDescription
+        let featureProvider = BaseInput.init(modelDescription: modelDescription)
+        featureProvider.setValues(dictionary: input, context)
+        DispatchQueue.main.async {
+            do {
+                let prediction = try model.prediction(from: featureProvider)
+                for featureName in prediction.featureNames {
+                    var feature: [String: Any] = Dictionary()
+                    if let val = prediction.featureValue(for: featureName) {
+                        switch val.type {
+                        case .dictionary:
+                            let dictionaryValue = val.dictionaryValue
+                            if dictionaryValue.isEmpty {
+                                feature["dictionaryV"] = [:]
+                            } else {
+                                let slicedArray = dictionaryValue.sorted { $0.value > $1.value }.prefix(maxResults)
+                                feature["dictionaryV"] = slicedArray.map { item in
+                                    return ["k": item.key, "v": item.value]
                                 }
-                            case .double:
-                                feature["doubleV"] = val.doubleValue
-                            case .string:
-                                feature["stringV"] = val.stringValue
-                            case .int64:
-                                feature["int64V"] = val.int64Value
-                            default:
-                                break
                             }
-                            // TODO val.imageBufferValue
-                            // TODO val.multiArrayValue
-                            props[featureName] = feature
+                        case .double:
+                            feature["doubleV"] = val.doubleValue
+                        case .string:
+                            feature["stringV"] = val.stringValue
+                        case .int64:
+                            feature["int64V"] = val.int64Value
+                        default:
+                            break
                         }
+                        // TODO val.imageBufferValue
+                        // TODO val.multiArrayValue
+                        props[featureName] = feature
                     }
-                    let json = JSON(props)
-                    self.sendEvent(name: ModelEvent.RESULT, value: json.description)
-                } catch let error {
-                    props["error"] = error.localizedDescription
-                    let json = JSON(props)
-                    self.sendEvent(name: ModelEvent.ERROR, value: json.description)
                 }
+                let json = JSON(props)
+                self.sendEvent(name: ModelEvent.RESULT, value: json.description)
+            } catch let error {
+                props["error"] = error.localizedDescription
+                let json = JSON(props)
+                self.sendEvent(name: ModelEvent.ERROR, value: json.description)
             }
         }
+    }
+    
+    func inputFromCamera(id: String) {
+       guard let model = models[id] else { return  }
     }
     
     func getModelDescription(id: String) -> MLModelDescription? {

@@ -12,6 +12,7 @@
 		CE0560451FB25DD000D06976 /* MLANE_FW.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE87F4831FB259FA005CF7DF /* MLANE_FW.framework */; };
 		CE05604E1FB25E8E00D06976 /* FreMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = CE05604D1FB25E8E00D06976 /* FreMacros.h */; };
 		CE05604F1FB25E9F00D06976 /* FreMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = CE05604D1FB25E8E00D06976 /* FreMacros.h */; };
+		CE26D95B2038EAF1004084F0 /* CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26D95A2038EAF1004084F0 /* CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift */; };
 		CE87F4871FB259FA005CF7DF /* MLANE_FW.h in Headers */ = {isa = PBXBuildFile; fileRef = CE87F4851FB259FA005CF7DF /* MLANE_FW.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE88103B20388976004FD8B4 /* MLANE.m in Sources */ = {isa = PBXBuildFile; fileRef = CE88103920388975004FD8B4 /* MLANE.m */; };
 		CE88103C20388976004FD8B4 /* MLANE_oc.h in Headers */ = {isa = PBXBuildFile; fileRef = CE88103A20388975004FD8B4 /* MLANE_oc.h */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		CE05603E1FB25CE200D06976 /* FreSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FreSwift.framework; path = Carthage/Build/iOS/FreSwift.framework; sourceTree = "<group>"; };
 		CE05604D1FB25E8E00D06976 /* FreMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FreMacros.h; path = ../../../include/FreMacros.h; sourceTree = "<group>"; };
+		CE26D95A2038EAF1004084F0 /* CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift"; path = "../../../source/swift/CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift"; sourceTree = "<group>"; };
 		CE87F4751FB259DB005CF7DF /* libMLANE_LIB.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMLANE_LIB.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE87F4831FB259FA005CF7DF /* MLANE_FW.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MLANE_FW.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE87F4851FB259FA005CF7DF /* MLANE_FW.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLANE_FW.h; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				CE88103D203889A1004FD8B4 /* SwiftyJSON */,
 				CE87F4851FB259FA005CF7DF /* MLANE_FW.h */,
 				CE87F4861FB259FA005CF7DF /* Info.plist */,
+				CE26D95A2038EAF1004084F0 /* CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift */,
 			);
 			path = MLANE_FW;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				CE881057203889B7004FD8B4 /* FreMLFeatureDescription.swift in Sources */,
 				CE881052203889B7004FD8B4 /* FreMLModelDescription.swift in Sources */,
 				CE88105B203889B7004FD8B4 /* MLEvent.swift in Sources */,
+				CE26D95B2038EAF1004084F0 /* CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift in Sources */,
 				CE881040203889A2004FD8B4 /* SwiftyJSON.swift in Sources */,
 				CE881051203889B7004FD8B4 /* CoreMlController.swift in Sources */,
 				CE881055203889B7004FD8B4 /* CIImage.swift in Sources */,
