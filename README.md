@@ -92,7 +92,7 @@ You will need:
 - wget on OSX
 
 ### Task List
-- [x] Sample input Models (SqueezeNet and Apple)
+- [x] Sample input Models (MobileNet, SqueezeNet and Apple Mars)
 * Inputs
     - [x] Image
     - [x] Double
