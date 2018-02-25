@@ -99,7 +99,7 @@ You will need:
     - [x] String
     - [ ] Dictionary
     - [ ] MultiArray
-    - [ ] Camera (iOS)
+    - [x] Camera (iOS)
     - [ ] Camera Roll (iOS)
 * Outputs
     - [ ] Image

@@ -9,5 +9,9 @@ public class MarsHabitatPricerInput {
         this.greenhouses = greenhouses;
         this.size = size;
     }
+
+    public function getProperties():Array { //used in ANE
+        return ["solarPanels", "greenhouses", "size"];
+    }
 }
 }

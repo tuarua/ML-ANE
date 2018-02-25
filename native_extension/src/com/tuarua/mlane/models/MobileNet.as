@@ -16,7 +16,7 @@
 package com.tuarua.mlane.models {
 import flash.display.BitmapData;
 
-public class MobileNet extends Object {
+public class MobileNet {
     public var input:MobileNetInput;
     public function MobileNet(image:BitmapData) {
         input = new MobileNetInput(image);

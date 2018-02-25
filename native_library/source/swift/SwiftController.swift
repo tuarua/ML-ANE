@@ -22,14 +22,24 @@ public class SwiftController: NSObject {
     public var context: FreContextSwift!
     public var functionsToSet: FREFunctionMap = [:]
     private var mlController: CoreMlController?
-
+    private let predictionQueue = DispatchQueue(label: "com.tuarua.mlane.predictionQueue", qos: .userInitiated)
+    private var userChildren: [String: Any] = Dictionary()
     func initController(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-        if #available(OSX 10.13, *) {
-            mlController = CoreMlController.init(context: context)
-            return true.toFREObject()
-        }
+#if os(iOS)
+    if #available(iOS 11.0, *) {
+        mlController = CoreMlController.init(context: context)
+        return true.toFREObject()
+    }
+#else
+    if #available(OSX 10.13, *) {
+        mlController = CoreMlController.init(context: context)
+        return true.toFREObject()
+    }
+#endif
         return false.toFREObject()
     }
+    
+    // MARK: - Models
     
     func compileModel(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
         guard argc > 1,
@@ -57,6 +67,29 @@ public class SwiftController: NSObject {
         return nil
     }
     
+    func disposeModel(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+        guard argc > 0,
+            let mc = mlController,
+            let id = String(argv[0])
+            else {
+                return ArgCountError(message: "disposeModel").getError(#file, #line, #column)
+        }
+        mc.disposeModel(id: id)
+        return nil
+    }
+    
+    func getDescription(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+        guard argc > 0,
+            let mc = mlController,
+            let id = String(argv[0])
+            else {
+                return ArgCountError(message: "getDescription").getError(#file, #line, #column)
+        }
+        return mc.getModelDescription(id: id)?.toFREObject()
+    }
+    
+    // MARK: - Prediction
+    
     func prediction(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
         guard argc > 2,
             let mc = mlController,
@@ -71,28 +104,28 @@ public class SwiftController: NSObject {
                 let inFRE1 = argv[1],
                 let freInput = try? inFRE1.getProp(name: "input"),
                 let rv = freInput,
-                let aneUtils = try FREObject.init(className: "com.tuarua.fre.ANEUtils"),
-                let classProps1 = try aneUtils.call(method: "getClassProps", args: rv) else {
+                let properties = try rv.call(method: "getProperties") else {
                     return FreError.init(stackTrace: "", message: "invalid prediction inputs",
                                          type: .invalidArgument).getError(#file, #line, #column)
             }
-            let array: FREArray = FREArray.init(classProps1)
+            
+            let array: FREArray = FREArray.init(properties)
             let arrayLength = array.length
             for i in 0..<arrayLength {
                 if let elem: FREObject = try array.at(index: i) {
-                    if let propNameAs = try elem.getProp(name: "name") {
-                        if let propName = String(propNameAs) {
-                            if let freProp = try rv.getProp(name: propName) {
-                                switch freProp.type {
-                                case .bitmapdata:
-                                    let asBitmapData = FreBitmapDataSwift(freObject: freProp)
-                                    defer {
-                                        asBitmapData.releaseData()
-                                    }
-                                    do {
-                                        if let cgimg = try asBitmapData.asCGImage(),
-                                            let fd = modelDescription.inputDescriptionsByName[propName],
-                                            let ic = fd.imageConstraint {
+                    if let propName = String(elem) {
+                        if let freProp = try rv.getProp(name: propName) {
+                            switch freProp.type {
+                            case .bitmapdata:
+                                let asBitmapData = FreBitmapDataSwift(freObject: freProp)
+                                defer {
+                                    asBitmapData.releaseData()
+                                }
+                                do {
+                                    if let cgimg = try asBitmapData.asCGImage(),
+                                        let fd = modelDescription.inputDescriptionsByName[propName],
+                                        let ic = fd.imageConstraint {
+                                        predictionQueue.async {
                                             let modelSize = CGSize(width: ic.pixelsWide, height: ic.pixelsHigh)
                                             let cicontext = CIContext()
                                             let image = CIImage(cgImage: cgimg)
@@ -101,45 +134,159 @@ public class SwiftController: NSObject {
                                                 input.updateValue(MLFeatureValue(pixelBuffer: resizedPixelBuffer),
                                                                   forKey: propName)
                                             }
+                                            mc.prediction(id: id, input: input, maxResults: maxResults)
                                         }
-                                    } catch {
+
                                     }
-                                case .number, .int:
-                                    if let val = Double(freProp) {
-                                        input.updateValue(MLFeatureValue(double: val), forKey: propName)
-                                    }
-                                case .string:
-                                    if let val = String(freProp) {
-                                        input.updateValue(MLFeatureValue(string: val), forKey: propName)
-                                    }
-                                default: break
+                                } catch {
                                 }
+                            case .number, .int:
+                                if let val = Double(freProp) {
+                                    input.updateValue(MLFeatureValue(double: val), forKey: propName)
+                                    mc.prediction(id: id, input: input, maxResults: maxResults)
+                                }
+                            case .string:
+                                if let val = String(freProp) {
+                                    input.updateValue(MLFeatureValue(string: val), forKey: propName)
+                                    mc.prediction(id: id, input: input, maxResults: maxResults)
+                                }
+                            default: break
                             }
                         }
                     }
                 }
             }
-            
         } catch let e as FreError {
             return e.getError(#file, #line, #column)
         } catch {
             
         }
-
-        if !input.isEmpty {
-            mc.prediction(id: id, input: input, maxResults: maxResults)
-        }
         return nil
     }
     
-    func getDescription(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+    // MARK: - Camera Input
+    
+    func inputFromCamera(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+#if os(iOS)
         guard argc > 0,
             let mc = mlController,
+            let id = String(argv[0]),
+            let rvc = UIApplication.shared.keyWindow?.rootViewController
+            else {
+                return ArgCountError(message: "inputFromCamera").getError(#file, #line, #column)
+        }
+        mc.inputFromCamera(rootViewController: rvc, id: id)
+#else
+    warning("inputFromCamera is iOS only")
+#endif
+        return nil
+    }
+    
+    func closeCamera(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+#if os(iOS)
+        guard let mc = mlController,
+            let rvc = UIApplication.shared.keyWindow?.rootViewController
+            else {
+                return ArgCountError(message: "closeCamera").getError(#file, #line, #column)
+        }
+        mc.closeCamera(rootViewController: rvc)
+#else
+    warning("closeCamera is iOS only")
+#endif
+        return nil
+    }
+    
+    // MARK: - Native Button Overlays
+    
+    func addNativeChild(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+#if os(iOS)
+        guard argc > 0,
+            let rootVC = UIApplication.shared.keyWindow?.rootViewController,
+            let child = argv[0]
+            else {
+                return ArgCountError(message: "addNativeChild").getError(#file, #line, #column)
+        }
+    
+        do {
+            guard let id = String(child["id"]),
+                let t = Int(child["type"]),
+                let type: FreNativeType = FreNativeType(rawValue: t)
+                else {
+                    return nil
+            }
+            
+            switch type {
+            case FreNativeType.image:
+                if userChildren.keys.contains(id) {
+                    if let nativeImage = userChildren[id] as? FreNativeImage {
+                        rootVC.view.addSubview(nativeImage)
+                    }
+                } else {
+                    let nativeImage = try FreNativeImage.init(freObject: child, id: id)
+                    userChildren[id] = nativeImage
+                    rootVC.view.addSubview(nativeImage)
+                }
+            case FreNativeType.button:
+                if userChildren.keys.contains(id) {
+                    if let nativeButton = userChildren[id] as? FreNativeButton {
+                        rootVC.view.addSubview(nativeButton)
+                    }
+                } else {
+                    let nativeButton = try FreNativeButton.init(ctx: context, freObject: child, id: id)
+                    userChildren[id] = nativeButton
+                    rootVC.view.addSubview(nativeButton)
+                }
+            default:
+                break
+            }
+            
+        } catch {
+        }
+#else
+        warning("addNativeChild is iOS only")
+#endif
+        return nil
+    }
+    
+    func updateNativeChild(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+#if os(iOS)
+        guard argc > 2,
+            userChildren.count > 0,
+            let id = String(argv[0]),
+            let propName = argv[1],
+            let propVal = argv[2]
+            else {
+                return ArgCountError(message: "updateNativeChild").getError(#file, #line, #column)
+        }
+        if let child = userChildren[id] as? FreNativeImage {
+            child.update(prop: propName, value: propVal)
+        } else if let child = userChildren[id] as? FreNativeButton {
+             child.update(prop: propName, value: propVal)
+        }
+#else
+    warning("updateNativeChild is iOS only")
+#endif
+        return nil
+    }
+    
+    func removeNativeChild(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+#if os(iOS)
+        guard argc > 0,
             let id = String(argv[0])
             else {
-                return ArgCountError(message: "getDescription").getError(#file, #line, #column)
+                return ArgCountError(message: "removeNativeChild").getError(#file, #line, #column)
         }
-        return mc.getModelDescription(id: id)?.toFREObject()
+        if let child = userChildren[id] {
+            if let c = child as? FreNativeImage {
+                c.removeFromSuperview()
+            } else if let c = child as? FreNativeButton {
+                c.removeFromSuperview()
+            }
+        }
+#else
+    warning("removeNativeChild is iOS only")
+#endif
+        return nil
     }
     
 }

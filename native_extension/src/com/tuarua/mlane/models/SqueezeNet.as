@@ -16,10 +16,13 @@
 package com.tuarua.mlane.models {
 import flash.display.BitmapData;
 
-public class SqueezeNet extends Object {
+public class SqueezeNet {
     public var input:SqueezeNetInput;
     public function SqueezeNet(image:BitmapData) {
         input = new SqueezeNetInput(image);
+    }
+    public function getProperties():Array { //used in ANE
+        return ["image"];
     }
 }
 }

@@ -36,11 +36,11 @@ public class ModelEvent extends Event {
     }
 
     public override function clone():Event {
-        return new ModelEvent(type, this.filePath, this.id, this.error, this.result, bubbles, cancelable);
+        return new ModelEvent(type, this.id, this.filePath, this.error, this.result, bubbles, cancelable);
     }
 
     public override function toString():String {
-        return formatToString("ModelEvent", "filePath", "id", "error", "type", "bubbles", "cancelable");
+        return formatToString("ModelEvent", "type", "id", "filePath", "error", "type", "bubbles", "cancelable");
     }
 }
 }

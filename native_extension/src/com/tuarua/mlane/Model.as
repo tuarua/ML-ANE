@@ -37,6 +37,7 @@ public class Model extends EventDispatcher {
     private static var _onError:Function;
     private static var _onCompiled:Function;
     private static var _onResult:Function;
+    private var _provider:Object; // TODO
 
     public function Model(contentsOf:String = null) {
         if (!MLANEContext.context) throw new Error("NO ANE context");
@@ -72,7 +73,7 @@ public class Model extends EventDispatcher {
                                    onCompiled:Function = null, onError:Function = null):Model { //TODO onError
         if (!MLANEContext.context) throw new Error("NO ANE context");
         if (getExtension(url) != "mlmodel") {
-            throw new Error("contentsOf must be of file type mlmodelc");
+            throw new Error("contentsOf must be of file type mlmodel");
         }
         _onCompiled = onCompiled;
         var model:Model = new Model();
@@ -98,7 +99,7 @@ public class Model extends EventDispatcher {
     public static function fromPath(path:String, onCompiled:Function = null):Model {
         if (!MLANEContext.context) throw new Error("NO ANE context");
         if (getExtension(path) != "mlmodel") {
-            throw new Error("contentsOf must be of file type mlmodelc");
+            throw new Error("contentsOf must be of file type mlmodel");
         }
         _onCompiled = onCompiled;
         var model:Model = new Model();
@@ -111,11 +112,20 @@ public class Model extends EventDispatcher {
     }
 
     public function prediction(provider:Object, onResult:Function, maxResults:int = 5):void {
+        _provider = provider;
         _onResult = onResult;
-        var theRet:* = MLANEContext.context.call("prediction", _id, provider, maxResults);
+        var theRet:* = MLANEContext.context.call("prediction", _id, _provider, maxResults);
         if (theRet is ANEError) {
             throw theRet as ANEError;
         }
+    }
+
+    public function dispose():void {
+        var theRet:* = MLANEContext.context.call("disposeModel", _id);
+        if (theRet is ANEError) {
+            throw theRet as ANEError;
+        }
+        delete MLANEContext.models[_id];
     }
 
     private static function fileNameFromUrl(path:String):String {
@@ -134,7 +144,8 @@ public class Model extends EventDispatcher {
     }
 
     private static function getExtension(file:String):String {
-        return file.substring(file.lastIndexOf(".") + 1, file.length);
+        var split:String = file.split("?")[0];
+        return split.substring(split.lastIndexOf(".") + 1, split.length);
     }
 
     public function get path():String {
@@ -161,8 +172,16 @@ public class Model extends EventDispatcher {
         return _onResult;
     }
 
+    public function set onResult(value:Function):void {
+        _onResult = value;
+    }
+
     public function get onError():Function {
         return _onError;
+    }
+
+    public function set onError(value:Function):void {
+        _onError = value;
     }
 
     public function get onLoaded():Function {
@@ -172,5 +191,7 @@ public class Model extends EventDispatcher {
     public function set description(value:ModelDescription):void {
         _description = value;
     }
+
+
 }
 }

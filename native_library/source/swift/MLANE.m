@@ -43,8 +43,14 @@ CONTEXT_INIT(TRCML) {
         ,MAP_FUNCTION(TRCML, createGUID)
         ,MAP_FUNCTION(TRCML, compileModel)
         ,MAP_FUNCTION(TRCML, loadModel)
+        ,MAP_FUNCTION(TRCML, disposeModel)
         ,MAP_FUNCTION(TRCML, prediction)
         ,MAP_FUNCTION(TRCML, getDescription)
+        ,MAP_FUNCTION(TRCML, inputFromCamera)
+        ,MAP_FUNCTION(TRCML, closeCamera)
+        ,MAP_FUNCTION(TRCML, addNativeChild)
+        ,MAP_FUNCTION(TRCML, updateNativeChild)
+        ,MAP_FUNCTION(TRCML, removeNativeChild)
     };
     /**************************************************************************/
     /**************************************************************************/
