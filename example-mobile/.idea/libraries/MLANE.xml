@@ -3,7 +3,9 @@
     <CLASSES>
       <root url="jar://$DOCUMENTS$/ML-ANE/native_extension/ane/MLANE.ane!/" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="https://tuarua.github.io/asdocs/mlane/index.html" />
+    </JAVADOC>
     <SOURCES />
   </library>
 </component>

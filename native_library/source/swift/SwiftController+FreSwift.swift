@@ -32,6 +32,7 @@ extension SwiftController: FreSwiftMainController {
         functionsToSet["\(prefix)addNativeChild"] = addNativeChild
         functionsToSet["\(prefix)updateNativeChild"] = updateNativeChild
         functionsToSet["\(prefix)removeNativeChild"] = removeNativeChild
+        functionsToSet["\(prefix)requestPermissions"] = requestPermissions
         
         var arr: [String] = []
         for key in functionsToSet.keys {

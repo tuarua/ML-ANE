@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><apiPackage id="com.tuarua"><apiName>com.tuarua</apiName><apiDetail/><apiClassifier id="com.tuarua:MLANE"><apiName>MLANE</apiName><shortdesc/><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:EventDispatcher</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.tuarua:MLANE:addChild"><apiName>addChild</apiName><shortdesc> Adds the nativeDisplayObject to the native view.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>nativeDisplayObject</apiItemName><apiOperationClassifier>com.tuarua.mlane.display:NativeDisplayObject</apiOperationClassifier><apiDesc>    
+     </apiDesc></apiParam></apiOperationDef><apiDesc> Adds the nativeDisplayObject to the native view.
+     
+     iOS only
+     
+     </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.tuarua:MLANE:closeCamera"><apiName>closeCamera</apiName><shortdesc> Closes the native camera
+     
+     iOS only
+     
+     </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc> Closes the native camera
+     
+     iOS only
+     
+     </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.tuarua:MLANE:dispose"><apiName>dispose</apiName><shortdesc> Disposes the ANE </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc> Disposes the ANE </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.tuarua:MLANE:inputFromCamera"><apiName>inputFromCamera</apiName><shortdesc> Launches the native camera and runs a Vision based prediction.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>input</apiItemName><apiOperationClassifier>com.tuarua.mlane:Model</apiOperationClassifier></apiParam><apiParam><apiItemName>onResult</apiItemName><apiType value="Function"/></apiParam><apiParam><apiItemName>onError</apiItemName><apiType value="Function"/><apiData>null</apiData></apiParam></apiOperationDef><apiDesc> Launches the native camera and runs a Vision based prediction.
+     
+     iOS only
+     
+     </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.tuarua:MLANE:removeChild"><apiName>removeChild</apiName><shortdesc> Removes the nativeDisplayObject from the native view.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>nativeDisplayObject</apiItemName><apiOperationClassifier>com.tuarua.mlane.display:NativeDisplayObject</apiOperationClassifier><apiDesc>    </apiDesc></apiParam></apiOperationDef><apiDesc> Removes the nativeDisplayObject from the native view.
+     
+     iOS only
+     
+     </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.tuarua:MLANE:requestPermissions"><apiName>requestPermissions</apiName><shortdesc> Requests permissions for this ANE
+     
+     iOS only
+     
+     </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc> Requests permissions for this ANE
+     
+     iOS only
+     
+     </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.tuarua:MLANE:coreml:get"><apiName>coreml</apiName><shortdesc> The ANE instance.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiValueAccess value="read"/><apiValueClassifier>com.tuarua:MLANE</apiValueClassifier></apiValueDef><apiDesc> The ANE instance. </apiDesc></apiValueDetail></apiValue><apiValue id="com.tuarua:MLANE:isSupported:get"><apiName>isSupported</apiName><shortdesc> Whether this ANE is supported on the current version of iOS / OSX.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc> Whether this ANE is supported on the current version of iOS / OSX. </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

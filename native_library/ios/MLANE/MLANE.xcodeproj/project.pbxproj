@@ -13,6 +13,8 @@
 		CE05604E1FB25E8E00D06976 /* FreMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = CE05604D1FB25E8E00D06976 /* FreMacros.h */; };
 		CE05604F1FB25E9F00D06976 /* FreMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = CE05604D1FB25E8E00D06976 /* FreMacros.h */; };
 		CE26D95B2038EAF1004084F0 /* CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26D95A2038EAF1004084F0 /* CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift */; };
+		CE3FC07F204329B300FE313C /* PermissionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3FC07E204329B300FE313C /* PermissionController.swift */; };
+		CE3FC081204329D100FE313C /* PermissionEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3FC080204329D100FE313C /* PermissionEvent.swift */; };
 		CE87F4871FB259FA005CF7DF /* MLANE_FW.h in Headers */ = {isa = PBXBuildFile; fileRef = CE87F4851FB259FA005CF7DF /* MLANE_FW.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE88103B20388976004FD8B4 /* MLANE.m in Sources */ = {isa = PBXBuildFile; fileRef = CE88103920388975004FD8B4 /* MLANE.m */; };
 		CE88103C20388976004FD8B4 /* MLANE_oc.h in Headers */ = {isa = PBXBuildFile; fileRef = CE88103A20388975004FD8B4 /* MLANE_oc.h */; };
@@ -49,6 +51,8 @@
 		CE05603E1FB25CE200D06976 /* FreSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FreSwift.framework; path = Carthage/Build/iOS/FreSwift.framework; sourceTree = "<group>"; };
 		CE05604D1FB25E8E00D06976 /* FreMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FreMacros.h; path = ../../../include/FreMacros.h; sourceTree = "<group>"; };
 		CE26D95A2038EAF1004084F0 /* CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift"; path = "../../../source/swift/CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift"; sourceTree = "<group>"; };
+		CE3FC07E204329B300FE313C /* PermissionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PermissionController.swift; path = ../../../source/swift/PermissionController.swift; sourceTree = "<group>"; };
+		CE3FC080204329D100FE313C /* PermissionEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PermissionEvent.swift; path = ../../../source/swift/Events/PermissionEvent.swift; sourceTree = "<group>"; };
 		CE87F4751FB259DB005CF7DF /* libMLANE_LIB.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMLANE_LIB.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE87F4831FB259FA005CF7DF /* MLANE_FW.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MLANE_FW.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE87F4851FB259FA005CF7DF /* MLANE_FW.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLANE_FW.h; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 		CE87F4841FB259FA005CF7DF /* MLANE_FW */ = {
 			isa = PBXGroup;
 			children = (
+				CE3FC080204329D100FE313C /* PermissionEvent.swift */,
+				CE3FC07E204329B300FE313C /* PermissionController.swift */,
 				CE8D26352040DBFC008EA287 /* FreNative */,
 				CE881042203889B6004FD8B4 /* BaseInput.swift */,
 				CE881043203889B6004FD8B4 /* CoreMlController.swift */,
@@ -312,7 +318,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		CE88105D203890E0004FD8B4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -359,12 +365,14 @@
 				CE881056203889B7004FD8B4 /* URL.swift in Sources */,
 				CE881058203889B7004FD8B4 /* FreMLImageConstraint.swift in Sources */,
 				CE88105A203889B7004FD8B4 /* SwiftController+FreSwift.swift in Sources */,
+				CE3FC081204329D100FE313C /* PermissionEvent.swift in Sources */,
 				CE8D263B2040DBFC008EA287 /* FreNativeType.swift in Sources */,
 				CE881053203889B7004FD8B4 /* FreMLDictionaryConstraint.swift in Sources */,
 				CE881057203889B7004FD8B4 /* FreMLFeatureDescription.swift in Sources */,
 				CE881052203889B7004FD8B4 /* FreMLModelDescription.swift in Sources */,
 				CE88105B203889B7004FD8B4 /* MLEvent.swift in Sources */,
 				CE26D95B2038EAF1004084F0 /* CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift in Sources */,
+				CE3FC07F204329B300FE313C /* PermissionController.swift in Sources */,
 				CE881040203889A2004FD8B4 /* SwiftyJSON.swift in Sources */,
 				CE881051203889B7004FD8B4 /* CoreMlController.swift in Sources */,
 				CE881055203889B7004FD8B4 /* CIImage.swift in Sources */,

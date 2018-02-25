@@ -16,18 +16,18 @@
 package com.tuarua.mlane {
 [RemoteClass(alias="com.tuarua.mlane.FeatureDescription")]
 public class FeatureDescription {
-    /// Name of feature
+    /** Name of feature */
     public var name:String;
-    /// Whether this feature can take an undefined value or not
+    /** Whether this feature can take an undefined value or not */
     public var isOptional:Boolean;
-    /// Type of data
+    /** FeatureType of data */
     public var type:int;
-
-    /// Constraint when type == FeatureType.image, null otherwise
+    /** Constraint when type == FeatureType.image, null otherwise */
     public var imageConstraint:ImageConstraint;
-    /// Constraint when type == FeatureType.dictionary, null otherwise
+    /** Constraint when type == FeatureType.dictionary, null otherwise */
     public var dictionaryConstraint:DictionaryConstraint;
 
+    /** @private */
     public function FeatureDescription() {
     }
 }

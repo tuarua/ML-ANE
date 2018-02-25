@@ -19,7 +19,7 @@ package com.tuarua.fre {
 import flash.utils.describeType;
 import flash.utils.getDefinitionByName;
 import flash.utils.getQualifiedClassName;
-
+/** @private */
 public class ANEUtils {
     public function ANEUtils() {
     }

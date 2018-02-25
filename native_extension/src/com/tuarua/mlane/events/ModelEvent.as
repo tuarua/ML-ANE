@@ -26,6 +26,7 @@ public class ModelEvent extends Event {
     public var error:String;
     public var result:Object;
 
+    /** @private */
     public function ModelEvent(type:String, id:String, filePath:String = null, error:String = null,
                                result:Object = null, bubbles:Boolean = false, cancelable:Boolean = false) {
         super(type, bubbles, cancelable);

@@ -196,4 +196,8 @@ rm -r "$pathtome/platforms/ios/device"
 rm -r "$pathtome/platforms/mac"
 rm "$pathtome/$PROJECTNAME.swc"
 rm "$pathtome/library.swf"
+
+echo "Packaging docs into ANE."
+zip "$pathtome/$PROJECTNAME.ane" -u docs/*
+
 echo "Finished."

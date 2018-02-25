@@ -37,8 +37,10 @@ public class Model extends EventDispatcher {
     private static var _onError:Function;
     private static var _onCompiled:Function;
     private static var _onResult:Function;
-    private var _provider:Object; // TODO
 
+    /** Creates a Model from the given compiled CoreML model
+     * @param contentsOf path to .mlmodelc file
+     */
     public function Model(contentsOf:String = null) {
         if (!MLANEContext.context) throw new Error("NO ANE context");
         _id = MLANEContext.context.call("createGUID") as String;
@@ -50,14 +52,20 @@ public class Model extends EventDispatcher {
         MLANEContext.models[_id] = this;
     }
 
+    /** @return */
     public function get description():ModelDescription {
         return _description;
     }
-
+    /** @private */
     private function safetyCheck():Boolean {
         return (MLANEContext.context);
     }
 
+    /**
+     *
+     * @param onLoaded
+     * @param onError Function to call when there is an error comiling the model
+     */
     public function load(onLoaded:Function = null, onError:Function = null):void {
         if (safetyCheck()) {
             _onLoaded = onLoaded;
@@ -69,8 +77,18 @@ public class Model extends EventDispatcher {
         }
     }
 
+    /** Downloads model, compiles and makes available to run predictions on.
+     *
+     * @return Created model
+     *
+     * @param url Url of the mlmodel to download
+     * @param onProgress
+     * @param onComplete Function to call when model has completed downloading
+     * @param onCompiled Function to call when model is compiled
+     * @param onError Function to call when there is an error comiling the model
+     */
     public static function fromUrl(url:String, onProgress:Function = null, onComplete:Function = null,
-                                   onCompiled:Function = null, onError:Function = null):Model { //TODO onError
+                                   onCompiled:Function = null, onError:Function = null):Model {
         if (!MLANEContext.context) throw new Error("NO ANE context");
         if (getExtension(url) != "mlmodel") {
             throw new Error("contentsOf must be of file type mlmodel");
@@ -96,6 +114,13 @@ public class Model extends EventDispatcher {
         return model;
     }
 
+    /** Loads model from file system, compiles and makes available to run predictions on.
+     * @param path Path to .mlmodel file
+     * @param onCompiled Function to call when model is compiled
+     *
+     * @return Created model
+     *
+     */
     public static function fromPath(path:String, onCompiled:Function = null):Model {
         if (!MLANEContext.context) throw new Error("NO ANE context");
         if (getExtension(path) != "mlmodel") {
@@ -111,15 +136,24 @@ public class Model extends EventDispatcher {
         return model;
     }
 
+    /**
+     *
+     * @param provider
+     * @param onResult
+     * @param maxResults
+     *
+     * @return Created model
+     *
+     */
     public function prediction(provider:Object, onResult:Function, maxResults:int = 5):void {
-        _provider = provider;
         _onResult = onResult;
-        var theRet:* = MLANEContext.context.call("prediction", _id, _provider, maxResults);
+        var theRet:* = MLANEContext.context.call("prediction", _id, provider, maxResults);
         if (theRet is ANEError) {
             throw theRet as ANEError;
         }
     }
 
+    /** Disposes the model */
     public function dispose():void {
         var theRet:* = MLANEContext.context.call("disposeModel", _id);
         if (theRet is ANEError) {
@@ -128,12 +162,14 @@ public class Model extends EventDispatcher {
         delete MLANEContext.models[_id];
     }
 
+    /** @private */
     private static function fileNameFromUrl(path:String):String {
         if (path == null) return null;
         var arr:Array = path.split("/");
         return arr[arr.length - 1];
     }
 
+    /** @private */
     private static function writeBytesToFile(fileName:String, data:ByteArray):void {
         var outFile:File = File.desktopDirectory;
         outFile = outFile.resolvePath(fileName);
@@ -143,51 +179,65 @@ public class Model extends EventDispatcher {
         outStream.close();
     }
 
+    /** @private */
     private static function getExtension(file:String):String {
         var split:String = file.split("?")[0];
         return split.substring(split.lastIndexOf(".") + 1, split.length);
     }
 
+    /**
+     *
+     * @return
+     *
+     */
     public function get path():String {
         return _path;
     }
 
+    /** @private */
     public function set path(value:String):void {
         _path = value;
     }
-
+    /** @private */
     public function get fileName():String {
         return _fileName;
     }
-
+    /** @private */
     public function get id():String {
         return _id;
     }
 
+    /** @private */
     public function get onCompiled():Function {
         return _onCompiled;
     }
 
+    /** @private */
     public function get onResult():Function {
         return _onResult;
     }
 
+    /** @private */
     public function set onResult(value:Function):void {
         _onResult = value;
     }
 
+    /** @private */
     public function get onError():Function {
         return _onError;
     }
 
+    /** @private */
     public function set onError(value:Function):void {
         _onError = value;
     }
 
+    /** @private */
     public function get onLoaded():Function {
         return _onLoaded;
     }
 
+    /** @private */
     public function set description(value:ModelDescription):void {
         _description = value;
     }

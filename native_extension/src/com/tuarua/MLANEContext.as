@@ -19,11 +19,12 @@ import com.tuarua.mlane.Model;
 import com.tuarua.mlane.ModelDescription;
 import com.tuarua.mlane.events.ModelEvent;
 import com.tuarua.mlane.events.VisionEvent;
+import com.tuarua.mlane.permissions.PermissionEvent;
 
 import flash.events.StatusEvent;
 import flash.external.ExtensionContext;
 import flash.utils.Dictionary;
-
+/** @private */
 public class MLANEContext {
     internal static const NAME:String = "MLANE";
     internal static const TRACE:String = "TRACE";
@@ -130,6 +131,14 @@ public class MLANEContext {
                     if (modelF && modelF.onError) {
                         modelF.onError.call(null, new VisionEvent(event.level, argsAsJSON.id, argsAsJSON.error));
                     }
+                } catch (e:Error) {
+                    trace(e.message);
+                }
+                break;
+            case PermissionEvent.STATUS_CHANGED:
+                try {
+                    argsAsJSON = JSON.parse(event.code);
+                    MLANE.coreml.dispatchEvent(new PermissionEvent(event.level, argsAsJSON.status));
                 } catch (e:Error) {
                     trace(e.message);
                 }

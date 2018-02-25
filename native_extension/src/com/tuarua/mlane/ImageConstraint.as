@@ -19,7 +19,11 @@ public class ImageConstraint {
     public var pixelsWide:int;
     public var pixelsHigh:int;
     public var pixelFormatType:uint;
-
+    /** Creates an ImageConstraint
+     * @param pixelsWide
+     * @param pixelsHigh
+     * @param pixelFormatType
+     */
     public function ImageConstraint(pixelsWide:int, pixelsHigh:int, pixelFormatType:uint = 0) {
         this.pixelsWide = pixelsWide;
         this.pixelsHigh = pixelsHigh;

@@ -1,7 +1,9 @@
 ![Adobe AIR + CoreML](mlane.png)
 
 CoreML Adobe Air Native Extension for OSX 10.13+ and iOS 11.0+
-This ANE provides access to Apple's CoreML framework for building Machine Learning apps
+This ANE provides access to Apple's CoreML framework for building Machine Learning apps    
+
+[ASDocs Documentation](https://tuarua.github.io/asdocs/mlane/)  
 
 -------------
 
