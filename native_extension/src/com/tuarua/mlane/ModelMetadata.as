@@ -16,16 +16,16 @@
 package com.tuarua.mlane {
 [RemoteClass(alias="com.tuarua.mlane.ModelMetadata")]
 public class ModelMetadata {
-    /// A short description of what the model does and/or its purpose
+    /** A short description of what the model does and/or its purpose */
     public var description:String;
-    /// A version number encoded as a string
+    /** A version number encoded as a string */
     public var version:String;
-    /// The author of this model
+    /** The author of this model */
     public var author:String;
-    /// License information for the model
+    /** License information for the model */
     public var license:String;
-
     // creatorDefinedKey
+    /** @private */
     public function ModelMetadata() {
     }
 }

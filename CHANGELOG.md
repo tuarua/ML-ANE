@@ -1,3 +1,7 @@
+### 0.0.4
+- iOS: permissions
+- asdocs
+
 ### 0.0.3
 - iOS: camera input
 - iOS: HotDog Not HotDog example

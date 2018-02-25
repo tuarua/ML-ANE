@@ -24,6 +24,17 @@ public class SwiftController: NSObject {
     private var mlController: CoreMlController?
     private let predictionQueue = DispatchQueue(label: "com.tuarua.mlane.predictionQueue", qos: .userInitiated)
     private var userChildren: [String: Any] = Dictionary()
+    
+    public func requestPermissions(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+#if os(iOS)
+        let pc = PermissionController(context: context)
+        pc.requestPermissions()
+#else
+    warning("requestPermissions is iOS only")
+#endif
+        return nil
+    }
+    
     func initController(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
 #if os(iOS)
     if #available(iOS 11.0, *) {

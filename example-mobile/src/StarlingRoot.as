@@ -8,6 +8,8 @@ import com.tuarua.mlane.events.VisionEvent;
 import com.tuarua.mlane.models.MobileNet;
 import com.tuarua.mlane.models.MobileNetOutput;
 import com.tuarua.mlane.display.*;
+import com.tuarua.mlane.permissions.PermissionEvent;
+import com.tuarua.mlane.permissions.PermissionStatus;
 
 import flash.desktop.NativeApplication;
 import flash.display.Bitmap;
@@ -92,7 +94,11 @@ public class StarlingRoot extends Sprite {
             trace("Core ML is only supported on Mac OSX 10.13+ and iOS 11.0+");
             return;
         }
+        coreml.addEventListener(PermissionEvent.STATUS_CHANGED, onPermissionsStatus);
+        coreml.requestPermissions();
+    }
 
+    private function initMenu():void {
         loadMobileNetBtn = new SimpleButton("Get MobileNet Model");
         loadMobileNetBtn.addEventListener(TouchEvent.TOUCH, onLoadMobileNetTouch);
         loadMobileNetBtn.x = (stage.stageWidth - loadMobileNetBtn.width) / 2;
@@ -130,7 +136,6 @@ public class StarlingRoot extends Sprite {
         predictHotDogBtn.y = loadHotDogBtn.y;
         predictHotDogBtn.visible = false;
 
-
         addChild(loadMobileNetBtn);
         addChild(predictMobileNetBtn);
         addChild(loadMarsBtn);
@@ -147,7 +152,6 @@ public class StarlingRoot extends Sprite {
         marsStatusLabel.touchable = false;
         marsStatusLabel.y = loadMarsBtn.y + 75;
         addChild(marsStatusLabel);
-
 
         addChild(hotDogStatusLabel);
         hotDogStatusLabel.format.setTo(Fonts.NAME, 13, 0x222222, Align.CENTER, Align.TOP);
@@ -267,6 +271,7 @@ public class StarlingRoot extends Sprite {
         if (touch && touch.phase == TouchPhase.ENDED) {
             predictHotDogBtn.touchable = false;
             predictHotDogBtn.alpha = 0.5;
+            // Hint: point camera at picture of hotdog
             coreml.inputFromCamera(model, onHotDogResult);
             addCloseButton();
             addHotDogImages();
@@ -361,9 +366,17 @@ public class StarlingRoot extends Sprite {
         marsStatusLabel.text = "$" + output.price.toFixed(2);
     }
 
+    private function onPermissionsStatus(event:PermissionEvent):void {
+        if (event.status == PermissionStatus.ALLOWED) {
+            initMenu();
+        } else if (event.status == PermissionStatus.NOT_DETERMINED) {
+        } else {
+            trace("Allow camera for CoreML Vision usage");
+        }
+    }
+
     private function onExiting(event:Event):void {
-
-
+        MLANE.dispose();
     }
 
 

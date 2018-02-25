@@ -23,7 +23,7 @@ public class SqueezeNetInput {
         this.image = image;
     }
 
-    // mandatory
+    /** @private */
     public function getProperties():Array { //used in ANE
         return ["image"];
     }

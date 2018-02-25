@@ -21,8 +21,5 @@ public class SqueezeNet {
     public function SqueezeNet(image:BitmapData) {
         input = new SqueezeNetInput(image);
     }
-    public function getProperties():Array { //used in ANE
-        return ["image"];
-    }
 }
 }

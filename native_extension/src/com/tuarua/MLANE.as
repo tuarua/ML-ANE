@@ -17,15 +17,13 @@ package com.tuarua {
 import com.tuarua.fre.ANEError;
 import com.tuarua.mlane.Model;
 import com.tuarua.mlane.display.NativeDisplayObject;
-
-import flash.display.BitmapData;
-
 import flash.events.EventDispatcher;
 
 public class MLANE extends EventDispatcher {
     private static var _isSupported:Boolean = false;
     private static var _coreml:MLANE;
 
+    /** @private */
     public function MLANE() {
         if (_coreml) {
             throw new Error(MLANEContext.NAME + " is a singleton, use .coreml");
@@ -40,12 +38,14 @@ public class MLANE extends EventDispatcher {
         _coreml = this;
     }
 
+    /** Disposes the ANE */
     public static function dispose():void {
         if (MLANEContext.context) {
             MLANEContext.dispose();
         }
     }
 
+    /** The ANE instance. */
     public static function get coreml():MLANE {
         if (!_coreml) {
             new MLANE();
@@ -53,6 +53,11 @@ public class MLANE extends EventDispatcher {
         return _coreml;
     }
 
+    /** Launches the native camera and runs a Vision based prediction.
+     * 
+     * iOS only
+     *
+     */
     public function inputFromCamera(input:Model, onResult:Function, onError:Function = null):void {
         input.onResult = onResult;
         input.onError = onError;
@@ -62,6 +67,11 @@ public class MLANE extends EventDispatcher {
         }
     }
 
+    /** Closes the native camera
+     *
+     * iOS only
+     *
+     */
     public function closeCamera():void {
         var theRet:* = MLANEContext.context.call("closeCamera");
         if (theRet is ANEError) {
@@ -69,7 +79,13 @@ public class MLANE extends EventDispatcher {
         }
     }
 
-    //noinspection JSMethodCanBeStatic
+    /** Adds the nativeDisplayObject to the native view.
+     *
+     * iOS only
+     *
+     * @param nativeDisplayObject
+     *
+     */
     public function addChild(nativeDisplayObject:NativeDisplayObject):void {
         if (nativeDisplayObject.isAdded) return;
         if (MLANEContext.context) {
@@ -82,7 +98,12 @@ public class MLANE extends EventDispatcher {
         }
     }
 
-    //noinspection JSMethodCanBeStatic
+    /** Removes the nativeDisplayObject from the native view.
+     *
+     * iOS only
+     *
+     * @param nativeDisplayObject
+     */
     public function removeChild(nativeDisplayObject:NativeDisplayObject):void {
         if (MLANEContext.context) {
             try {
@@ -94,6 +115,18 @@ public class MLANE extends EventDispatcher {
         }
     }
 
+    /** Requests permissions for this ANE
+     *
+     * iOS only
+     *
+     */
+    public function requestPermissions():void {
+        if (MLANEContext.context) {
+            MLANEContext.context.call("requestPermissions");
+        }
+    }
+
+    /** Whether this ANE is supported on the current version of iOS / OSX. */
     public function get isSupported():Boolean {
         return _isSupported;
     }

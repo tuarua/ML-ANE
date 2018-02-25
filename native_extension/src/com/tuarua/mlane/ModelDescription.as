@@ -17,17 +17,17 @@ package com.tuarua.mlane {
 import flash.utils.Dictionary;
 [RemoteClass(alias="com.tuarua.mlane.ModelDescription")]
 public class ModelDescription {
-    /// Name of the primary target / predicted output feature in the output descriptions
+    /** Name of the primary target / predicted output feature in the output descriptions */
     public var predictedFeatureName:String;
-    /// Key for all predicted probabilities stored as a MLFeatureTypeDictionary in the output descriptions
+    /** Key for all predicted probabilities stored as a MLFeatureTypeDictionary in the output descriptions */
     public var predictedProbabilitiesName:String;
-    /// Description of the inputs to the model
+    /** Description of the inputs to the model */
     public var inputDescriptionsByName:Dictionary; //FeatureDescription
-    /// Description of the outputs to the model
+    /** Description of the outputs to the model */
     public var outputDescriptionsByName:Dictionary; //FeatureDescription
-    // / Optional metadata describing the model
+    /** Optional metadata describing the model */
     public var metadata:ModelMetadata;
-
+    /** @private */
     public function ModelDescription() {
     }
 }
