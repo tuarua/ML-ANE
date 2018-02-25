@@ -1,6 +1,7 @@
 package com.tuarua.utils {
 import flash.display.Sprite;
 import flash.system.Capabilities;
+/** @private */
 public class GUID extends Sprite {
     private static var counter:Number = 0;
 

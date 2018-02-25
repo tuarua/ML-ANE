@@ -25,6 +25,7 @@ public class VisionEvent extends Event {
     public var error:String;
     public var result:Classification;
 
+    /** @private */
     public function VisionEvent(type:String,id:String, error:String = null, result:Classification = null,
                                 bubbles:Boolean = false, cancelable:Boolean = false) {
         super(type, bubbles, cancelable);
