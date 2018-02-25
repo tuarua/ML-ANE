@@ -18,8 +18,14 @@ import flash.display.BitmapData;
 
 public class MobileNetInput {
     public var image:BitmapData;
+
     public function MobileNetInput(image:BitmapData) {
         this.image = image;
+    }
+
+    // mandatory
+    public function getProperties():Array { //used in ANE
+        return ["image"];
     }
 }
 }

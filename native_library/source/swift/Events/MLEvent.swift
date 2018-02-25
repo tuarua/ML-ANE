@@ -21,3 +21,7 @@ public struct ModelEvent {
     public static let LOADED: String = "MLANE.OnModelLoaded"
     public static let ERROR: String = "MLANE.OnModelLoadError"
 }
+public struct VisionEvent {
+    public static let RESULT: String = "MLANE.OnVisionResult"
+    public static let ERROR: String = "MLANE.OnVisionError"
+}

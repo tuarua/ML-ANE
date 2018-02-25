@@ -15,6 +15,8 @@
 
 package com.tuarua {
 import com.tuarua.fre.ANEError;
+import com.tuarua.mlane.Model;
+import com.tuarua.mlane.display.NativeDisplayObject;
 
 import flash.display.BitmapData;
 
@@ -51,14 +53,45 @@ public class MLANE extends EventDispatcher {
         return _coreml;
     }
 
-    public function classifyImage(type:int, path:String, bitmapData:BitmapData = null):void {
-        if (safetyCheck()) {
-            MLANEContext.context.call("classifyImage", type, path, bitmapData);
+    public function inputFromCamera(input:Model, onResult:Function, onError:Function = null):void {
+        input.onResult = onResult;
+        input.onError = onError;
+        var theRet:* = MLANEContext.context.call("inputFromCamera", input.id);
+        if (theRet is ANEError) {
+            throw theRet as ANEError;
         }
     }
 
-    private function safetyCheck():Boolean {
-        return (MLANEContext.context && _coreml);
+    public function closeCamera():void {
+        var theRet:* = MLANEContext.context.call("closeCamera");
+        if (theRet is ANEError) {
+            throw theRet as ANEError;
+        }
+    }
+
+    //noinspection JSMethodCanBeStatic
+    public function addChild(nativeDisplayObject:NativeDisplayObject):void {
+        if (nativeDisplayObject.isAdded) return;
+        if (MLANEContext.context) {
+            try {
+                MLANEContext.context.call("addNativeChild", nativeDisplayObject);
+                nativeDisplayObject.isAdded = true;
+            } catch (e:Error) {
+                trace(e.message);
+            }
+        }
+    }
+
+    //noinspection JSMethodCanBeStatic
+    public function removeChild(nativeDisplayObject:NativeDisplayObject):void {
+        if (MLANEContext.context) {
+            try {
+                MLANEContext.context.call("removeNativeChild", nativeDisplayObject.id);
+                nativeDisplayObject.isAdded = false;
+            } catch (e:Error) {
+                trace(e.message);
+            }
+        }
     }
 
     public function get isSupported():Boolean {

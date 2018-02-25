@@ -27,9 +27,6 @@ import starling.utils.Align;
 import views.SimpleButton;
 
 public class StarlingRoot extends Sprite {
-    [Embed(source="ttf/fira-sans-embed.ttf", embedAsCFF="false", fontFamily="Fira Sans", fontWeight="SemiBold")]
-    private static const firaSansEmbedded:Class;
-
     [Embed(source="dog.jpg")]
     public static const TestImage:Class;
 
@@ -57,6 +54,7 @@ public class StarlingRoot extends Sprite {
 
     public function StarlingRoot() {
         super();
+        TextField.registerCompositor(Fonts.getFont("fira-sans-semi-bold-13"), "Fira Sans Semi-Bold 13");
         NativeApplication.nativeApplication.addEventListener(Event.EXITING, onExiting);
     }
 
@@ -103,11 +101,13 @@ public class StarlingRoot extends Sprite {
             trace("Core ML is only supported on Mac OSX 10.13+ and iOS 11.0+");
         }
 
-        mobileNetStatusLabel.format.setTo("Fira Sans", 13, 0x222222, Align.CENTER, Align.TOP);
+        mobileNetStatusLabel.format.setTo(Fonts.NAME, 13, 0x222222, Align.CENTER, Align.TOP);
+        mobileNetStatusLabel.batchable = true;
+        mobileNetStatusLabel.touchable = false;
         mobileNetStatusLabel.y = 160;
         addChild(mobileNetStatusLabel);
 
-        marsStatusLabel.format.setTo("Fira Sans", 13, 0x222222, Align.CENTER, Align.TOP);
+        marsStatusLabel.format.setTo(Fonts.NAME, 13, 0x222222, Align.CENTER, Align.TOP);
         marsStatusLabel.y = 340;
         addChild(marsStatusLabel);
 
@@ -121,6 +121,7 @@ public class StarlingRoot extends Sprite {
             predictMobileNetBtn.alpha = 0.5;
             var testImage:Bitmap = new TestImage() as Bitmap;
             var mobileNet:MobileNet = new MobileNet(testImage.bitmapData);
+
             model.prediction(mobileNet, onMobileNetResult);
         }
     }
@@ -212,12 +213,12 @@ public class StarlingRoot extends Sprite {
         marsStatusLabel.text = "model loaded";
         loadMarsBtn.visible = false;
         predictMarsBtn.visible = true;
-        var modelDescription:ModelDescription = model.description;
-        if (modelDescription) {
-            trace(modelDescription.metadata.description);
-            trace("predictedFeatureName:", modelDescription.predictedFeatureName);
-            trace("predictedProbabilitiesName:", modelDescription.predictedProbabilitiesName);
-        }
+//        var modelDescription:ModelDescription = model.description;
+//        if (modelDescription) {
+//            trace(modelDescription.metadata.description);
+//            trace("predictedFeatureName:", modelDescription.predictedFeatureName);
+//            trace("predictedProbabilitiesName:", modelDescription.predictedProbabilitiesName);
+//        }
     }
 
     private function onMobileNetResult(event:ModelEvent):void {
@@ -228,7 +229,7 @@ public class StarlingRoot extends Sprite {
 
     private function onMarsResult(event:ModelEvent):void {
         var output:MarsHabitatPricerOutput = new MarsHabitatPricerOutput(event.result);
-        marsStatusLabel.text = "$" +output.price.toFixed(2);
+        marsStatusLabel.text = "$" + output.price.toFixed(2);
     }
 
     private function onExiting(event:Event):void {

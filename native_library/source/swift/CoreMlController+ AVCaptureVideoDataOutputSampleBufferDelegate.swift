@@ -20,46 +20,109 @@ import Vision
 import AVFoundation
 
 extension CoreMlController: AVCaptureVideoDataOutputSampleBufferDelegate {
-    
-    func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer,
-                       from connection: AVCaptureConnection) {
-        
-    }
-    
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer,
                        from connection: AVCaptureConnection) {
+        guard let visionModel = visionModel,
+            let img = CIImage.init(cmSampleBuffer: sampleBuffer) else { return }
         
+        let request = VNCoreMLRequest(model: visionModel, completionHandler: { [weak self] request, error in
+            self?.processClassifications(for: request, error: error)
+        })
+        request.imageCropAndScaleOption = .centerCrop
+        userInitiatedQueue.async {
+            let handler = VNImageRequestHandler(ciImage: img, orientation: CGImagePropertyOrientation.up)
+            do {
+                try handler.perform([request])
+            } catch { }
+        }
     }
     
-    // UIApplication.shared.keyWindow?.rootViewController
-    func beginCapture(rootViewController: UIViewController) { // pass in AIR rvc
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: rootViewController.view.frame.width,
+    func processClassifications(for request: VNRequest, error: Error?) {
+        guard let results = request.results else { return }
+        if let classifications = results as? [VNClassificationObservation] {
+            if let bestResult = classifications.first(where: { result in result.confidence > 0.5 }),
+                let label = bestResult.identifier.split(separator: ",").first {
+                visionModelResult["id"] = self.visionModelId
+                visionModelResult["lbl"] = String(label)
+                visionModelResult["cnf"] = bestResult.confidence
+                self.sendEvent(name: VisionEvent.RESULT, value: JSON(visionModelResult).description)
+            }
+        }
+    }
+    
+    func inputFromCamera(rootViewController: UIViewController, id: String) {
+        guard let model = models[id] else { return }
+        var props: [String: Any] = Dictionary()
+        props["id"] = id
+        do {
+            visionModel = try VNCoreMLModel(for: model)
+            visionModelId = id
+        } catch {
+            props["error"] = "cannot create vision model"
+            self.sendEvent(name: VisionEvent.ERROR, value: JSON(props).description)
+            return
+        }
+        
+        cameraView = UIView(frame: CGRect(x: 0, y: 0, width: rootViewController.view.frame.width,
                                         height: rootViewController.view.frame.height))
         if let captureDevice = AVCaptureDevice.default(for: .video) {
             do {
                 let input = try AVCaptureDeviceInput.init(device: captureDevice)
                 captureSession = AVCaptureSession()
+                guard let captureSession = captureSession else {
+                    props["error"] = "cannot create camera input"
+                    self.sendEvent(name: VisionEvent.ERROR, value: JSON(props).description)
+                    return
+                }
                 captureSession.addInput(input)
                 videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+                guard let videoPreviewLayer = videoPreviewLayer,
+                let cameraView = cameraView else {
+                    props["error"] = "cannot add camera input"
+                    self.sendEvent(name: VisionEvent.ERROR, value: JSON(props).description)
+                    return
+                }
                 videoPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-                videoPreviewLayer.frame = view.layer.bounds
-                view.layer.addSublayer(videoPreviewLayer)
-                rootViewController.view.addSubview(view)
+                videoPreviewLayer.frame = cameraView.layer.bounds
+                cameraView.layer.addSublayer(videoPreviewLayer)
+                rootViewController.view.addSubview(cameraView)
                 
                 let videoDataOutput = AVCaptureVideoDataOutput()
                 let queue = DispatchQueue(label: "com.tuarua.mlane.cameraQueue")
                 videoDataOutput.setSampleBufferDelegate(self, queue: queue)
                 guard captureSession.canAddOutput(videoDataOutput) else {
-                    trace("ERR canAddOutput false")
+                    props["error"] = "cannot add camera output"
+                    self.sendEvent(name: VisionEvent.ERROR, value: JSON(props).description)
                     return
                 }
                 captureSession.addOutput(videoDataOutput)
                 captureSession.startRunning()
 
             } catch {
-                trace("ERR no capture device")
+                props["error"] = "no capture device"
+                self.sendEvent(name: VisionEvent.ERROR, value: JSON(props).description)
             }
             
         }
     }
+    
+    func closeCamera(rootViewController: UIViewController) {
+        guard let captureSession = captureSession else {
+            return
+        }
+        captureSession.stopRunning()
+        for input in captureSession.inputs {
+            captureSession.removeInput(input)
+        }
+        for output in captureSession.outputs {
+            captureSession.removeOutput(output)
+        }
+        
+        videoPreviewLayer?.removeFromSuperlayer()
+        cameraView?.removeFromSuperview()
+        
+        videoPreviewLayer = nil
+        cameraView = nil
+    }
+    
 }

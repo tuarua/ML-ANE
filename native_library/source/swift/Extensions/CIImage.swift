@@ -1,9 +1,17 @@
 import Foundation
 import CoreML
 import Vision
+import AVFoundation
 
 // This is a helper extension to convert CIImage into a pixel buffer to be used with SqueezeNet
 public extension CIImage {
+    
+    convenience init?(cmSampleBuffer: CMSampleBuffer) {
+        guard let imageBuffer = CMSampleBufferGetImageBuffer(cmSampleBuffer)
+            else { return nil }
+        self.init(cvImageBuffer: imageBuffer)
+    }
+    
     func pixelBuffer(at size: CGSize, context: CIContext) -> CVPixelBuffer? {
         
         //1 - create a dictionary requesting Core Graphics compatibility

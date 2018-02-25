@@ -31,7 +31,7 @@ class BaseInput: MLFeatureProvider {
         }
     }
     
-    func setValues(dictionary: [String: MLFeatureValue], _ context: FreContextSwift? = nil) {
+    func setValues(dictionary: [String: MLFeatureValue]) {
         inputs = dictionary
     }
     

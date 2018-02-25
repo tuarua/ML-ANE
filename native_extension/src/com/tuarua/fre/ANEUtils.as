@@ -34,6 +34,20 @@ public class ANEUtils {
 
     public static function getClassProps(clz:*):Vector.<Object> {
         var ret:Vector.<Object> = new <Object>[];
+        var isObject:Boolean = false;
+        for (var id:String in clz) {
+            var objc:Object = {};
+            objc.name = id;
+            if (clz.hasOwnProperty(id)) {
+                objc.type = getClassType(clz[id]);
+                objc.cls = objc.type == "*" ? null : getClass(Class(getDefinitionByName(objc.type)));
+                ret.push(objc);
+                isObject = true;
+            }
+        }
+        if (isObject) {
+            return ret;
+        }
         var xml:XML = describeType(clz);
         if (xml.variable && xml.variable.length() > 0) {
             for each (var prop:XML in xml.variable) {
@@ -50,17 +64,6 @@ public class ANEUtils {
                 objb.type = propb.@type.toString();
                 objb.cls = objb.type == "*" ? null : getClass(Class(getDefinitionByName(objb.type)));
                 ret.push(objb);
-            }
-        } else {
-            for (var id:String in clz) {
-                var objc:Object = {};
-                objc.name = id;
-                if (clz.hasOwnProperty(id)) {
-                    objc.type = getClassType(clz[id]);
-                    objc.cls = objc.type == "*" ? null : getClass(Class(getDefinitionByName(objc.type)));
-                    ret.push(objc);
-                }
-
             }
         }
         return ret;

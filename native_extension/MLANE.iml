@@ -7,6 +7,9 @@
           <sdk name="AIRSDK_28" />
         </dependencies>
         <compiler-options>
+          <map>
+            <entry key="compiler.debug.swc" value="false" />
+          </map>
           <option name="additionalOptions" value="-swf-version=30" />
         </compiler-options>
         <packaging-air-desktop />

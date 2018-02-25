@@ -18,8 +18,14 @@ import flash.display.BitmapData;
 
 public class SqueezeNetInput {
     public var image:BitmapData;
+
     public function SqueezeNetInput(image:BitmapData) {
         this.image = image;
+    }
+
+    // mandatory
+    public function getProperties():Array { //used in ANE
+        return ["image"];
     }
 }
 }
