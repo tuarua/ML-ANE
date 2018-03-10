@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension xmlns="http://ns.adobe.com/air/extension/19.0">
+<extension xmlns="http://ns.adobe.com/air/extension/24.0">
     <id>com.tuarua.MLANE</id>
 	<name>Machine Learning ANE</name>
 	<copyright>This work is licensed under Apache License, Copyright (c) 2018 Tua Rua Ltd.</copyright>
-	<versionNumber>0.0.4</versionNumber>
+	<versionNumber>0.0.5</versionNumber>
     <platforms>
      <platform name="iPhone-ARM">
         <applicationDeployment>
@@ -13,6 +13,13 @@
         </applicationDeployment>
     </platform>
      <platform name="iPhone-x86">
+         <applicationDeployment>
+             <nativeLibrary>libMLANE.a</nativeLibrary>
+             <initializer>TRCMLExtInizer</initializer>
+             <finalizer>TRCMLExtFinizer</finalizer>
+         </applicationDeployment>
+     </platform>
+     <platform name="appleTV-ARM">
          <applicationDeployment>
              <nativeLibrary>libMLANE.a</nativeLibrary>
              <initializer>TRCMLExtInizer</initializer>

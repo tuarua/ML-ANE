@@ -97,6 +97,7 @@ You will need:
 - [x] Sample input Models (MobileNet, SqueezeNet and Apple Mars)
 * Inputs
     - [x] Image
+    - [x] Int64
     - [x] Double
     - [x] String
     - [ ] Dictionary

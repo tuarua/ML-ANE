@@ -1,3 +1,8 @@
+### 0.0.5
+- Updated to FreSwift 2.3.0
+- Added tvOS version
+- Combine to single Xcode project
+
 ### 0.0.4
 - iOS: permissions
 - asdocs
