@@ -10,24 +10,14 @@
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
- limitations under the License.
- */
+ limitations under the License.*/
 
-#ifdef _WIN32
-#elif __APPLE__
-
-#include "TargetConditionals.h"
+#import "FreMacros.h"
 #import <Foundation/Foundation.h>
-@interface MLANE_LIB : NSObject
-@end
 
-#if (TARGET_IPHONE_SIMULATOR) || (TARGET_OS_IPHONE)
-
-#elif TARGET_OS_MAC
-#ifndef MLANE_oc_h
-#define MLANE_oc_h
-
-
+#ifdef OSX
+#ifndef MLANE_MLANE_H
+#define MLANE_MLANE_H
 #import <Cocoa/Cocoa.h>
 #include <Adobe AIR/Adobe AIR.h>
 
@@ -38,11 +28,10 @@ EXTENSION_FIN_DECL(TRCML);
 
 EXPORT
 EXTENSION_INIT_DECL(TRCML);
-
-
-#endif //MLANE_oc_h
-
+#endif // MLANE_MLANE_H
 #else
-#   error "Unknown Apple platform"
+#import <UIKit/UIKit.h>
 #endif
-#endif
+
+@interface MLANE_LIB : NSObject
+@end

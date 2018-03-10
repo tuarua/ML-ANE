@@ -1,0 +1,1180 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CE05603F1FB25CE200D06976 /* FreSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE05603E1FB25CE200D06976 /* FreSwift.framework */; };
+		CE0560401FB25CE200D06976 /* FreSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE05603E1FB25CE200D06976 /* FreSwift.framework */; };
+		CE0560451FB25DD000D06976 /* MLANE_FW.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE87F4831FB259FA005CF7DF /* MLANE_FW.framework */; };
+		CE05604E1FB25E8E00D06976 /* FreMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = CE05604D1FB25E8E00D06976 /* FreMacros.h */; };
+		CE05604F1FB25E9F00D06976 /* FreMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = CE05604D1FB25E8E00D06976 /* FreMacros.h */; };
+		CE26D95B2038EAF1004084F0 /* CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26D95A2038EAF1004084F0 /* CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift */; };
+		CE3FC07F204329B300FE313C /* PermissionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3FC07E204329B300FE313C /* PermissionController.swift */; };
+		CE3FC081204329D100FE313C /* PermissionEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3FC080204329D100FE313C /* PermissionEvent.swift */; };
+		CE6DC5AE20542E3100E20217 /* SwiftyJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = CE88103F203889A1004FD8B4 /* SwiftyJSON.h */; };
+		CE6DC5AF20542E3800E20217 /* MLANE_oc.h in Headers */ = {isa = PBXBuildFile; fileRef = CE88103A20388975004FD8B4 /* MLANE_oc.h */; };
+		CE6DC5B020542E3B00E20217 /* FreMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = CE05604D1FB25E8E00D06976 /* FreMacros.h */; };
+		CE6DC5B220542E5B00E20217 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6DC5B120542E4C00E20217 /* Cocoa.framework */; };
+		CE6DC5B420542E7800E20217 /* Adobe AIR_64 in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6DC5A020542D2800E20217 /* Adobe AIR_64 */; };
+		CE6DC5B520542E7A00E20217 /* Adobe AIR in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6DC59F20542D2800E20217 /* Adobe AIR */; };
+		CE6DC5B620542E9300E20217 /* CIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881048203889B6004FD8B4 /* CIImage.swift */; };
+		CE6DC5B720542E9C00E20217 /* FreMLImageConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104B203889B6004FD8B4 /* FreMLImageConstraint.swift */; };
+		CE6DC5B820542E9F00E20217 /* FreMLModelDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881045203889B6004FD8B4 /* FreMLModelDescription.swift */; };
+		CE6DC5B920542EA200E20217 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881049203889B6004FD8B4 /* URL.swift */; };
+		CE6DC5BA20542EAA00E20217 /* MLANE.m in Sources */ = {isa = PBXBuildFile; fileRef = CE88103920388975004FD8B4 /* MLANE.m */; };
+		CE6DC5BB20542EAE00E20217 /* FreMLFeatureDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104A203889B6004FD8B4 /* FreMLFeatureDescription.swift */; };
+		CE6DC5BC20542EB400E20217 /* MLEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104F203889B7004FD8B4 /* MLEvent.swift */; };
+		CE6DC5BD20542EB800E20217 /* FreMLDictionaryConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881046203889B6004FD8B4 /* FreMLDictionaryConstraint.swift */; };
+		CE6DC5BE20542EBD00E20217 /* SwiftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104C203889B6004FD8B4 /* SwiftController.swift */; };
+		CE6DC5BF20542EC400E20217 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88103E203889A1004FD8B4 /* SwiftyJSON.swift */; };
+		CE6DC5C020542EC800E20217 /* SwiftController+FreSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104D203889B7004FD8B4 /* SwiftController+FreSwift.swift */; };
+		CE6DC5C120542ECC00E20217 /* BaseInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881042203889B6004FD8B4 /* BaseInput.swift */; };
+		CE6DC5C220542ED100E20217 /* FreMLModelMetadataKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881047203889B6004FD8B4 /* FreMLModelMetadataKey.swift */; };
+		CE6DC5C320542ED500E20217 /* CoreMlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881043203889B6004FD8B4 /* CoreMlController.swift */; };
+		CE6DC5C520542F0000E20217 /* FreSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6DC5C420542F0000E20217 /* FreSwift.framework */; };
+		CE6DC5F0205435F900E20217 /* FreMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = CE05604D1FB25E8E00D06976 /* FreMacros.h */; };
+		CE6DC5F1205435FB00E20217 /* MLANE_oc.h in Headers */ = {isa = PBXBuildFile; fileRef = CE88103A20388975004FD8B4 /* MLANE_oc.h */; };
+		CE6DC5F42054362000E20217 /* FreSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6DC5F32054362000E20217 /* FreSwift.framework */; };
+		CE6DC5F5205436A500E20217 /* FreSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6DC5F32054362000E20217 /* FreSwift.framework */; };
+		CE6DC5F6205436B700E20217 /* MLANE.m in Sources */ = {isa = PBXBuildFile; fileRef = CE88103920388975004FD8B4 /* MLANE.m */; };
+		CE6DC5F7205436CC00E20217 /* MLANE_FW.h in Headers */ = {isa = PBXBuildFile; fileRef = CE87F4851FB259FA005CF7DF /* MLANE_FW.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CE6DC5F8205436DA00E20217 /* FreMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = CE05604D1FB25E8E00D06976 /* FreMacros.h */; };
+		CE6DC5F9205436DD00E20217 /* SwiftyJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = CE88103F203889A1004FD8B4 /* SwiftyJSON.h */; };
+		CE6DC5FA2054371A00E20217 /* SwiftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104C203889B6004FD8B4 /* SwiftController.swift */; };
+		CE6DC5FB2054371C00E20217 /* SwiftController+FreSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104D203889B7004FD8B4 /* SwiftController+FreSwift.swift */; };
+		CE6DC5FC2054374300E20217 /* BaseInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881042203889B6004FD8B4 /* BaseInput.swift */; };
+		CE6DC5FD2054374300E20217 /* MLEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104F203889B7004FD8B4 /* MLEvent.swift */; };
+		CE6DC5FE2054374300E20217 /* FreMLModelDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881045203889B6004FD8B4 /* FreMLModelDescription.swift */; };
+		CE6DC5FF2054374300E20217 /* FreMLDictionaryConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881046203889B6004FD8B4 /* FreMLDictionaryConstraint.swift */; };
+		CE6DC6002054374300E20217 /* FreMLModelMetadataKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881047203889B6004FD8B4 /* FreMLModelMetadataKey.swift */; };
+		CE6DC6012054374300E20217 /* CIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881048203889B6004FD8B4 /* CIImage.swift */; };
+		CE6DC6022054374300E20217 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881049203889B6004FD8B4 /* URL.swift */; };
+		CE6DC6032054374300E20217 /* FreMLFeatureDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104A203889B6004FD8B4 /* FreMLFeatureDescription.swift */; };
+		CE6DC6042054374300E20217 /* FreMLImageConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104B203889B6004FD8B4 /* FreMLImageConstraint.swift */; };
+		CE6DC6052054374300E20217 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88103E203889A1004FD8B4 /* SwiftyJSON.swift */; };
+		CE6DC6062054376400E20217 /* CoreMlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881043203889B6004FD8B4 /* CoreMlController.swift */; };
+		CE6DC607205437A800E20217 /* MLANE_FW.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6DC5E72054354900E20217 /* MLANE_FW.framework */; };
+		CE87F4871FB259FA005CF7DF /* MLANE_FW.h in Headers */ = {isa = PBXBuildFile; fileRef = CE87F4851FB259FA005CF7DF /* MLANE_FW.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CE88103B20388976004FD8B4 /* MLANE.m in Sources */ = {isa = PBXBuildFile; fileRef = CE88103920388975004FD8B4 /* MLANE.m */; };
+		CE88103C20388976004FD8B4 /* MLANE_oc.h in Headers */ = {isa = PBXBuildFile; fileRef = CE88103A20388975004FD8B4 /* MLANE_oc.h */; };
+		CE881040203889A2004FD8B4 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88103E203889A1004FD8B4 /* SwiftyJSON.swift */; };
+		CE881041203889A2004FD8B4 /* SwiftyJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = CE88103F203889A1004FD8B4 /* SwiftyJSON.h */; };
+		CE881050203889B7004FD8B4 /* BaseInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881042203889B6004FD8B4 /* BaseInput.swift */; };
+		CE881051203889B7004FD8B4 /* CoreMlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881043203889B6004FD8B4 /* CoreMlController.swift */; };
+		CE881052203889B7004FD8B4 /* FreMLModelDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881045203889B6004FD8B4 /* FreMLModelDescription.swift */; };
+		CE881053203889B7004FD8B4 /* FreMLDictionaryConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881046203889B6004FD8B4 /* FreMLDictionaryConstraint.swift */; };
+		CE881054203889B7004FD8B4 /* FreMLModelMetadataKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881047203889B6004FD8B4 /* FreMLModelMetadataKey.swift */; };
+		CE881055203889B7004FD8B4 /* CIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881048203889B6004FD8B4 /* CIImage.swift */; };
+		CE881056203889B7004FD8B4 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881049203889B6004FD8B4 /* URL.swift */; };
+		CE881057203889B7004FD8B4 /* FreMLFeatureDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104A203889B6004FD8B4 /* FreMLFeatureDescription.swift */; };
+		CE881058203889B7004FD8B4 /* FreMLImageConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104B203889B6004FD8B4 /* FreMLImageConstraint.swift */; };
+		CE881059203889B7004FD8B4 /* SwiftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104C203889B6004FD8B4 /* SwiftController.swift */; };
+		CE88105A203889B7004FD8B4 /* SwiftController+FreSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104D203889B7004FD8B4 /* SwiftController+FreSwift.swift */; };
+		CE88105B203889B7004FD8B4 /* MLEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104F203889B7004FD8B4 /* MLEvent.swift */; };
+		CE8D26392040DBFC008EA287 /* FreNativeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D26362040DBFC008EA287 /* FreNativeImage.swift */; };
+		CE8D263A2040DBFC008EA287 /* FreNativeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D26372040DBFC008EA287 /* FreNativeButton.swift */; };
+		CE8D263B2040DBFC008EA287 /* FreNativeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D26382040DBFC008EA287 /* FreNativeType.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CE0560461FB25DD600D06976 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE87F45D1FB259C9005CF7DF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE87F4821FB259FA005CF7DF;
+			remoteInfo = HelloWorldANE_FW;
+		};
+		CE6DC6082054388600E20217 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE87F45D1FB259C9005CF7DF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE6DC5E62054354900E20217;
+			remoteInfo = "MLANE_FW (tvOS)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CE05603E1FB25CE200D06976 /* FreSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FreSwift.framework; path = Carthage/Build/iOS/FreSwift.framework; sourceTree = "<group>"; };
+		CE05604D1FB25E8E00D06976 /* FreMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreMacros.h; sourceTree = "<group>"; };
+		CE26D95A2038EAF1004084F0 /* CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift"; sourceTree = "<group>"; };
+		CE3FC07E204329B300FE313C /* PermissionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionController.swift; sourceTree = "<group>"; };
+		CE3FC080204329D100FE313C /* PermissionEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionEvent.swift; sourceTree = "<group>"; };
+		CE6DC59F20542D2800E20217 /* Adobe AIR */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "Adobe AIR"; path = "../../../../../sdks/AIR/AIRSDK_29/runtimes/air-captive/mac/Adobe AIR.framework/Versions/1.0/Adobe AIR"; sourceTree = "<group>"; };
+		CE6DC5A020542D2800E20217 /* Adobe AIR_64 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "Adobe AIR_64"; path = "../../../../../sdks/AIR/AIRSDK_29/runtimes/air-captive/mac/Adobe AIR.framework/Versions/1.0/Adobe AIR_64"; sourceTree = "<group>"; };
+		CE6DC5A620542D5600E20217 /* MLANE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MLANE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE6DC5B120542E4C00E20217 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		CE6DC5C420542F0000E20217 /* FreSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FreSwift.framework; path = Carthage/Build/Mac/FreSwift.framework; sourceTree = "<group>"; };
+		CE6DC5CC205434C700E20217 /* libMLANE_LIB.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMLANE_LIB.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE6DC5E72054354900E20217 /* MLANE_FW.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MLANE_FW.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE6DC5F32054362000E20217 /* FreSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FreSwift.framework; path = Carthage/Build/tvOS/FreSwift.framework; sourceTree = "<group>"; };
+		CE87F4751FB259DB005CF7DF /* libMLANE_LIB.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMLANE_LIB.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE87F4831FB259FA005CF7DF /* MLANE_FW.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MLANE_FW.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE87F4851FB259FA005CF7DF /* MLANE_FW.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLANE_FW.h; sourceTree = "<group>"; };
+		CE87F4861FB259FA005CF7DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE8810382038888D004FD8B4 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		CE88103920388975004FD8B4 /* MLANE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLANE.m; sourceTree = "<group>"; };
+		CE88103A20388975004FD8B4 /* MLANE_oc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLANE_oc.h; sourceTree = "<group>"; };
+		CE88103E203889A1004FD8B4 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		CE88103F203889A1004FD8B4 /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyJSON.h; sourceTree = "<group>"; };
+		CE881042203889B6004FD8B4 /* BaseInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseInput.swift; sourceTree = "<group>"; };
+		CE881043203889B6004FD8B4 /* CoreMlController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreMlController.swift; sourceTree = "<group>"; };
+		CE881045203889B6004FD8B4 /* FreMLModelDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreMLModelDescription.swift; sourceTree = "<group>"; };
+		CE881046203889B6004FD8B4 /* FreMLDictionaryConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreMLDictionaryConstraint.swift; sourceTree = "<group>"; };
+		CE881047203889B6004FD8B4 /* FreMLModelMetadataKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreMLModelMetadataKey.swift; sourceTree = "<group>"; };
+		CE881048203889B6004FD8B4 /* CIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIImage.swift; sourceTree = "<group>"; };
+		CE881049203889B6004FD8B4 /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		CE88104A203889B6004FD8B4 /* FreMLFeatureDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreMLFeatureDescription.swift; sourceTree = "<group>"; };
+		CE88104B203889B6004FD8B4 /* FreMLImageConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreMLImageConstraint.swift; sourceTree = "<group>"; };
+		CE88104C203889B6004FD8B4 /* SwiftController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftController.swift; sourceTree = "<group>"; };
+		CE88104D203889B7004FD8B4 /* SwiftController+FreSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftController+FreSwift.swift"; sourceTree = "<group>"; };
+		CE88104F203889B7004FD8B4 /* MLEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLEvent.swift; sourceTree = "<group>"; };
+		CE8D26362040DBFC008EA287 /* FreNativeImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreNativeImage.swift; sourceTree = "<group>"; };
+		CE8D26372040DBFC008EA287 /* FreNativeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreNativeButton.swift; sourceTree = "<group>"; };
+		CE8D26382040DBFC008EA287 /* FreNativeType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreNativeType.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CE6DC5A220542D5600E20217 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE6DC5B420542E7800E20217 /* Adobe AIR_64 in Frameworks */,
+				CE6DC5B520542E7A00E20217 /* Adobe AIR in Frameworks */,
+				CE6DC5B220542E5B00E20217 /* Cocoa.framework in Frameworks */,
+				CE6DC5C520542F0000E20217 /* FreSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE6DC5C9205434C700E20217 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE6DC607205437A800E20217 /* MLANE_FW.framework in Frameworks */,
+				CE6DC5F42054362000E20217 /* FreSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE6DC5E32054354900E20217 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE6DC5F5205436A500E20217 /* FreSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE87F4721FB259DB005CF7DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE0560451FB25DD000D06976 /* MLANE_FW.framework in Frameworks */,
+				CE05603F1FB25CE200D06976 /* FreSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE87F47F1FB259FA005CF7DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE0560401FB25CE200D06976 /* FreSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CE05603D1FB25CD100D06976 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE6DC5C420542F0000E20217 /* FreSwift.framework */,
+				CE6DC5F32054362000E20217 /* FreSwift.framework */,
+				CE6DC5B120542E4C00E20217 /* Cocoa.framework */,
+				CE6DC59F20542D2800E20217 /* Adobe AIR */,
+				CE6DC5A020542D2800E20217 /* Adobe AIR_64 */,
+				CE05603E1FB25CE200D06976 /* FreSwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE6DC59D20542B9A00E20217 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				CE87F4851FB259FA005CF7DF /* MLANE_FW.h */,
+				CE88103A20388975004FD8B4 /* MLANE_oc.h */,
+				CE05604D1FB25E8E00D06976 /* FreMacros.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		CE6DC59E20542BA500E20217 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				CE87F4861FB259FA005CF7DF /* Info.plist */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
+		CE87F45C1FB259C9005CF7DF = {
+			isa = PBXGroup;
+			children = (
+				CE8810382038888D004FD8B4 /* .swiftlint.yml */,
+				CE05603D1FB25CD100D06976 /* Frameworks */,
+				CE87F4761FB259DB005CF7DF /* MLANE */,
+				CE87F4661FB259C9005CF7DF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CE87F4661FB259C9005CF7DF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE87F4751FB259DB005CF7DF /* libMLANE_LIB.a */,
+				CE87F4831FB259FA005CF7DF /* MLANE_FW.framework */,
+				CE6DC5A620542D5600E20217 /* MLANE.framework */,
+				CE6DC5CC205434C700E20217 /* libMLANE_LIB.a */,
+				CE6DC5E72054354900E20217 /* MLANE_FW.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CE87F4761FB259DB005CF7DF /* MLANE */ = {
+			isa = PBXGroup;
+			children = (
+				CE3FC07E204329B300FE313C /* PermissionController.swift */,
+				CE8D26352040DBFC008EA287 /* FreNative */,
+				CE881042203889B6004FD8B4 /* BaseInput.swift */,
+				CE881043203889B6004FD8B4 /* CoreMlController.swift */,
+				CE88104E203889B7004FD8B4 /* Events */,
+				CE881044203889B6004FD8B4 /* Extensions */,
+				CE88104C203889B6004FD8B4 /* SwiftController.swift */,
+				CE88104D203889B7004FD8B4 /* SwiftController+FreSwift.swift */,
+				CE88103D203889A1004FD8B4 /* SwiftyJSON */,
+				CE6DC59D20542B9A00E20217 /* Headers */,
+				CE6DC59E20542BA500E20217 /* Misc */,
+				CE26D95A2038EAF1004084F0 /* CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift */,
+				CE88103920388975004FD8B4 /* MLANE.m */,
+			);
+			path = MLANE;
+			sourceTree = "<group>";
+		};
+		CE88103D203889A1004FD8B4 /* SwiftyJSON */ = {
+			isa = PBXGroup;
+			children = (
+				CE88103E203889A1004FD8B4 /* SwiftyJSON.swift */,
+				CE88103F203889A1004FD8B4 /* SwiftyJSON.h */,
+			);
+			path = SwiftyJSON;
+			sourceTree = "<group>";
+		};
+		CE881044203889B6004FD8B4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CE881045203889B6004FD8B4 /* FreMLModelDescription.swift */,
+				CE881046203889B6004FD8B4 /* FreMLDictionaryConstraint.swift */,
+				CE881047203889B6004FD8B4 /* FreMLModelMetadataKey.swift */,
+				CE881048203889B6004FD8B4 /* CIImage.swift */,
+				CE881049203889B6004FD8B4 /* URL.swift */,
+				CE88104A203889B6004FD8B4 /* FreMLFeatureDescription.swift */,
+				CE88104B203889B6004FD8B4 /* FreMLImageConstraint.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CE88104E203889B7004FD8B4 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				CE3FC080204329D100FE313C /* PermissionEvent.swift */,
+				CE88104F203889B7004FD8B4 /* MLEvent.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		CE8D26352040DBFC008EA287 /* FreNative */ = {
+			isa = PBXGroup;
+			children = (
+				CE8D26362040DBFC008EA287 /* FreNativeImage.swift */,
+				CE8D26372040DBFC008EA287 /* FreNativeButton.swift */,
+				CE8D26382040DBFC008EA287 /* FreNativeType.swift */,
+			);
+			path = FreNative;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		CE0560481FB25DEC00D06976 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE88103C20388976004FD8B4 /* MLANE_oc.h in Headers */,
+				CE05604E1FB25E8E00D06976 /* FreMacros.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE6DC5A320542D5600E20217 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE6DC5AE20542E3100E20217 /* SwiftyJSON.h in Headers */,
+				CE6DC5B020542E3B00E20217 /* FreMacros.h in Headers */,
+				CE6DC5AF20542E3800E20217 /* MLANE_oc.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE6DC5E42054354900E20217 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE6DC5F7205436CC00E20217 /* MLANE_FW.h in Headers */,
+				CE6DC5F8205436DA00E20217 /* FreMacros.h in Headers */,
+				CE6DC5F9205436DD00E20217 /* SwiftyJSON.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE6DC5EF205435F600E20217 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE6DC5F0205435F900E20217 /* FreMacros.h in Headers */,
+				CE6DC5F1205435FB00E20217 /* MLANE_oc.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE87F4801FB259FA005CF7DF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE881041203889A2004FD8B4 /* SwiftyJSON.h in Headers */,
+				CE87F4871FB259FA005CF7DF /* MLANE_FW.h in Headers */,
+				CE05604F1FB25E9F00D06976 /* FreMacros.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		CE6DC5A520542D5600E20217 /* MLANE (OSX) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE6DC5AB20542D5600E20217 /* Build configuration list for PBXNativeTarget "MLANE (OSX)" */;
+			buildPhases = (
+				CE6DC5A120542D5600E20217 /* Sources */,
+				CE6DC5A220542D5600E20217 /* Frameworks */,
+				CE6DC5A320542D5600E20217 /* Headers */,
+				CE6DC5C620542F1400E20217 /* ShellScript */,
+				CE6DC5C72054339500E20217 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MLANE (OSX)";
+			productName = MLANE;
+			productReference = CE6DC5A620542D5600E20217 /* MLANE.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CE6DC5CB205434C700E20217 /* MLANE_LIB (tvOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE6DC5D2205434C700E20217 /* Build configuration list for PBXNativeTarget "MLANE_LIB (tvOS)" */;
+			buildPhases = (
+				CE6DC5C8205434C700E20217 /* Sources */,
+				CE6DC5C9205434C700E20217 /* Frameworks */,
+				CE6DC5EF205435F600E20217 /* Headers */,
+				CE6DC60B20543AD900E20217 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE6DC6092054388600E20217 /* PBXTargetDependency */,
+			);
+			name = "MLANE_LIB (tvOS)";
+			productName = "MLANE_LIB (tvOS)";
+			productReference = CE6DC5CC205434C700E20217 /* libMLANE_LIB.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		CE6DC5E62054354900E20217 /* MLANE_FW (tvOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE6DC5EC2054354900E20217 /* Build configuration list for PBXNativeTarget "MLANE_FW (tvOS)" */;
+			buildPhases = (
+				CE6DC5E22054354900E20217 /* Sources */,
+				CE6DC5E32054354900E20217 /* Frameworks */,
+				CE6DC5E42054354900E20217 /* Headers */,
+				CE6DC5E52054354900E20217 /* Resources */,
+				CE6DC60A20543ACD00E20217 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MLANE_FW (tvOS)";
+			productName = "MLANE_FW (tvOS)";
+			productReference = CE6DC5E72054354900E20217 /* MLANE_FW.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CE87F4741FB259DB005CF7DF /* MLANE_LIB (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE87F47B1FB259DB005CF7DF /* Build configuration list for PBXNativeTarget "MLANE_LIB (iOS)" */;
+			buildPhases = (
+				CE87F4711FB259DB005CF7DF /* Sources */,
+				CE87F4721FB259DB005CF7DF /* Frameworks */,
+				CE0560481FB25DEC00D06976 /* Headers */,
+				CEDDADE01FBFB84900D6EB5F /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE0560471FB25DD600D06976 /* PBXTargetDependency */,
+			);
+			name = "MLANE_LIB (iOS)";
+			productName = HelloWorldANE_LIB;
+			productReference = CE87F4751FB259DB005CF7DF /* libMLANE_LIB.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		CE87F4821FB259FA005CF7DF /* MLANE_FW (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE87F4881FB259FA005CF7DF /* Build configuration list for PBXNativeTarget "MLANE_FW (iOS)" */;
+			buildPhases = (
+				CE87F47E1FB259FA005CF7DF /* Sources */,
+				CE87F47F1FB259FA005CF7DF /* Frameworks */,
+				CE87F4801FB259FA005CF7DF /* Headers */,
+				CE88105D203890E0004FD8B4 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MLANE_FW (iOS)";
+			productName = HelloWorldANE_FW;
+			productReference = CE87F4831FB259FA005CF7DF /* MLANE_FW.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CE87F45D1FB259C9005CF7DF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = "Tua Rua Ltd";
+				TargetAttributes = {
+					CE6DC5A520542D5600E20217 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Manual;
+					};
+					CE6DC5CB205434C700E20217 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
+					CE6DC5E62054354900E20217 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Manual;
+					};
+					CE87F4741FB259DB005CF7DF = {
+						CreatedOnToolsVersion = 8.3;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+					};
+					CE87F4821FB259FA005CF7DF = {
+						CreatedOnToolsVersion = 8.3;
+						LastSwiftMigration = 0910;
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = CE87F4601FB259C9005CF7DF /* Build configuration list for PBXProject "MLANE" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CE87F45C1FB259C9005CF7DF;
+			productRefGroup = CE87F4661FB259C9005CF7DF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CE87F4741FB259DB005CF7DF /* MLANE_LIB (iOS) */,
+				CE87F4821FB259FA005CF7DF /* MLANE_FW (iOS) */,
+				CE6DC5A520542D5600E20217 /* MLANE (OSX) */,
+				CE6DC5CB205434C700E20217 /* MLANE_LIB (tvOS) */,
+				CE6DC5E62054354900E20217 /* MLANE_FW (tvOS) */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CE6DC5E52054354900E20217 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CE6DC5C620542F1400E20217 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		CE6DC5C72054339500E20217 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ../../../native_extension/ane/build.sh;
+		};
+		CE6DC60A20543ACD00E20217 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		CE6DC60B20543AD900E20217 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = ../../../native_extension/ane/build.sh;
+		};
+		CE88105D203890E0004FD8B4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		CEDDADE01FBFB84900D6EB5F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = ../../../native_extension/ane/build.sh;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CE6DC5A120542D5600E20217 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE6DC5C320542ED500E20217 /* CoreMlController.swift in Sources */,
+				CE6DC5C120542ECC00E20217 /* BaseInput.swift in Sources */,
+				CE6DC5BD20542EB800E20217 /* FreMLDictionaryConstraint.swift in Sources */,
+				CE6DC5B620542E9300E20217 /* CIImage.swift in Sources */,
+				CE6DC5B720542E9C00E20217 /* FreMLImageConstraint.swift in Sources */,
+				CE6DC5B820542E9F00E20217 /* FreMLModelDescription.swift in Sources */,
+				CE6DC5B920542EA200E20217 /* URL.swift in Sources */,
+				CE6DC5BA20542EAA00E20217 /* MLANE.m in Sources */,
+				CE6DC5BB20542EAE00E20217 /* FreMLFeatureDescription.swift in Sources */,
+				CE6DC5BC20542EB400E20217 /* MLEvent.swift in Sources */,
+				CE6DC5BE20542EBD00E20217 /* SwiftController.swift in Sources */,
+				CE6DC5C020542EC800E20217 /* SwiftController+FreSwift.swift in Sources */,
+				CE6DC5BF20542EC400E20217 /* SwiftyJSON.swift in Sources */,
+				CE6DC5C220542ED100E20217 /* FreMLModelMetadataKey.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE6DC5C8205434C700E20217 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE6DC5F6205436B700E20217 /* MLANE.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE6DC5E22054354900E20217 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE6DC6062054376400E20217 /* CoreMlController.swift in Sources */,
+				CE6DC5FC2054374300E20217 /* BaseInput.swift in Sources */,
+				CE6DC5FD2054374300E20217 /* MLEvent.swift in Sources */,
+				CE6DC5FE2054374300E20217 /* FreMLModelDescription.swift in Sources */,
+				CE6DC5FF2054374300E20217 /* FreMLDictionaryConstraint.swift in Sources */,
+				CE6DC6002054374300E20217 /* FreMLModelMetadataKey.swift in Sources */,
+				CE6DC6012054374300E20217 /* CIImage.swift in Sources */,
+				CE6DC6022054374300E20217 /* URL.swift in Sources */,
+				CE6DC6032054374300E20217 /* FreMLFeatureDescription.swift in Sources */,
+				CE6DC6042054374300E20217 /* FreMLImageConstraint.swift in Sources */,
+				CE6DC6052054374300E20217 /* SwiftyJSON.swift in Sources */,
+				CE6DC5FA2054371A00E20217 /* SwiftController.swift in Sources */,
+				CE6DC5FB2054371C00E20217 /* SwiftController+FreSwift.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE87F4711FB259DB005CF7DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE88103B20388976004FD8B4 /* MLANE.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE87F47E1FB259FA005CF7DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE8D263A2040DBFC008EA287 /* FreNativeButton.swift in Sources */,
+				CE881050203889B7004FD8B4 /* BaseInput.swift in Sources */,
+				CE881059203889B7004FD8B4 /* SwiftController.swift in Sources */,
+				CE8D26392040DBFC008EA287 /* FreNativeImage.swift in Sources */,
+				CE881054203889B7004FD8B4 /* FreMLModelMetadataKey.swift in Sources */,
+				CE881056203889B7004FD8B4 /* URL.swift in Sources */,
+				CE881058203889B7004FD8B4 /* FreMLImageConstraint.swift in Sources */,
+				CE88105A203889B7004FD8B4 /* SwiftController+FreSwift.swift in Sources */,
+				CE3FC081204329D100FE313C /* PermissionEvent.swift in Sources */,
+				CE8D263B2040DBFC008EA287 /* FreNativeType.swift in Sources */,
+				CE881053203889B7004FD8B4 /* FreMLDictionaryConstraint.swift in Sources */,
+				CE881057203889B7004FD8B4 /* FreMLFeatureDescription.swift in Sources */,
+				CE881052203889B7004FD8B4 /* FreMLModelDescription.swift in Sources */,
+				CE88105B203889B7004FD8B4 /* MLEvent.swift in Sources */,
+				CE26D95B2038EAF1004084F0 /* CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift in Sources */,
+				CE3FC07F204329B300FE313C /* PermissionController.swift in Sources */,
+				CE881040203889A2004FD8B4 /* SwiftyJSON.swift in Sources */,
+				CE881051203889B7004FD8B4 /* CoreMlController.swift in Sources */,
+				CE881055203889B7004FD8B4 /* CIImage.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CE0560471FB25DD600D06976 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE87F4821FB259FA005CF7DF /* MLANE_FW (iOS) */;
+			targetProxy = CE0560461FB25DD600D06976 /* PBXContainerItemProxy */;
+		};
+		CE6DC6092054388600E20217 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE6DC5E62054354900E20217 /* MLANE_FW (tvOS) */;
+			targetProxy = CE6DC6082054388600E20217 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		CE6DC5AC20542D5600E20217 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/User/sdks/AIR/AIRSDK_29/runtimes/air/mac,
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/MLANE/Misc/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = /Users/User/sdks/AIR/AIRSDK_29/runtimes/air/mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				OTHER_LDFLAGS = (
+					"-weak_framework",
+					"\"Adobe AIR\"",
+					"-w",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tuarua.MLANE;
+				PRODUCT_NAME = MLANE;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		CE6DC5AD20542D5600E20217 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/User/sdks/AIR/AIRSDK_29/runtimes/air/mac,
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/MLANE/Misc/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = /Users/User/sdks/AIR/AIRSDK_29/runtimes/air/mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				OTHER_LDFLAGS = (
+					"-weak_framework",
+					"\"Adobe AIR\"",
+					"-w",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tuarua.MLANE;
+				PRODUCT_NAME = MLANE;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		CE6DC5D3205434C700E20217 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = MLANE_LIB;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.1;
+			};
+			name = Debug;
+		};
+		CE6DC5D4205434C700E20217 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = MLANE_LIB;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.1;
+			};
+			name = Release;
+		};
+		CE6DC5ED2054354900E20217 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/MLANE/Misc/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tuarua.MLANE;
+				PRODUCT_NAME = MLANE_FW;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		CE6DC5EE2054354900E20217 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/MLANE/Misc/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tuarua.MLANE;
+				PRODUCT_NAME = MLANE_FW;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		CE87F46C1FB259C9005CF7DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CE87F46D1FB259C9005CF7DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CE87F47C1FB259DB005CF7DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = MLANE_LIB;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		CE87F47D1FB259DB005CF7DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = MLANE_LIB;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		CE87F4891FB259FA005CF7DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/MLANE/Misc/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tuarua.MLANE;
+				PRODUCT_NAME = MLANE_FW;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		CE87F48A1FB259FA005CF7DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/MLANE/Misc/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tuarua.MLANE;
+				PRODUCT_NAME = MLANE_FW;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CE6DC5AB20542D5600E20217 /* Build configuration list for PBXNativeTarget "MLANE (OSX)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE6DC5AC20542D5600E20217 /* Debug */,
+				CE6DC5AD20542D5600E20217 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE6DC5D2205434C700E20217 /* Build configuration list for PBXNativeTarget "MLANE_LIB (tvOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE6DC5D3205434C700E20217 /* Debug */,
+				CE6DC5D4205434C700E20217 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE6DC5EC2054354900E20217 /* Build configuration list for PBXNativeTarget "MLANE_FW (tvOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE6DC5ED2054354900E20217 /* Debug */,
+				CE6DC5EE2054354900E20217 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE87F4601FB259C9005CF7DF /* Build configuration list for PBXProject "MLANE" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE87F46C1FB259C9005CF7DF /* Debug */,
+				CE87F46D1FB259C9005CF7DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE87F47B1FB259DB005CF7DF /* Build configuration list for PBXNativeTarget "MLANE_LIB (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE87F47C1FB259DB005CF7DF /* Debug */,
+				CE87F47D1FB259DB005CF7DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE87F4881FB259FA005CF7DF /* Build configuration list for PBXNativeTarget "MLANE_FW (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE87F4891FB259FA005CF7DF /* Debug */,
+				CE87F48A1FB259FA005CF7DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CE87F45D1FB259C9005CF7DF /* Project object */;
+}

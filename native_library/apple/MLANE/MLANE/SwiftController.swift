@@ -41,6 +41,11 @@ public class SwiftController: NSObject {
         mlController = CoreMlController.init(context: context)
         return true.toFREObject()
     }
+#elseif os(tvOS)
+    if #available(tvOS 11.0, *) {
+        mlController = CoreMlController.init(context: context)
+        return true.toFREObject()
+    }
 #else
     if #available(OSX 10.13, *) {
         mlController = CoreMlController.init(context: context)
@@ -119,50 +124,52 @@ public class SwiftController: NSObject {
                     return FreError.init(stackTrace: "", message: "invalid prediction inputs",
                                          type: .invalidArgument).getError(#file, #line, #column)
             }
-            
             let array: FREArray = FREArray.init(properties)
             let arrayLength = array.length
             for i in 0..<arrayLength {
                 if let elem: FREObject = try array.at(index: i) {
-                    if let propName = String(elem) {
-                        if let freProp = try rv.getProp(name: propName) {
-                            switch freProp.type {
-                            case .bitmapdata:
-                                let asBitmapData = FreBitmapDataSwift(freObject: freProp)
-                                defer {
-                                    asBitmapData.releaseData()
-                                }
-                                do {
-                                    if let cgimg = try asBitmapData.asCGImage(),
-                                        let fd = modelDescription.inputDescriptionsByName[propName],
-                                        let ic = fd.imageConstraint {
-                                        predictionQueue.async {
-                                            let modelSize = CGSize(width: ic.pixelsWide, height: ic.pixelsHigh)
-                                            let cicontext = CIContext()
-                                            let image = CIImage(cgImage: cgimg)
-                                            if let resizedPixelBuffer = image.pixelBuffer(at: modelSize,
-                                                                                          context: cicontext) {
-                                                input.updateValue(MLFeatureValue(pixelBuffer: resizedPixelBuffer),
-                                                                  forKey: propName)
-                                            }
-                                            mc.prediction(id: id, input: input, maxResults: maxResults)
-                                        }
-
-                                    }
-                                } catch {
-                                }
-                            case .number, .int:
-                                if let val = Double(freProp) {
-                                    input.updateValue(MLFeatureValue(double: val), forKey: propName)
-                                    mc.prediction(id: id, input: input, maxResults: maxResults)
-                                }
-                            case .string:
-                                if let val = String(freProp) {
-                                    input.updateValue(MLFeatureValue(string: val), forKey: propName)
-                                    mc.prediction(id: id, input: input, maxResults: maxResults)
-                                }
-                            default: break
+                    if let propName = String(elem),
+                        let type = modelDescription.inputDescriptionsByName[propName]?.type,
+                        let freProp = try rv.getProp(name: propName) {
+                        switch type {
+                        case .image:
+                            let asBitmapData = FreBitmapDataSwift(freObject: freProp)
+                            defer {
+                                asBitmapData.releaseData()
                             }
+                            do {
+                                if let cgimg = try asBitmapData.asCGImage(),
+                                    let fd = modelDescription.inputDescriptionsByName[propName],
+                                    let ic = fd.imageConstraint {
+                                    predictionQueue.async {
+                                        let modelSize = CGSize(width: ic.pixelsWide, height: ic.pixelsHigh)
+                                        let cicontext = CIContext()
+                                        let image = CIImage(cgImage: cgimg)
+                                        if let resizedPixelBuffer = image.pixelBuffer(at: modelSize,
+                                                                                      context: cicontext) {
+                                            input.updateValue(MLFeatureValue(pixelBuffer: resizedPixelBuffer),
+                                                              forKey: propName)
+                                        }
+                                        mc.prediction(id: id, input: input, maxResults: maxResults)
+                                    }
+                                }
+                            } catch {}
+                        case .double:
+                            if let val = Double(freProp) {
+                                input.updateValue(MLFeatureValue(double: val), forKey: propName)
+                                mc.prediction(id: id, input: input, maxResults: maxResults)
+                            }
+                        case .int64:
+                            if let val = Int(freProp) {
+                                input.updateValue(MLFeatureValue(int64: Int64(val)), forKey: propName)
+                                mc.prediction(id: id, input: input, maxResults: maxResults)
+                            }
+                        case .string:
+                            if let val = String(freProp) {
+                                input.updateValue(MLFeatureValue(string: val), forKey: propName)
+                                mc.prediction(id: id, input: input, maxResults: maxResults)
+                            }
+                        default: break
                         }
                     }
                 }
