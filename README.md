@@ -1,6 +1,6 @@
 ![Adobe AIR + CoreML](mlane.png)
 
-CoreML Adobe Air Native Extension for OSX 10.13+ and iOS 11.0+
+CoreML Adobe Air Native Extension for OSX 10.13+, iOS 11.0+ and tvOS 11.0+
 This ANE provides access to Apple's CoreML framework for building Machine Learning apps    
 
 [ASDocs Documentation](https://tuarua.github.io/asdocs/mlane/)  
@@ -36,6 +36,21 @@ bash get_ios_dependencies.sh
 `````
 
 This folder, ios_dependencies/device/Frameworks, must be packaged as part of your app when creating the ipa. How this is done will depend on the IDE you are using.
+After the ipa is created unzip it and confirm there is a "Frameworks" folder in the root of the .app package.
+
+## tvOS
+
+### The ANE + Dependencies
+
+N.B. You must use a Mac to build an tvOS app using this ANE. Windows is NOT supported.
+
+From the command line cd into /example-tvos and run:
+
+````shell
+bash get_tvos_dependencies.sh
+`````
+
+This folder, tvos_dependencies/device/Frameworks, must be packaged as part of your app when creating the ipa. How this is done will depend on the IDE you are using.
 After the ipa is created unzip it and confirm there is a "Frameworks" folder in the root of the .app package.
 
 ### Getting Started
@@ -90,11 +105,11 @@ You will need:
 - a Mac. Windows is not supported
 - IntelliJ IDEA
 - AIR 28
-- Xcode 9.1 if you wish to edit the iOS source
+- Xcode 9.1 if you wish to edit the ANE source
 - wget on OSX
 
 ### Task List
-- [x] Sample input Models (MobileNet, SqueezeNet and Apple Mars)
+- [x] Sample input Models (MobileNet, SqueezeNet, Apple Mars, Hot Dog Not Hot Dog)
 * Inputs
     - [x] Image
     - [x] Int64
