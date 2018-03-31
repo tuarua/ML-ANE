@@ -21,6 +21,9 @@
           <sdk name="AIRSDK_29" />
         </dependencies>
         <compiler-options>
+          <map>
+            <entry key="compiler.debug.swf" value="true" />
+          </map>
           <option name="additionalOptions" value="-advanced-telemetry=true" />
         </compiler-options>
         <packaging-air-desktop use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/Main-app.xml" package-file-name="Main" />

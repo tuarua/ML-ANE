@@ -213,12 +213,6 @@ public class StarlingRoot extends Sprite {
         marsStatusLabel.text = "model loaded";
         loadMarsBtn.visible = false;
         predictMarsBtn.visible = true;
-//        var modelDescription:ModelDescription = model.description;
-//        if (modelDescription) {
-//            trace(modelDescription.metadata.description);
-//            trace("predictedFeatureName:", modelDescription.predictedFeatureName);
-//            trace("predictedProbabilitiesName:", modelDescription.predictedProbabilitiesName);
-//        }
     }
 
     private function onMobileNetResult(event:ModelEvent):void {

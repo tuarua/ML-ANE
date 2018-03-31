@@ -1,3 +1,7 @@
+### 0.0.6
+- Updated to FreSwift 2.4.0
+- Updated to AIR 29
+
 ### 0.0.5
 - Updated to FreSwift 2.3.0
 - Added tvOS version

@@ -104,8 +104,9 @@ var mobileNet:MobileNet = new MobileNet(testImage.bitmapData);
 You will need:
 - a Mac. Windows is not supported
 - IntelliJ IDEA
-- AIR 28
-- Xcode 9.1 if you wish to edit the ANE source
+- AIR 29
+- Xcode 9.3
+- Xcode 9.1 for iOS Simulator
 - wget on OSX
 
 ### Task List
