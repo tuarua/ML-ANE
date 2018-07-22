@@ -28,6 +28,7 @@ public class Main extends Sprite {
         mStarling.enableErrorChecking = false;
         mStarling.antiAliasing = 16;
         mStarling.skipUnchangedFrames = true;
+        mStarling.supportHighResolutions = true;
 
         mStarling.addEventListener(Event.ROOT_CREATED,
                 function onRootCreated(event:Object, app:StarlingRoot):void {

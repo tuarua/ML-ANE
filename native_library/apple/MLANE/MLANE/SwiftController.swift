@@ -63,7 +63,7 @@ public class SwiftController: NSObject {
             let id = String(argv[0]),
             let path = String(argv[1])
             else {
-                return ArgCountError(message: "compileModel").getError(#file, #line, #column)
+                return FreArgError(message: "compileModel").getError(#file, #line, #column)
         }
         
         mc.compileModel(id: id, path: path)
@@ -77,7 +77,7 @@ public class SwiftController: NSObject {
             let id = String(argv[0]),
             let path = String(argv[1])
           else {
-            return ArgCountError(message: "loadModel").getError(#file, #line, #column)
+            return FreArgError(message: "loadModel").getError(#file, #line, #column)
         }
         mc.loadModel(id: id, path: path)
         return nil
@@ -88,7 +88,7 @@ public class SwiftController: NSObject {
             let mc = mlController,
             let id = String(argv[0])
             else {
-                return ArgCountError(message: "disposeModel").getError(#file, #line, #column)
+                return FreArgError(message: "disposeModel").getError(#file, #line, #column)
         }
         mc.disposeModel(id: id)
         return nil
@@ -99,7 +99,7 @@ public class SwiftController: NSObject {
             let mc = mlController,
             let id = String(argv[0])
             else {
-                return ArgCountError(message: "getDescription").getError(#file, #line, #column)
+                return FreArgError(message: "getDescription").getError(#file, #line, #column)
         }
         return mc.getModelDescription(id: id)?.toFREObject()
     }
@@ -112,7 +112,7 @@ public class SwiftController: NSObject {
             let id = String(argv[0]),
             let maxResults = Int(argv[2])
             else {
-                return ArgCountError(message: "prediction").getError(#file, #line, #column)
+                return FreArgError(message: "prediction").getError(#file, #line, #column)
         }
         var input: Dictionary = [String: MLFeatureValue]()
         do {
@@ -191,7 +191,7 @@ public class SwiftController: NSObject {
             let id = String(argv[0]),
             let rvc = UIApplication.shared.keyWindow?.rootViewController
             else {
-                return ArgCountError(message: "inputFromCamera").getError(#file, #line, #column)
+                return FreArgError(message: "inputFromCamera").getError(#file, #line, #column)
         }
         mc.inputFromCamera(rootViewController: rvc, id: id)
 #else
@@ -205,7 +205,7 @@ public class SwiftController: NSObject {
         guard let mc = mlController,
             let rvc = UIApplication.shared.keyWindow?.rootViewController
             else {
-                return ArgCountError(message: "closeCamera").getError(#file, #line, #column)
+                return FreArgError(message: "closeCamera").getError(#file, #line, #column)
         }
         mc.closeCamera(rootViewController: rvc)
 #else
@@ -222,7 +222,7 @@ public class SwiftController: NSObject {
             let rootVC = UIApplication.shared.keyWindow?.rootViewController,
             let child = argv[0]
             else {
-                return ArgCountError(message: "addNativeChild").getError(#file, #line, #column)
+                return FreArgError(message: "addNativeChild").getError(#file, #line, #column)
         }
     
         do {
@@ -274,7 +274,7 @@ public class SwiftController: NSObject {
             let propName = argv[1],
             let propVal = argv[2]
             else {
-                return ArgCountError(message: "updateNativeChild").getError(#file, #line, #column)
+                return FreArgError(message: "updateNativeChild").getError(#file, #line, #column)
         }
         if let child = userChildren[id] as? FreNativeImage {
             child.update(prop: propName, value: propVal)
@@ -292,7 +292,7 @@ public class SwiftController: NSObject {
         guard argc > 0,
             let id = String(argv[0])
             else {
-                return ArgCountError(message: "removeNativeChild").getError(#file, #line, #column)
+                return FreArgError(message: "removeNativeChild").getError(#file, #line, #column)
         }
         if let child = userChildren[id] {
             if let c = child as? FreNativeImage {
