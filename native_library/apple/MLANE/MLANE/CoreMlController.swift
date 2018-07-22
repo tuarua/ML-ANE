@@ -43,7 +43,7 @@ class CoreMlController: NSObject, FreSwiftController {
         props["id"] = id
         guard let modelUrl = URL(safe: path) else {
             props["error"] = "invalid path"
-            self.sendEvent(name: ModelEvent.ERROR, value: JSON(props).description)
+            self.dispatchEvent(name: ModelEvent.ERROR, value: JSON(props).description)
             return
         }
         userInitiatedQueue.async {
@@ -61,14 +61,14 @@ class CoreMlController: NSObject, FreSwiftController {
                         try fileManager.copyItem(at: tmpUrl, to: compiledUrl)
                     }
                     props["path"] = compiledUrl.absoluteString
-                    self.sendEvent(name: ModelEvent.COMPILED, value: JSON(props).description)
+                    self.dispatchEvent(name: ModelEvent.COMPILED, value: JSON(props).description)
                 } catch {
                     props["error"] = error.localizedDescription
-                    self.sendEvent(name: ModelEvent.ERROR, value: JSON(props).description)
+                    self.dispatchEvent(name: ModelEvent.ERROR, value: JSON(props).description)
                 }
             } catch let error {
                 props["error"] = error.localizedDescription
-                self.sendEvent(name: ModelEvent.ERROR, value: JSON(props).description)
+                self.dispatchEvent(name: ModelEvent.ERROR, value: JSON(props).description)
             }
         }
     }
@@ -80,15 +80,15 @@ class CoreMlController: NSObject, FreSwiftController {
             do {
                 guard let url = URL(safe: path) else {
                     props["error"] = "invalid path"
-                    self.sendEvent(name: ModelEvent.ERROR, value: JSON(props).description)
+                    self.dispatchEvent(name: ModelEvent.ERROR, value: JSON(props).description)
                     return
                 }
                 self.models[id] = try MLModel(contentsOf: url)
                 props["path"] = path
-                self.sendEvent(name: ModelEvent.LOADED, value: JSON(props).description)
+                self.dispatchEvent(name: ModelEvent.LOADED, value: JSON(props).description)
             } catch let error {
                 props["error"] = error.localizedDescription
-                self.sendEvent(name: ModelEvent.ERROR, value: JSON(props).description)
+                self.dispatchEvent(name: ModelEvent.ERROR, value: JSON(props).description)
             }
         }
     }
@@ -135,10 +135,10 @@ class CoreMlController: NSObject, FreSwiftController {
                     props[featureName] = feature
                 }
             }
-            self.sendEvent(name: ModelEvent.RESULT, value: JSON(props).description)
+            self.dispatchEvent(name: ModelEvent.RESULT, value: JSON(props).description)
         } catch let error {
             props["error"] = error.localizedDescription
-            self.sendEvent(name: ModelEvent.ERROR, value: JSON(props).description)
+            self.dispatchEvent(name: ModelEvent.ERROR, value: JSON(props).description)
         }
     }
     

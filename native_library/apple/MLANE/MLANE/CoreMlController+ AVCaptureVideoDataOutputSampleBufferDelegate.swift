@@ -45,7 +45,7 @@ extension CoreMlController: AVCaptureVideoDataOutputSampleBufferDelegate {
                 visionModelResult["id"] = self.visionModelId
                 visionModelResult["lbl"] = String(label)
                 visionModelResult["cnf"] = bestResult.confidence
-                self.sendEvent(name: VisionEvent.RESULT, value: JSON(visionModelResult).description)
+                self.dispatchEvent(name: VisionEvent.RESULT, value: JSON(visionModelResult).description)
             }
         }
     }
@@ -59,7 +59,7 @@ extension CoreMlController: AVCaptureVideoDataOutputSampleBufferDelegate {
             visionModelId = id
         } catch {
             props["error"] = "cannot create vision model"
-            self.sendEvent(name: VisionEvent.ERROR, value: JSON(props).description)
+            self.dispatchEvent(name: VisionEvent.ERROR, value: JSON(props).description)
             return
         }
         
@@ -71,7 +71,7 @@ extension CoreMlController: AVCaptureVideoDataOutputSampleBufferDelegate {
                 captureSession = AVCaptureSession()
                 guard let captureSession = captureSession else {
                     props["error"] = "cannot create camera input"
-                    self.sendEvent(name: VisionEvent.ERROR, value: JSON(props).description)
+                    self.dispatchEvent(name: VisionEvent.ERROR, value: JSON(props).description)
                     return
                 }
                 captureSession.addInput(input)
@@ -79,7 +79,7 @@ extension CoreMlController: AVCaptureVideoDataOutputSampleBufferDelegate {
                 guard let videoPreviewLayer = videoPreviewLayer,
                 let cameraView = cameraView else {
                     props["error"] = "cannot add camera input"
-                    self.sendEvent(name: VisionEvent.ERROR, value: JSON(props).description)
+                    self.dispatchEvent(name: VisionEvent.ERROR, value: JSON(props).description)
                     return
                 }
                 videoPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
@@ -92,7 +92,7 @@ extension CoreMlController: AVCaptureVideoDataOutputSampleBufferDelegate {
                 videoDataOutput.setSampleBufferDelegate(self, queue: queue)
                 guard captureSession.canAddOutput(videoDataOutput) else {
                     props["error"] = "cannot add camera output"
-                    self.sendEvent(name: VisionEvent.ERROR, value: JSON(props).description)
+                    self.dispatchEvent(name: VisionEvent.ERROR, value: JSON(props).description)
                     return
                 }
                 captureSession.addOutput(videoDataOutput)
@@ -100,7 +100,7 @@ extension CoreMlController: AVCaptureVideoDataOutputSampleBufferDelegate {
 
             } catch {
                 props["error"] = "no capture device"
-                self.sendEvent(name: VisionEvent.ERROR, value: JSON(props).description)
+                self.dispatchEvent(name: VisionEvent.ERROR, value: JSON(props).description)
             }
             
         }
