@@ -58,7 +58,7 @@ public class Model extends EventDispatcher {
     }
     /** @private */
     private function safetyCheck():Boolean {
-        return (MLANEContext.context);
+        return (MLANEContext.context != null);
     }
 
     /**
@@ -99,10 +99,10 @@ public class Model extends EventDispatcher {
         var request:URLRequest = new URLRequest(url);
         var downloader:URLLoader = new URLLoader();
         downloader.dataFormat = URLLoaderDataFormat.BINARY;
-        if (onProgress) {
+        if (onProgress != null) {
             downloader.addEventListener(ProgressEvent.PROGRESS, onProgress);
         }
-        if (onComplete) {
+        if (onComplete != null) {
             downloader.addEventListener(Event.COMPLETE, onComplete);
         }
         downloader.addEventListener(Event.COMPLETE, function (event:Event):void {
@@ -130,9 +130,7 @@ public class Model extends EventDispatcher {
         var model:Model = new Model();
         MLANEContext.models[model.id] = model;
         var theRet:* = MLANEContext.context.call("compileModel", model.id, path);
-        if (theRet is ANEError) {
-            throw theRet as ANEError;
-        }
+        if (theRet is ANEError) throw theRet as ANEError;
         return model;
     }
 
@@ -148,17 +146,13 @@ public class Model extends EventDispatcher {
     public function prediction(provider:Object, onResult:Function, maxResults:int = 5):void {
         _onResult = onResult;
         var theRet:* = MLANEContext.context.call("prediction", _id, provider, maxResults);
-        if (theRet is ANEError) {
-            throw theRet as ANEError;
-        }
+        if (theRet is ANEError) throw theRet as ANEError;
     }
 
     /** Disposes the model */
     public function dispose():void {
         var theRet:* = MLANEContext.context.call("disposeModel", _id);
-        if (theRet is ANEError) {
-            throw theRet as ANEError;
-        }
+        if (theRet is ANEError) throw theRet as ANEError;
         delete MLANEContext.models[_id];
     }
 
