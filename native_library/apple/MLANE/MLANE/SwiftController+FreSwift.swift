@@ -29,9 +29,6 @@ extension SwiftController: FreSwiftMainController {
         functionsToSet["\(prefix)getDescription"] = getDescription
         functionsToSet["\(prefix)inputFromCamera"] = inputFromCamera
         functionsToSet["\(prefix)closeCamera"] = closeCamera
-        functionsToSet["\(prefix)addNativeChild"] = addNativeChild
-        functionsToSet["\(prefix)updateNativeChild"] = updateNativeChild
-        functionsToSet["\(prefix)removeNativeChild"] = removeNativeChild
         functionsToSet["\(prefix)requestPermissions"] = requestPermissions
         
         var arr: [String] = []

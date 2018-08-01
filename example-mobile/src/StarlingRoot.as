@@ -7,19 +7,24 @@ import com.tuarua.mlane.events.ModelEvent;
 import com.tuarua.mlane.events.VisionEvent;
 import com.tuarua.mlane.models.MobileNet;
 import com.tuarua.mlane.models.MobileNetOutput;
-import com.tuarua.mlane.display.*;
 import com.tuarua.mlane.permissions.PermissionEvent;
 import com.tuarua.mlane.permissions.PermissionStatus;
 
 import flash.desktop.NativeApplication;
 import flash.display.Bitmap;
+import flash.display.BitmapData;
 import flash.events.Event;
-import flash.events.MouseEvent;
 import flash.events.ProgressEvent;
 import flash.filesystem.File;
+import flash.geom.Point;
+import flash.utils.Dictionary;
 
 import mymodels.MarsHabitatPricer;
 import mymodels.MarsHabitatPricerOutput;
+
+import starling.core.Starling;
+
+import starling.display.Image;
 
 import starling.display.Sprite;
 import starling.events.Touch;
@@ -34,30 +39,21 @@ public class StarlingRoot extends Sprite {
     [Embed(source="dog.jpg")]
     public static const TestImage:Class;
 
-    [Embed(source="close.png")]
-    private static const CloseButton:Class;
+    private var menuContainer:Sprite = new Sprite();
+    private var maskContainer:Sprite = new Sprite();
+    private var screenMasks:Dictionary = new Dictionary();
 
-    [Embed(source="hotdog.png")]
-    private static const HotDogImage:Class;
+    private var hotdog:Image = new Image(Assets.getAtlas().getTexture("hotdog"));
+    private var nothotdog:Image = new Image(Assets.getAtlas().getTexture("nothotdog"));
 
-    [Embed(source="nothotdog.png")]
-    private static const NotHotDogImage:Class;
+    private var loadMobileNetBtn:SimpleButton = new SimpleButton("Get MobileNet Model");
+    private var predictMobileNetBtn:SimpleButton = new SimpleButton("Predict");
+    private var predictMarsBtn:SimpleButton = new SimpleButton("Predict");
+    private var loadMarsBtn:SimpleButton = new SimpleButton("Get Mars Model");
+    private var closeBtn:SimpleButton = new SimpleButton("Close");
 
-    private var closeButtonBmp:Bitmap = new CloseButton() as Bitmap;
-    private var closeButton:NativeButton = new NativeButton(closeButtonBmp.bitmapData);
-
-    private var hotDogBmp:Bitmap = new HotDogImage() as Bitmap;
-    private var notHotDogBmp:Bitmap = new NotHotDogImage() as Bitmap;
-    private var hotDogImage:NativeImage = new NativeImage(hotDogBmp.bitmapData);
-    private var notHotDogImage:NativeImage = new NativeImage(notHotDogBmp.bitmapData);
-
-    private var loadMobileNetBtn:SimpleButton;
-    private var predictMobileNetBtn:SimpleButton;
-    private var predictMarsBtn:SimpleButton;
-    private var loadMarsBtn:SimpleButton;
-
-    private var loadHotDogBtn:SimpleButton;
-    private var predictHotDogBtn:SimpleButton;
+    private var loadHotDogBtn:SimpleButton = new SimpleButton("Get HotDog Not HotDog Model");
+    private var predictHotDogBtn:SimpleButton = new SimpleButton("Launch Camera");
 
     private var mobileNetStatusLabel:TextField;
     private var marsStatusLabel:TextField;
@@ -83,7 +79,6 @@ public class StarlingRoot extends Sprite {
         super();
         TextField.registerCompositor(Fonts.getFont("fira-sans-semi-bold-13"), "Fira Sans Semi-Bold 13");
         NativeApplication.nativeApplication.addEventListener(Event.EXITING, onExiting);
-        closeButton.addEventListener(MouseEvent.CLICK, onCloseClick);
     }
 
     public function start():void {
@@ -99,14 +94,12 @@ public class StarlingRoot extends Sprite {
     }
 
     private function initMenu():void {
-        loadMobileNetBtn = new SimpleButton("Get MobileNet Model");
-        loadMobileNetBtn.addEventListener(TouchEvent.TOUCH, onLoadMobileNetTouch);
-        loadMobileNetBtn.x = (stage.stageWidth - loadMobileNetBtn.width) / 2;
+        loadMobileNetBtn.addEventListener(TouchEvent.TOUCH, onLoadMobileNetClick);
+        closeBtn.x = predictHotDogBtn.x = loadHotDogBtn.x = predictMarsBtn.x = loadMarsBtn.x =
+                predictMobileNetBtn.x = loadMobileNetBtn.x = (stage.stageWidth - 200) / 2;
         loadMobileNetBtn.y = 80;
 
-        predictMobileNetBtn = new SimpleButton("Predict");
-        predictMobileNetBtn.addEventListener(TouchEvent.TOUCH, onPredictMobileNetTouch);
-        predictMobileNetBtn.x = (stage.stageWidth - predictMobileNetBtn.width) / 2;
+        predictMobileNetBtn.addEventListener(TouchEvent.TOUCH, onPredictMobileNetClick);
         predictMobileNetBtn.y = loadMobileNetBtn.y;
         predictMobileNetBtn.visible = false;
 
@@ -114,53 +107,75 @@ public class StarlingRoot extends Sprite {
         marsStatusLabel = new TextField(stage.stageWidth, 100, "");
         hotDogStatusLabel = new TextField(stage.stageWidth, 100, "");
 
-        loadMarsBtn = new SimpleButton("Get Mars Model");
-        loadMarsBtn.addEventListener(TouchEvent.TOUCH, onLoadMarsTouch);
-        loadMarsBtn.x = (stage.stageWidth - loadMarsBtn.width) / 2;
+        loadMarsBtn.addEventListener(TouchEvent.TOUCH, onLoadMarsClick);
         loadMarsBtn.y = loadMobileNetBtn.y + 180;
 
-        predictMarsBtn = new SimpleButton("Predict");
-        predictMarsBtn.addEventListener(TouchEvent.TOUCH, onPredictMarsTouch);
-        predictMarsBtn.x = (stage.stageWidth - predictMarsBtn.width) / 2;
+        predictMarsBtn.addEventListener(TouchEvent.TOUCH, onPredictMarsClick);
         predictMarsBtn.y = loadMarsBtn.y;
         predictMarsBtn.visible = false;
 
-        loadHotDogBtn = new SimpleButton("Get HotDog Not HotDog Model");
-        loadHotDogBtn.addEventListener(TouchEvent.TOUCH, onLoadHotDogTouch);
-        loadHotDogBtn.x = (stage.stageWidth - loadHotDogBtn.width) / 2;
+        loadHotDogBtn.addEventListener(TouchEvent.TOUCH, onLoadHotDogClick);
         loadHotDogBtn.y = loadMarsBtn.y + 180;
 
-        predictHotDogBtn = new SimpleButton("Launch Camera");
-        predictHotDogBtn.addEventListener(TouchEvent.TOUCH, onPredictHotDogTouch);
-        predictHotDogBtn.x = (stage.stageWidth - predictHotDogBtn.width) / 2;
+        predictHotDogBtn.addEventListener(TouchEvent.TOUCH, onPredictHotDogClick);
         predictHotDogBtn.y = loadHotDogBtn.y;
         predictHotDogBtn.visible = false;
-
-        addChild(loadMobileNetBtn);
-        addChild(predictMobileNetBtn);
-        addChild(loadMarsBtn);
-        addChild(predictMarsBtn);
-        addChild(loadHotDogBtn);
-        addChild(predictHotDogBtn);
 
         mobileNetStatusLabel.format.setTo(Fonts.NAME, 13, 0x222222, Align.CENTER, Align.TOP);
         mobileNetStatusLabel.touchable = false;
         mobileNetStatusLabel.y = loadMobileNetBtn.y + 75;
-        addChild(mobileNetStatusLabel);
 
         marsStatusLabel.format.setTo(Fonts.NAME, 13, 0x222222, Align.CENTER, Align.TOP);
         marsStatusLabel.touchable = false;
         marsStatusLabel.y = loadMarsBtn.y + 75;
-        addChild(marsStatusLabel);
 
-        addChild(hotDogStatusLabel);
         hotDogStatusLabel.format.setTo(Fonts.NAME, 13, 0x222222, Align.CENTER, Align.TOP);
         hotDogStatusLabel.touchable = false;
         hotDogStatusLabel.y = loadHotDogBtn.y + 75;
-        addChild(hotDogStatusLabel);
+
+        closeBtn.addEventListener(TouchEvent.TOUCH, onCloseClick);
+        closeBtn.y = 80;
+
+        menuContainer.addChild(loadMobileNetBtn);
+        menuContainer.addChild(predictMobileNetBtn);
+        menuContainer.addChild(loadMarsBtn);
+        menuContainer.addChild(predictMarsBtn);
+        menuContainer.addChild(loadHotDogBtn);
+        menuContainer.addChild(predictHotDogBtn);
+        menuContainer.addChild(mobileNetStatusLabel);
+        menuContainer.addChild(marsStatusLabel);
+        menuContainer.addChild(hotDogStatusLabel);
+        menuContainer.addChild(hotDogStatusLabel);
+        addChild(menuContainer);
+
+        nothotdog.x = hotdog.x = (stage.stageWidth - 120) / 2;
+        hotdog.y = nothotdog.y = 160;
+        hotdog.visible = false;
+
+        maskContainer.addChild(closeBtn);
+        maskContainer.addChild(hotdog);
+        maskContainer.addChild(nothotdog);
+        maskContainer.visible = false;
+        addChild(maskContainer);
+
     }
 
-    private function onPredictMobileNetTouch(event:TouchEvent):void {
+    private function getScreenMask(forScreen:String):BitmapData {
+        if (screenMasks[forScreen]) return screenMasks[forScreen];
+        var maskBmd:BitmapData = new BitmapData(Starling.current.nativeStage.fullScreenWidth,
+                Starling.current.nativeStage.fullScreenHeight, true, 0x00FFFFFF); //the full size mask
+        var sf:Number = Starling.current.contentScaleFactor;
+        var spriteBmd:BitmapData = new BitmapData(maskContainer.width * sf,
+                maskContainer.height * sf, true, 0xFFFFFFFF);
+        maskContainer.drawToBitmapData(spriteBmd);
+        maskBmd.copyPixels(spriteBmd, spriteBmd.rect,
+                new Point(maskContainer.bounds.x * sf, maskContainer.bounds.y * sf));
+        var bmd:BitmapData = new Bitmap(maskBmd).bitmapData;
+        screenMasks[forScreen] = bmd;
+        return bmd;
+    }
+
+    private function onPredictMobileNetClick(event:TouchEvent):void {
         event.stopPropagation();
         var touch:Touch = event.getTouch(predictMobileNetBtn, TouchPhase.ENDED);
         if (touch && touch.phase == TouchPhase.ENDED) {
@@ -172,29 +187,18 @@ public class StarlingRoot extends Sprite {
         }
     }
 
-    private function addCloseButton():void {
-        coreml.addChild(closeButton);
+
+    private function onCloseClick(event:TouchEvent):void {
+        event.stopPropagation();
+        var touch:Touch = event.getTouch(closeBtn, TouchPhase.ENDED);
+        if (touch && touch.phase == TouchPhase.ENDED) {
+            coreml.closeCamera();
+            maskContainer.visible = false;
+            menuContainer.visible = true;
+        }
     }
 
-    private function addHotDogImages():void {
-        notHotDogImage.x = hotDogImage.x = stage.stageWidth - 80;
-        notHotDogImage.y = hotDogImage.y = 20;
-        hotDogImage.visible = false;
-        notHotDogImage.visible = false;
-        coreml.addChild(hotDogImage);
-        coreml.addChild(notHotDogImage);
-    }
-
-    private function onCloseClick(event:MouseEvent):void {
-        trace(event);
-        coreml.closeCamera();
-        coreml.removeChild(closeButton);
-        coreml.removeChild(hotDogImage);
-        coreml.removeChild(notHotDogImage);
-        this.visible = true;
-    }
-
-    private function onPredictMarsTouch(event:TouchEvent):void {
+    private function onPredictMarsClick(event:TouchEvent):void {
         event.stopPropagation();
         var touch:Touch = event.getTouch(predictMarsBtn, TouchPhase.ENDED);
         if (touch && touch.phase == TouchPhase.ENDED) {
@@ -205,7 +209,7 @@ public class StarlingRoot extends Sprite {
         }
     }
 
-    private function onLoadMobileNetTouch(event:TouchEvent):void {
+    private function onLoadMobileNetClick(event:TouchEvent):void {
         event.stopPropagation();
         var touch:Touch = event.getTouch(loadMobileNetBtn, TouchPhase.ENDED);
         if (touch && touch.phase == TouchPhase.ENDED) {
@@ -223,7 +227,7 @@ public class StarlingRoot extends Sprite {
         }
     }
 
-    private function onLoadMarsTouch(event:TouchEvent):void {
+    private function onLoadMarsClick(event:TouchEvent):void {
         event.stopPropagation();
         var touch:Touch = event.getTouch(loadMarsBtn, TouchPhase.ENDED);
         if (touch && touch.phase == TouchPhase.ENDED) {
@@ -247,7 +251,7 @@ public class StarlingRoot extends Sprite {
         }
     }
 
-    private function onLoadHotDogTouch(event:TouchEvent):void {
+    private function onLoadHotDogClick(event:TouchEvent):void {
         event.stopPropagation();
         var touch:Touch = event.getTouch(loadHotDogBtn, TouchPhase.ENDED);
         if (touch && touch.phase == TouchPhase.ENDED) {
@@ -265,26 +269,24 @@ public class StarlingRoot extends Sprite {
         }
     }
 
-    private function onPredictHotDogTouch(event:TouchEvent):void {
+    private function onPredictHotDogClick(event:TouchEvent):void {
         event.stopPropagation();
         var touch:Touch = event.getTouch(predictHotDogBtn, TouchPhase.ENDED);
         if (touch && touch.phase == TouchPhase.ENDED) {
-            predictHotDogBtn.touchable = false;
-            predictHotDogBtn.alpha = 0.5;
             // Hint: point camera at picture of hotdog
-            coreml.inputFromCamera(model, onHotDogResult);
-            addCloseButton();
-            addHotDogImages();
-            this.visible = false;
+            //TODO mask
+            menuContainer.visible = false;
+            maskContainer.visible = true;
+            coreml.inputFromCamera(model, onHotDogResult, null, getScreenMask("hotdog"));
         }
     }
 
     private function onHotDogResult(event:VisionEvent):void {
         // trace(event.result.label, event.result.confidence);
-        if(hotDogStatus != event.result.label) {
+        if (hotDogStatus != event.result.label) {
             hotDogStatus = event.result.label;
-            hotDogImage.visible = (hotDogStatus == "hotdog");
-            notHotDogImage.visible = !hotDogImage.visible;
+            hotdog.visible = (hotDogStatus == "hotdog");
+            nothotdog.visible = !hotdog.visible;
         }
     }
 

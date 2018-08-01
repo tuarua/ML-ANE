@@ -18,8 +18,90 @@ import FreSwift
 import CoreML
 import Vision
 import AVFoundation
+import Accelerate
 
 extension CoreMlController: AVCaptureVideoDataOutputSampleBufferDelegate {
+    
+    private func captureDevice(forPosition position: AVCaptureDevice.Position) -> AVCaptureDevice? {
+        return AVCaptureDevice.default(for: .video) ?? nil
+    }
+    
+    private func setUpCaptureSessionInput() {
+        var props: [String: Any] = Dictionary()
+        sessionQueue.async {
+            guard let device = self.captureDevice(forPosition: .back) else { return }
+            do {
+                let currentInputs = self.captureSession.inputs
+                for input in currentInputs {
+                    self.captureSession.removeInput(input)
+                }
+                
+                let input = try AVCaptureDeviceInput(device: device)
+                guard self.captureSession.canAddInput(input) else { return }
+                self.captureSession.addInput(input)
+            } catch {
+                props["error"] = "no capture device"
+                self.dispatchEvent(name: VisionEvent.ERROR, value: JSON(props).description)
+            }
+        }
+    }
+    
+    private func setUpCaptureSessionOutput() {
+        var props: [String: Any] = Dictionary()
+        sessionQueue.async {
+            self.captureSession.beginConfiguration()
+            self.captureSession.sessionPreset = AVCaptureSession.Preset.high
+            
+            let output = AVCaptureVideoDataOutput()
+            output.videoSettings = [(kCVPixelBufferPixelFormatTypeKey as String): kCVPixelFormatType_32BGRA]
+            let queue = DispatchQueue(label: "com.tuarua.mlane.cameraQueue")
+            let videoDataOutput = AVCaptureVideoDataOutput()
+            videoDataOutput.setSampleBufferDelegate(self, queue: queue)
+            
+            guard self.captureSession.canAddOutput(videoDataOutput) else {
+                props["error"] = "cannot add camera output"
+                self.dispatchEvent(name: VisionEvent.ERROR, value: JSON(props).description)
+                return
+            }
+            self.captureSession.addOutput(videoDataOutput)
+            self.captureSession.commitConfiguration()
+            self.captureSession.startRunning()
+        }
+    }
+    
+    private func setUpPreviewLayer(rootViewController: UIViewController, mask: CGImage?) {
+        var props: [String: Any] = Dictionary()
+        videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        guard let videoPreviewLayer = videoPreviewLayer,
+            let cameraView = cameraView else {
+                props["error"] = "cannot add camera input"
+                self.dispatchEvent(name: VisionEvent.ERROR, value: JSON(props).description)
+                return
+        }
+        videoPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        videoPreviewLayer.frame = cameraView.layer.bounds
+        cameraView.layer.addSublayer(videoPreviewLayer)
+        
+        if let mask = mask {
+            let newLayer = CALayer()
+            newLayer.backgroundColor = UIColor.clear.cgColor
+            newLayer.frame = CGRect.init(x: 0,
+                                         y: 0,
+                                         width: rootViewController.view.frame.width,
+                                         height: rootViewController.view.frame.height)
+            newLayer.contents = mask
+            for sv in rootViewController.view.subviews {
+                if sv.debugDescription.starts(with: "<CTStageView") && sv.layer is CAEAGLLayer {
+                    sv.layer.mask = newLayer
+                }
+            }
+            // insert under AIR subView
+            rootViewController.view.insertSubview(cameraView, at: 0)
+        } else {
+            rootViewController.view.addSubview(cameraView)
+       }
+    }
+    
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer,
                        from connection: AVCaptureConnection) {
         guard let visionModel = visionModel,
@@ -50,7 +132,7 @@ extension CoreMlController: AVCaptureVideoDataOutputSampleBufferDelegate {
         }
     }
     
-    func inputFromCamera(rootViewController: UIViewController, id: String) {
+    func inputFromCamera(rootViewController: UIViewController, id: String, mask: CGImage?) {
         guard let model = models[id] else { return }
         var props: [String: Any] = Dictionary()
         props["id"] = id
@@ -62,55 +144,18 @@ extension CoreMlController: AVCaptureVideoDataOutputSampleBufferDelegate {
             self.dispatchEvent(name: VisionEvent.ERROR, value: JSON(props).description)
             return
         }
-        
         cameraView = UIView(frame: CGRect(x: 0, y: 0, width: rootViewController.view.frame.width,
                                         height: rootViewController.view.frame.height))
-        if let captureDevice = AVCaptureDevice.default(for: .video) {
-            do {
-                let input = try AVCaptureDeviceInput.init(device: captureDevice)
-                captureSession = AVCaptureSession()
-                guard let captureSession = captureSession else {
-                    props["error"] = "cannot create camera input"
-                    self.dispatchEvent(name: VisionEvent.ERROR, value: JSON(props).description)
-                    return
-                }
-                captureSession.addInput(input)
-                videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-                guard let videoPreviewLayer = videoPreviewLayer,
-                let cameraView = cameraView else {
-                    props["error"] = "cannot add camera input"
-                    self.dispatchEvent(name: VisionEvent.ERROR, value: JSON(props).description)
-                    return
-                }
-                videoPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-                videoPreviewLayer.frame = cameraView.layer.bounds
-                cameraView.layer.addSublayer(videoPreviewLayer)
-                rootViewController.view.addSubview(cameraView)
-                
-                let videoDataOutput = AVCaptureVideoDataOutput()
-                let queue = DispatchQueue(label: "com.tuarua.mlane.cameraQueue")
-                videoDataOutput.setSampleBufferDelegate(self, queue: queue)
-                guard captureSession.canAddOutput(videoDataOutput) else {
-                    props["error"] = "cannot add camera output"
-                    self.dispatchEvent(name: VisionEvent.ERROR, value: JSON(props).description)
-                    return
-                }
-                captureSession.addOutput(videoDataOutput)
-                captureSession.startRunning()
-
-            } catch {
-                props["error"] = "no capture device"
-                self.dispatchEvent(name: VisionEvent.ERROR, value: JSON(props).description)
-            }
-            
-        }
+        
+        setUpCaptureSessionInput()
+        setUpPreviewLayer(rootViewController: rootViewController, mask: mask)
+        setUpCaptureSessionOutput()
     }
     
     func closeCamera(rootViewController: UIViewController) {
-        guard let captureSession = captureSession else {
-            return
+        sessionQueue.async {
+            self.captureSession.stopRunning()
         }
-        captureSession.stopRunning()
         for input in captureSession.inputs {
             captureSession.removeInput(input)
         }
@@ -123,6 +168,12 @@ extension CoreMlController: AVCaptureVideoDataOutputSampleBufferDelegate {
         
         videoPreviewLayer = nil
         cameraView = nil
+        
+        for sv in rootViewController.view.subviews {
+            if sv.debugDescription.starts(with: "<CTStageView") && sv.layer is CAEAGLLayer {
+                sv.layer.mask = nil
+            }
+        }
     }
     
 }

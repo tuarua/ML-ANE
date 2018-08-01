@@ -26,9 +26,11 @@ class CoreMlController: NSObject, FreSwiftController {
     internal var models: [String: MLModel] = [:]
     internal let userInitiatedQueue = DispatchQueue(label: "com.tuarua.mlane.userInitiatedQueue", qos: .userInitiated)
 #if os(iOS)
-    internal var captureSession: AVCaptureSession?
+    internal lazy var captureSession = AVCaptureSession()
+    internal lazy var sessionQueue = DispatchQueue(label: "com.tuarua.mlane.SessionQueue")
     internal var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     internal var cameraView: UIView?
+    
     internal var visionModel: VNCoreMLModel?
     internal var visionModelId: String?
     internal var visionModelResult: [String: Any] = Dictionary()

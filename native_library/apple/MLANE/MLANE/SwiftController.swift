@@ -193,7 +193,20 @@ public class SwiftController: NSObject {
             else {
                 return FreArgError(message: "inputFromCamera").getError(#file, #line, #column)
         }
-        mc.inputFromCamera(rootViewController: rvc, id: id)
+        var mask: CGImage? = nil
+        if let freMask = argv[1] {
+            let asBitmapData = FreBitmapDataSwift.init(freObject: freMask)
+            defer {
+                asBitmapData.releaseData()
+            }
+            do {
+                if let cgimg = try asBitmapData.asCGImage() {
+                    mask = cgimg
+                }
+            } catch {
+            }
+        }
+        mc.inputFromCamera(rootViewController: rvc, id: id, mask: mask)
 #else
     warning("inputFromCamera is iOS only")
 #endif
@@ -210,99 +223,6 @@ public class SwiftController: NSObject {
         mc.closeCamera(rootViewController: rvc)
 #else
     warning("closeCamera is iOS only")
-#endif
-        return nil
-    }
-    
-    // MARK: - Native Button Overlays
-    
-    func addNativeChild(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-#if os(iOS)
-        guard argc > 0,
-            let rootVC = UIApplication.shared.keyWindow?.rootViewController,
-            let child = argv[0]
-            else {
-                return FreArgError(message: "addNativeChild").getError(#file, #line, #column)
-        }
-    
-        do {
-            guard let id = String(child["id"]),
-                let t = Int(child["type"]),
-                let type: FreNativeType = FreNativeType(rawValue: t)
-                else {
-                    return nil
-            }
-            
-            switch type {
-            case FreNativeType.image:
-                if userChildren.keys.contains(id) {
-                    if let nativeImage = userChildren[id] as? FreNativeImage {
-                        rootVC.view.addSubview(nativeImage)
-                    }
-                } else {
-                    let nativeImage = try FreNativeImage.init(freObject: child, id: id)
-                    userChildren[id] = nativeImage
-                    rootVC.view.addSubview(nativeImage)
-                }
-            case FreNativeType.button:
-                if userChildren.keys.contains(id) {
-                    if let nativeButton = userChildren[id] as? FreNativeButton {
-                        rootVC.view.addSubview(nativeButton)
-                    }
-                } else {
-                    let nativeButton = try FreNativeButton.init(ctx: context, freObject: child, id: id)
-                    userChildren[id] = nativeButton
-                    rootVC.view.addSubview(nativeButton)
-                }
-            default:
-                break
-            }
-            
-        } catch {
-        }
-#else
-        warning("addNativeChild is iOS only")
-#endif
-        return nil
-    }
-    
-    func updateNativeChild(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-#if os(iOS)
-        guard argc > 2,
-            userChildren.count > 0,
-            let id = String(argv[0]),
-            let propName = argv[1],
-            let propVal = argv[2]
-            else {
-                return FreArgError(message: "updateNativeChild").getError(#file, #line, #column)
-        }
-        if let child = userChildren[id] as? FreNativeImage {
-            child.update(prop: propName, value: propVal)
-        } else if let child = userChildren[id] as? FreNativeButton {
-             child.update(prop: propName, value: propVal)
-        }
-#else
-    warning("updateNativeChild is iOS only")
-#endif
-        return nil
-    }
-    
-    func removeNativeChild(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-#if os(iOS)
-        guard argc > 0,
-            let id = String(argv[0])
-            else {
-                return FreArgError(message: "removeNativeChild").getError(#file, #line, #column)
-        }
-        if let child = userChildren[id] {
-            if let c = child as? FreNativeImage {
-                c.removeFromSuperview()
-            } else if let c = child as? FreNativeButton {
-                c.removeFromSuperview()
-            }
-        }
-#else
-    warning("removeNativeChild is iOS only")
 #endif
         return nil
     }
