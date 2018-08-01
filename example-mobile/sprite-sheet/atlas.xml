@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
-<!-- $TexturePacker:SmartUpdate:71f271872d05dc67c2ed0461903f9616:8eaf24e44bf6438f85b24a03db8e3f67:cde709370900f12288f3449eded86f07$ -->
-<TextureAtlas imagePath="atlas.png" width="229" height="316">
+<!-- $TexturePacker:SmartUpdate:4dbc0841b64174cbb8cd5d98dae8e2c6:01b78bd6d5a381ac41ee26edd1ce6512:cde709370900f12288f3449eded86f07$ -->
+<TextureAtlas imagePath="atlas.png" width="246" height="440">
     <SubTexture name="fira-sans-semi-bold-13" x="1" y="1" width="227" height="314"/>
+    <SubTexture name="hotdog" x="1" y="319" width="120" height="120"/>
+    <SubTexture name="nothotdog" x="125" y="319" width="120" height="120"/>
 </TextureAtlas>

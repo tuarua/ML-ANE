@@ -16,7 +16,8 @@
 package com.tuarua {
 import com.tuarua.fre.ANEError;
 import com.tuarua.mlane.Model;
-import com.tuarua.mlane.display.NativeDisplayObject;
+
+import flash.display.BitmapData;
 import flash.events.EventDispatcher;
 
 public class MLANE extends EventDispatcher {
@@ -30,9 +31,7 @@ public class MLANE extends EventDispatcher {
         }
         if (MLANEContext.context) {
             var theRet:* = MLANEContext.context.call("init");
-            if (theRet is ANEError) {
-                throw theRet as ANEError;
-            }
+            if (theRet is ANEError) throw theRet as ANEError;
             _isSupported = theRet;
         }
         _coreml = this;
@@ -56,12 +55,15 @@ public class MLANE extends EventDispatcher {
     /** Launches the native camera and runs a Vision based prediction.
      * 
      * iOS only
-     *
+     * @param input
+     * @param onResult
+     * @param onError
+     * @param mask An Optional bitmapdata which masks the airView. This allows us to use our AIR stage as UI over
      */
-    public function inputFromCamera(input:Model, onResult:Function, onError:Function = null):void {
+    public function inputFromCamera(input:Model, onResult:Function, onError:Function = null, mask:BitmapData = null):void {
         input.onResult = onResult;
         input.onError = onError;
-        var theRet:* = MLANEContext.context.call("inputFromCamera", input.id);
+        var theRet:* = MLANEContext.context.call("inputFromCamera", input.id, mask);
         if (theRet is ANEError) {
             throw theRet as ANEError;
         }
@@ -74,45 +76,7 @@ public class MLANE extends EventDispatcher {
      */
     public function closeCamera():void {
         var theRet:* = MLANEContext.context.call("closeCamera");
-        if (theRet is ANEError) {
-            throw theRet as ANEError;
-        }
-    }
-
-    /** Adds the nativeDisplayObject to the native view.
-     *
-     * iOS only
-     *
-     * @param nativeDisplayObject
-     *
-     */
-    public function addChild(nativeDisplayObject:NativeDisplayObject):void {
-        if (nativeDisplayObject.isAdded) return;
-        if (MLANEContext.context) {
-            try {
-                MLANEContext.context.call("addNativeChild", nativeDisplayObject);
-                nativeDisplayObject.isAdded = true;
-            } catch (e:Error) {
-                trace(e.message);
-            }
-        }
-    }
-
-    /** Removes the nativeDisplayObject from the native view.
-     *
-     * iOS only
-     *
-     * @param nativeDisplayObject
-     */
-    public function removeChild(nativeDisplayObject:NativeDisplayObject):void {
-        if (MLANEContext.context) {
-            try {
-                MLANEContext.context.call("removeNativeChild", nativeDisplayObject.id);
-                nativeDisplayObject.isAdded = false;
-            } catch (e:Error) {
-                trace(e.message);
-            }
-        }
+        if (theRet is ANEError) throw theRet as ANEError;
     }
 
     /** Requests permissions for this ANE

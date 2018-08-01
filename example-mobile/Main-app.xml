@@ -3,7 +3,7 @@
     <id>com.tuarua.MLANE.Example2</id>
     <filename>Main</filename>
     <name>MLANEExample2</name>
-    <versionNumber>0.0.1</versionNumber>
+    <versionNumber>0.0.8</versionNumber>
     <extensions>
         <extensionID>com.tuarua.MLANE</extensionID>
     </extensions>

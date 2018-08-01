@@ -48,9 +48,6 @@ CONTEXT_INIT(TRCML) {
         ,MAP_FUNCTION(TRCML, getDescription)
         ,MAP_FUNCTION(TRCML, inputFromCamera)
         ,MAP_FUNCTION(TRCML, closeCamera)
-        ,MAP_FUNCTION(TRCML, addNativeChild)
-        ,MAP_FUNCTION(TRCML, updateNativeChild)
-        ,MAP_FUNCTION(TRCML, removeNativeChild)
         ,MAP_FUNCTION(TRCML, requestPermissions)
     };
     /**************************************************************************/

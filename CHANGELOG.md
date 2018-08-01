@@ -1,3 +1,6 @@
+### 0.0.8
+- iOS: Allow AIR stage to be masked. This enables using AIR UI over Native Camera
+
 ### 0.0.7
 - Updated to FreSwift 2.5.0
 - Updated to AIR 30

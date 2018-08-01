@@ -62,7 +62,7 @@ public class MLANEContext {
                     var modelA:Model = _models[argsAsJSON.id];
                     if (modelA) {
                         modelA.path = argsAsJSON.path;
-                        if (modelA.onCompiled) {
+                        if (modelA.onCompiled != null) {
                             modelA.onCompiled.call(null, new ModelEvent(event.level, argsAsJSON.id, argsAsJSON.path));
                         }
                     }
@@ -76,7 +76,7 @@ public class MLANEContext {
                     var modelB:Model = _models[argsAsJSON.id];
                     if (modelB) {
                         modelB.description = MLANEContext.context.call("getDescription", modelB.id) as ModelDescription;
-                        if (modelB.onLoaded) {
+                        if (modelB.onLoaded != null) {
                             modelB.onLoaded.call(null, new ModelEvent(event.level, argsAsJSON.id, argsAsJSON.path));
                         }
                     }
@@ -88,7 +88,7 @@ public class MLANEContext {
                 try {
                     argsAsJSON = JSON.parse(event.code);
                     var modelC:Model = _models[argsAsJSON.id];
-                    if (modelC && modelC.onResult) {
+                    if (modelC && modelC.onResult != null) {
                         modelC.onResult.call(null, new ModelEvent(event.level, argsAsJSON.id, null, null,
                                 argsAsJSON));
                     }
@@ -100,7 +100,7 @@ public class MLANEContext {
                 try {
                     argsAsJSON = JSON.parse(event.code);
                     var modelD:Model = _models[argsAsJSON.id];
-                    if (modelD && modelD.onError) {
+                    if (modelD && modelD.onError != null) {
                         modelD.onError.call(null, new ModelEvent(event.level, argsAsJSON.id, null, argsAsJSON.error));
                     }
                 } catch (e:Error) {
@@ -111,8 +111,8 @@ public class MLANEContext {
                 try {
                     argsAsJSON = JSON.parse(event.code);
                     var modelE:Model = _models[argsAsJSON.id];
-                    if (modelE && modelE.onResult) {
-                        if (classification) {
+                    if (modelE && modelE.onResult != null) {
+                        if (classification != null) {
                             classification.label = argsAsJSON.lbl;
                             classification.confidence = argsAsJSON.cnf;
                         } else {
@@ -128,7 +128,7 @@ public class MLANEContext {
                 try {
                     argsAsJSON = JSON.parse(event.code);
                     var modelF:Model = _models[argsAsJSON.id];
-                    if (modelF && modelF.onError) {
+                    if (modelF && modelF.onError != null) {
                         modelF.onError.call(null, new VisionEvent(event.level, argsAsJSON.id, argsAsJSON.error));
                     }
                 } catch (e:Error) {
