@@ -19,14 +19,12 @@ import FreSwift
 
 public extension MLImageConstraint {
     func toFREObject() -> FREObject? {
-        do {
-            let ret = try FREObject(className: "com.tuarua.mlane.ImageConstraint",
-                                                   args: self.pixelsWide,
-                                                   self.pixelsHigh
-            )
-            return ret
-        } catch {
+        guard let fre = FreObjectSwift(className: "com.tuarua.mlane.ImageConstraint") else {
+            return nil
         }
-        return nil
+        fre.pixelsWide = pixelsWide
+        fre.pixelsHigh = pixelsHigh
+        fre.pixelFormatType = Int(pixelFormatType)
+        return fre.rawValue
     }
 }

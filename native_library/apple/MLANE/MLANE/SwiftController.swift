@@ -52,6 +52,8 @@ public class SwiftController: NSObject {
         return true.toFREObject()
     }
 #endif
+        // Turn on FreSwift logging
+        FreSwiftLogger.shared().context = context
         return false.toFREObject()
     }
     
@@ -115,69 +117,60 @@ public class SwiftController: NSObject {
                 return FreArgError(message: "prediction").getError(#file, #line, #column)
         }
         var input: Dictionary = [String: MLFeatureValue]()
-        do {
-            guard let modelDescription = mc.getModelDescription(id: id),
-                let inFRE1 = argv[1],
-                let freInput = try? inFRE1.getProp(name: "input"),
-                let rv = freInput,
-                let properties = try rv.call(method: "getProperties") else {
-                    return FreError.init(stackTrace: "", message: "invalid prediction inputs",
-                                         type: .invalidArgument).getError(#file, #line, #column)
-            }
-            let array: FREArray = FREArray.init(properties)
-            let arrayLength = array.length
-            for i in 0..<arrayLength {
-                if let elem: FREObject = try array.at(index: i) {
-                    if let propName = String(elem),
-                        let type = modelDescription.inputDescriptionsByName[propName]?.type,
-                        let freProp = try rv.getProp(name: propName) {
-                        switch type {
-                        case .image:
-                            let asBitmapData = FreBitmapDataSwift(freObject: freProp)
-                            defer {
-                                asBitmapData.releaseData()
-                            }
-                            do {
-                                if let cgimg = try asBitmapData.asCGImage(),
-                                    let fd = modelDescription.inputDescriptionsByName[propName],
-                                    let ic = fd.imageConstraint {
-                                    predictionQueue.async {
-                                        let modelSize = CGSize(width: ic.pixelsWide, height: ic.pixelsHigh)
-                                        let cicontext = CIContext()
-                                        let image = CIImage(cgImage: cgimg)
-                                        if let resizedPixelBuffer = image.pixelBuffer(at: modelSize,
-                                                                                      context: cicontext) {
-                                            input.updateValue(MLFeatureValue(pixelBuffer: resizedPixelBuffer),
-                                                              forKey: propName)
-                                        }
-                                        mc.prediction(id: id, input: input, maxResults: maxResults)
-                                    }
-                                }
-                            } catch {}
-                        case .double:
-                            if let val = Double(freProp) {
-                                input.updateValue(MLFeatureValue(double: val), forKey: propName)
-                                mc.prediction(id: id, input: input, maxResults: maxResults)
-                            }
-                        case .int64:
-                            if let val = Int(freProp) {
-                                input.updateValue(MLFeatureValue(int64: Int64(val)), forKey: propName)
-                                mc.prediction(id: id, input: input, maxResults: maxResults)
-                            }
-                        case .string:
-                            if let val = String(freProp) {
-                                input.updateValue(MLFeatureValue(string: val), forKey: propName)
-                                mc.prediction(id: id, input: input, maxResults: maxResults)
-                            }
-                        default: break
+        guard let modelDescription = mc.getModelDescription(id: id),
+            let inFRE1 = argv[1],
+            let rv = inFRE1["input"],
+            let properties = rv.call(method: "getProperties") else {
+                return FreError.init(stackTrace: "", message: "invalid prediction inputs",
+                                     type: .invalidArgument).getError(#file, #line, #column)
+        }
+        let array: FREArray = FREArray.init(properties)
+        let arrayLength = array.length
+        for i in 0..<arrayLength {
+            if let elem: FREObject = array[i] {
+                if let propName = String(elem),
+                    let type = modelDescription.inputDescriptionsByName[propName]?.type,
+                    let freProp = rv[propName] {
+                    switch type {
+                    case .image:
+                        let asBitmapData = FreBitmapDataSwift(freObject: freProp)
+                        defer {
+                            asBitmapData.releaseData()
                         }
+                        if let cgimg = asBitmapData.asCGImage(),
+                            let fd = modelDescription.inputDescriptionsByName[propName],
+                            let ic = fd.imageConstraint {
+                            predictionQueue.async {
+                                let modelSize = CGSize(width: ic.pixelsWide, height: ic.pixelsHigh)
+                                let cicontext = CIContext()
+                                let image = CIImage(cgImage: cgimg)
+                                if let resizedPixelBuffer = image.pixelBuffer(at: modelSize,
+                                                                              context: cicontext) {
+                                    input.updateValue(MLFeatureValue(pixelBuffer: resizedPixelBuffer),
+                                                      forKey: propName)
+                                }
+                                mc.prediction(id: id, input: input, maxResults: maxResults)
+                            }
+                        }
+                    case .double:
+                        if let val = Double(freProp) {
+                            input.updateValue(MLFeatureValue(double: val), forKey: propName)
+                            mc.prediction(id: id, input: input, maxResults: maxResults)
+                        }
+                    case .int64:
+                        if let val = Int(freProp) {
+                            input.updateValue(MLFeatureValue(int64: Int64(val)), forKey: propName)
+                            mc.prediction(id: id, input: input, maxResults: maxResults)
+                        }
+                    case .string:
+                        if let val = String(freProp) {
+                            input.updateValue(MLFeatureValue(string: val), forKey: propName)
+                            mc.prediction(id: id, input: input, maxResults: maxResults)
+                        }
+                    default: break
                     }
                 }
             }
-        } catch let e as FreError {
-            return e.getError(#file, #line, #column)
-        } catch {
-            
         }
         return nil
     }

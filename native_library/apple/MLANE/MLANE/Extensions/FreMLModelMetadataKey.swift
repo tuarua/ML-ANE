@@ -19,15 +19,13 @@ import FreSwift
 
 public extension Dictionary where Key == MLModelMetadataKey, Value == Any {
     func toFREObject() -> FREObject? {
-        do {
-            let ret = try FREObject(className: "com.tuarua.mlane.ModelMetadata")
-            try ret?.setProp(name: "author", value: self[.author])
-            try ret?.setProp(name: "license", value: self[.license])
-            try ret?.setProp(name: "version", value: self[.versionString])
-            try ret?.setProp(name: "description", value: self[.description])
-            return ret
-        } catch {
+        guard let fre = FreObjectSwift(className: "com.tuarua.mlane.ModelMetadata") else {
+            return nil
         }
-        return nil
+        fre.author = self[.author] as? String
+        fre.license = self[.license] as? String
+        fre.version = self[.versionString] as? String
+        fre.rawValue?["description"] = (self[.description] as? String)?.toFREObject()
+        return fre.rawValue
     }
 }

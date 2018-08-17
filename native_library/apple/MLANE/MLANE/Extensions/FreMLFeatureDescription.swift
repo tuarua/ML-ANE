@@ -19,23 +19,22 @@ import FreSwift
 
 public extension MLFeatureDescription {
     func toFREObject() -> FREObject? {
-        do {
-            let ret = try FREObject(className: "com.tuarua.mlane.FeatureDescription")
-            try ret?.setProp(name: "name", value: name)
-            try ret?.setProp(name: "type", value: type.rawValue)
-            try ret?.setProp(name: "isOptional", value: isOptional)
-            
-            if let imageConstraint = imageConstraint {
-                try ret?.setProp(name: "imageConstraint", value: imageConstraint.toFREObject())
-            } else if let dictionaryConstraint = dictionaryConstraint {
-                try ret?.setProp(name: "dictionaryConstraint", value: dictionaryConstraint.toFREObject())
-            }
-            
-            // // multiArrayConstraint
-            
-            return ret
-        } catch {
+        guard let fre = FreObjectSwift(className: "com.tuarua.mlane.FeatureDescription") else {
+            return nil
         }
-        return nil
+        fre.name = name
+        fre.type = type.rawValue
+        fre.isOptional = isOptional
+        if let imageConstraint = imageConstraint {
+            fre.imageConstraint = imageConstraint
+        }
+        return fre.rawValue
+    }
+}
+
+public extension FreObjectSwift {
+    public subscript(dynamicMember name: String) -> MLImageConstraint? {
+        get { return nil }
+        set { rawValue?[name] = newValue?.toFREObject() }
     }
 }
