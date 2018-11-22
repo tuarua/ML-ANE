@@ -17,6 +17,9 @@
             <entry library-name="FiraSansSemiBold" library-level="project">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="greensock" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="AIRSDK_30" />
         </dependencies>
@@ -44,5 +47,6 @@
     <orderEntry type="library" exported="" name="CommonDependencies" level="project" />
     <orderEntry type="library" exported="" name="starling" level="project" />
     <orderEntry type="library" exported="" name="FiraSansSemiBold" level="project" />
+    <orderEntry type="library" exported="" name="greensock" level="project" />
   </component>
 </module>

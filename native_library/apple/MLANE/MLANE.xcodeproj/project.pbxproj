@@ -75,9 +75,6 @@
 		CE881059203889B7004FD8B4 /* SwiftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104C203889B6004FD8B4 /* SwiftController.swift */; };
 		CE88105A203889B7004FD8B4 /* SwiftController+FreSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104D203889B7004FD8B4 /* SwiftController+FreSwift.swift */; };
 		CE88105B203889B7004FD8B4 /* MLEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104F203889B7004FD8B4 /* MLEvent.swift */; };
-		CE8D26392040DBFC008EA287 /* FreNativeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D26362040DBFC008EA287 /* FreNativeImage.swift */; };
-		CE8D263A2040DBFC008EA287 /* FreNativeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D26372040DBFC008EA287 /* FreNativeButton.swift */; };
-		CE8D263B2040DBFC008EA287 /* FreNativeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D26382040DBFC008EA287 /* FreNativeType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,9 +129,6 @@
 		CE88104C203889B6004FD8B4 /* SwiftController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftController.swift; sourceTree = "<group>"; };
 		CE88104D203889B7004FD8B4 /* SwiftController+FreSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftController+FreSwift.swift"; sourceTree = "<group>"; };
 		CE88104F203889B7004FD8B4 /* MLEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLEvent.swift; sourceTree = "<group>"; };
-		CE8D26362040DBFC008EA287 /* FreNativeImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreNativeImage.swift; sourceTree = "<group>"; };
-		CE8D26372040DBFC008EA287 /* FreNativeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreNativeButton.swift; sourceTree = "<group>"; };
-		CE8D26382040DBFC008EA287 /* FreNativeType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreNativeType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,7 +237,6 @@
 			isa = PBXGroup;
 			children = (
 				CE3FC07E204329B300FE313C /* PermissionController.swift */,
-				CE8D26352040DBFC008EA287 /* FreNative */,
 				CE881042203889B6004FD8B4 /* BaseInput.swift */,
 				CE881043203889B6004FD8B4 /* CoreMlController.swift */,
 				CE88104E203889B7004FD8B4 /* Events */,
@@ -289,16 +282,6 @@
 				CE88104F203889B7004FD8B4 /* MLEvent.swift */,
 			);
 			path = Events;
-			sourceTree = "<group>";
-		};
-		CE8D26352040DBFC008EA287 /* FreNative */ = {
-			isa = PBXGroup;
-			children = (
-				CE8D26362040DBFC008EA287 /* FreNativeImage.swift */,
-				CE8D26372040DBFC008EA287 /* FreNativeButton.swift */,
-				CE8D26382040DBFC008EA287 /* FreNativeType.swift */,
-			);
-			path = FreNative;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -531,14 +514,14 @@
 		};
 		CE6DC5C72054339500E20217 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "../../../native_extension/ane/build.sh\n";
 		};
@@ -553,7 +536,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		CE6DC60B20543AD900E20217 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -658,16 +641,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE8D263A2040DBFC008EA287 /* FreNativeButton.swift in Sources */,
 				CE881050203889B7004FD8B4 /* BaseInput.swift in Sources */,
 				CE881059203889B7004FD8B4 /* SwiftController.swift in Sources */,
-				CE8D26392040DBFC008EA287 /* FreNativeImage.swift in Sources */,
 				CE881054203889B7004FD8B4 /* FreMLModelMetadataKey.swift in Sources */,
 				CE881056203889B7004FD8B4 /* URL.swift in Sources */,
 				CE881058203889B7004FD8B4 /* FreMLImageConstraint.swift in Sources */,
 				CE88105A203889B7004FD8B4 /* SwiftController+FreSwift.swift in Sources */,
 				CE3FC081204329D100FE313C /* PermissionEvent.swift in Sources */,
-				CE8D263B2040DBFC008EA287 /* FreNativeType.swift in Sources */,
 				CE881053203889B7004FD8B4 /* FreMLDictionaryConstraint.swift in Sources */,
 				CE881057203889B7004FD8B4 /* FreMLFeatureDescription.swift in Sources */,
 				CE881052203889B7004FD8B4 /* FreMLModelDescription.swift in Sources */,

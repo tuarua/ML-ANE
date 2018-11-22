@@ -21,7 +21,7 @@ import Vision
 import AVFoundation
 #endif
 class CoreMlController: NSObject, FreSwiftController {
-    var TAG: String? = "CoreMlController"
+    static var TAG: String = "CoreMlController"
     var context: FreContextSwift!
     internal var models: [String: MLModel] = [:]
     internal let userInitiatedQueue = DispatchQueue(label: "com.tuarua.mlane.userInitiatedQueue", qos: .userInitiated)

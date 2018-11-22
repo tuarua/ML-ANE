@@ -23,7 +23,7 @@ public extension MLFeatureDescription {
             return nil
         }
         fre.name = name
-        fre.type = type.rawValue
+        fre["type"] = type.rawValue.toFREObject()
         fre.isOptional = isOptional
         if let imageConstraint = imageConstraint {
             fre.imageConstraint = imageConstraint

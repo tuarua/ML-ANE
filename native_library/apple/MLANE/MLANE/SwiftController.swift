@@ -18,7 +18,7 @@ import FreSwift
 import CoreML
 
 public class SwiftController: NSObject {
-    public var TAG: String? = "SwiftController"
+    public static var TAG: String = "SwiftController"
     public var context: FreContextSwift!
     public var functionsToSet: FREFunctionMap = [:]
     private var mlController: CoreMlController?
@@ -192,11 +192,8 @@ public class SwiftController: NSObject {
             defer {
                 asBitmapData.releaseData()
             }
-            do {
-                if let cgimg = try asBitmapData.asCGImage() {
-                    mask = cgimg
-                }
-            } catch {
+            if let cgimg = asBitmapData.asCGImage() {
+                mask = cgimg
             }
         }
         mc.inputFromCamera(rootViewController: rvc, id: id, mask: mask)

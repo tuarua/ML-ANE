@@ -25,7 +25,8 @@ public extension Dictionary where Key == MLModelMetadataKey, Value == Any {
         fre.author = self[.author] as? String
         fre.license = self[.license] as? String
         fre.version = self[.versionString] as? String
-        fre.rawValue?["description"] = (self[.description] as? String)?.toFREObject()
+        //Dynamic Member Lookup can't handle reserved
+        fre["description"] = (self[.description] as? String)?.toFREObject()
         return fre.rawValue
     }
 }
