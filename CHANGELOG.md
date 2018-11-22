@@ -1,3 +1,6 @@
+### 0.1.0
+- iOS: Support AIR 32
+
 ### 0.0.8
 - iOS: Allow AIR stage to be masked. This enables using AIR UI over Native Camera
 
