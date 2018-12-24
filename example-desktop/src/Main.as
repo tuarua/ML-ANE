@@ -1,5 +1,5 @@
 package {
-import com.tuarua.CommonDependencies;
+import com.tuarua.FreSwift;
 import com.tuarua.MLANE;
 import com.tuarua.mlane.Model;
 import com.tuarua.mlane.ModelDescription;
@@ -31,7 +31,7 @@ public class Main extends Sprite {
     [Embed(source="dog.jpg")]
     public static const TestImage:Class;
 
-    private var commonDependenciesANE:CommonDependencies = new CommonDependencies(); //must create before all others
+    private var freSwiftANE:FreSwift = new FreSwift(); //must create before all others
     public static const FONT:Font = new FiraSansSemiBold();
     private var loadMobileNetBtn:SimpleButton;
     private var predictMobileNetBtn:SimpleButton;
@@ -229,7 +229,7 @@ public class Main extends Sprite {
 
     private function onExiting(event:Event):void {
         MLANE.dispose();
-        commonDependenciesANE.dispose();
+        freSwiftANE.dispose();
     }
 
 }

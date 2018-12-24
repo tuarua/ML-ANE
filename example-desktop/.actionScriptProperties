@@ -31,7 +31,7 @@
         </excludedEntries>
       </libraryPathEntry>
       <libraryPathEntry kind="1" linkType="1" path="libs"/>
-      <libraryPathEntry kind="5" linkType="2" path="/Users/eoinlandy/Desktop/dev/ML-ANE/native_extension/ane/CommonDependencies.ane"/>
+      <libraryPathEntry kind="5" linkType="2" path="/Users/eoinlandy/Desktop/dev/ML-ANE/native_extension/ane/FreSwift.ane"/>
       <libraryPathEntry kind="5" linkType="2" path="/Users/eoinlandy/Desktop/dev/ML-ANE/native_extension/ane/MLANE.ane"/>
     </libraryPath>
     <sourceAttachmentPath/>
@@ -50,7 +50,7 @@
       <airSettings airCertificatePath="/Users/eoinlandy/Desktop/TestCert.p12" airTimestamp="true" anePathSet="true" version="1">
         <airExcludes/>
         <anePaths>
-          <anePathEntry path="/Users/eoinlandy/Desktop/dev/ML-ANE/native_extension/ane/CommonDependencies.ane"/>
+          <anePathEntry path="/Users/eoinlandy/Desktop/dev/ML-ANE/native_extension/ane/FreSwift.ane"/>
           <anePathEntry path="/Users/eoinlandy/Desktop/dev/ML-ANE/native_extension/ane/MLANE.ane"/>
         </anePaths>
         <newLaunchParams/>

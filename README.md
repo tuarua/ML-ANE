@@ -38,6 +38,12 @@ bash get_ios_dependencies.sh
 This folder, ios_dependencies/device/Frameworks, must be packaged as part of your app when creating the ipa. How this is done will depend on the IDE you are using.
 After the ipa is created unzip it and confirm there is a "Frameworks" folder in the root of the .app package.
 
+### Modifications to the AIR SDK
+
+For iOS we need some additions to the AIRSDK. 
+
+Copy the files from **AIRSDK_additions** into the corresponding folders in your AIRSDK.
+
 ## tvOS
 
 ### The ANE + Dependencies
@@ -104,9 +110,8 @@ var mobileNet:MobileNet = new MobileNet(testImage.bitmapData);
 You will need:
 - a Mac. Windows is not supported
 - IntelliJ IDEA
-- AIR 29
-- Xcode 9.3
-- Xcode 9.1 for iOS Simulator
+- AIR 32
+- Xcode 10.1
 - wget on OSX
 
 ### Task List
