@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90CC24CC21274ED0000CE135 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90CC24CB21274ED0000CE135 /* Cocoa.framework */; };
 		CE05603F1FB25CE200D06976 /* FreSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE05603E1FB25CE200D06976 /* FreSwift.framework */; };
 		CE0560401FB25CE200D06976 /* FreSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE05603E1FB25CE200D06976 /* FreSwift.framework */; };
 		CE0560451FB25DD000D06976 /* MLANE_FW.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE87F4831FB259FA005CF7DF /* MLANE_FW.framework */; };
@@ -18,7 +19,6 @@
 		CE6DC5AE20542E3100E20217 /* SwiftyJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = CE88103F203889A1004FD8B4 /* SwiftyJSON.h */; };
 		CE6DC5AF20542E3800E20217 /* MLANE_oc.h in Headers */ = {isa = PBXBuildFile; fileRef = CE88103A20388975004FD8B4 /* MLANE_oc.h */; };
 		CE6DC5B020542E3B00E20217 /* FreMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = CE05604D1FB25E8E00D06976 /* FreMacros.h */; };
-		CE6DC5B220542E5B00E20217 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6DC5B120542E4C00E20217 /* Cocoa.framework */; };
 		CE6DC5B420542E7800E20217 /* Adobe AIR_64 in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6DC5A020542D2800E20217 /* Adobe AIR_64 */; };
 		CE6DC5B520542E7A00E20217 /* Adobe AIR in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6DC59F20542D2800E20217 /* Adobe AIR */; };
 		CE6DC5B620542E9300E20217 /* CIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881048203889B6004FD8B4 /* CIImage.swift */; };
@@ -75,9 +75,6 @@
 		CE881059203889B7004FD8B4 /* SwiftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104C203889B6004FD8B4 /* SwiftController.swift */; };
 		CE88105A203889B7004FD8B4 /* SwiftController+FreSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104D203889B7004FD8B4 /* SwiftController+FreSwift.swift */; };
 		CE88105B203889B7004FD8B4 /* MLEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104F203889B7004FD8B4 /* MLEvent.swift */; };
-		CE8D26392040DBFC008EA287 /* FreNativeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D26362040DBFC008EA287 /* FreNativeImage.swift */; };
-		CE8D263A2040DBFC008EA287 /* FreNativeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D26372040DBFC008EA287 /* FreNativeButton.swift */; };
-		CE8D263B2040DBFC008EA287 /* FreNativeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D26382040DBFC008EA287 /* FreNativeType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +95,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		90CC24CB21274ED0000CE135 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		CE05603E1FB25CE200D06976 /* FreSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FreSwift.framework; path = Carthage/Build/iOS/FreSwift.framework; sourceTree = "<group>"; };
 		CE05604D1FB25E8E00D06976 /* FreMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreMacros.h; sourceTree = "<group>"; };
 		CE26D95A2038EAF1004084F0 /* CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift"; sourceTree = "<group>"; };
@@ -106,7 +104,6 @@
 		CE6DC59F20542D2800E20217 /* Adobe AIR */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "Adobe AIR"; path = "../../../../../SDKs/AIRSDK_30/runtimes/air-captive/mac/Adobe AIR.framework/Versions/1.0/Adobe AIR"; sourceTree = "<group>"; };
 		CE6DC5A020542D2800E20217 /* Adobe AIR_64 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "Adobe AIR_64"; path = "../../../../../SDKs/AIRSDK_30/runtimes/air-captive/mac/Adobe AIR.framework/Versions/1.0/Adobe AIR_64"; sourceTree = "<group>"; };
 		CE6DC5A620542D5600E20217 /* MLANE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MLANE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE6DC5B120542E4C00E20217 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		CE6DC5C420542F0000E20217 /* FreSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FreSwift.framework; path = Carthage/Build/Mac/FreSwift.framework; sourceTree = "<group>"; };
 		CE6DC5CC205434C700E20217 /* libMLANE_LIB.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMLANE_LIB.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6DC5E72054354900E20217 /* MLANE_FW.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MLANE_FW.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,9 +129,6 @@
 		CE88104C203889B6004FD8B4 /* SwiftController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftController.swift; sourceTree = "<group>"; };
 		CE88104D203889B7004FD8B4 /* SwiftController+FreSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftController+FreSwift.swift"; sourceTree = "<group>"; };
 		CE88104F203889B7004FD8B4 /* MLEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLEvent.swift; sourceTree = "<group>"; };
-		CE8D26362040DBFC008EA287 /* FreNativeImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreNativeImage.swift; sourceTree = "<group>"; };
-		CE8D26372040DBFC008EA287 /* FreNativeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreNativeButton.swift; sourceTree = "<group>"; };
-		CE8D26382040DBFC008EA287 /* FreNativeType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreNativeType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,9 +136,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90CC24CC21274ED0000CE135 /* Cocoa.framework in Frameworks */,
 				CE6DC5B420542E7800E20217 /* Adobe AIR_64 in Frameworks */,
 				CE6DC5B520542E7A00E20217 /* Adobe AIR in Frameworks */,
-				CE6DC5B220542E5B00E20217 /* Cocoa.framework in Frameworks */,
 				CE6DC5C520542F0000E20217 /* FreSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -189,9 +183,9 @@
 		CE05603D1FB25CD100D06976 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				90CC24CB21274ED0000CE135 /* Cocoa.framework */,
 				CE6DC5C420542F0000E20217 /* FreSwift.framework */,
 				CE6DC5F32054362000E20217 /* FreSwift.framework */,
-				CE6DC5B120542E4C00E20217 /* Cocoa.framework */,
 				CE6DC59F20542D2800E20217 /* Adobe AIR */,
 				CE6DC5A020542D2800E20217 /* Adobe AIR_64 */,
 				CE05603E1FB25CE200D06976 /* FreSwift.framework */,
@@ -243,7 +237,6 @@
 			isa = PBXGroup;
 			children = (
 				CE3FC07E204329B300FE313C /* PermissionController.swift */,
-				CE8D26352040DBFC008EA287 /* FreNative */,
 				CE881042203889B6004FD8B4 /* BaseInput.swift */,
 				CE881043203889B6004FD8B4 /* CoreMlController.swift */,
 				CE88104E203889B7004FD8B4 /* Events */,
@@ -289,16 +282,6 @@
 				CE88104F203889B7004FD8B4 /* MLEvent.swift */,
 			);
 			path = Events;
-			sourceTree = "<group>";
-		};
-		CE8D26352040DBFC008EA287 /* FreNative */ = {
-			isa = PBXGroup;
-			children = (
-				CE8D26362040DBFC008EA287 /* FreNativeImage.swift */,
-				CE8D26372040DBFC008EA287 /* FreNativeButton.swift */,
-				CE8D26382040DBFC008EA287 /* FreNativeType.swift */,
-			);
-			path = FreNative;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -460,6 +443,7 @@
 				TargetAttributes = {
 					CE6DC5A520542D5600E20217 = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Manual;
 					};
 					CE6DC5CB205434C700E20217 = {
@@ -468,6 +452,7 @@
 					};
 					CE6DC5E62054354900E20217 = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Manual;
 					};
 					CE87F4741FB259DB005CF7DF = {
@@ -516,7 +501,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		CE6DC5C620542F1400E20217 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -525,7 +510,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		CE6DC5C72054339500E20217 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -538,7 +523,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ../../../native_extension/ane/build.sh;
+			shellScript = "../../../native_extension/ane/build.sh\n";
 		};
 		CE6DC60A20543ACD00E20217 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -551,7 +536,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		CE6DC60B20543AD900E20217 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -564,7 +549,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = ../../../native_extension/ane/build.sh;
+			shellScript = "../../../native_extension/ane/build.sh\n";
 		};
 		CE88105D203890E0004FD8B4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -581,16 +566,16 @@
 		};
 		CEDDADE01FBFB84900D6EB5F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = ../../../native_extension/ane/build.sh;
+			shellScript = "../../../native_extension/ane/build.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -656,16 +641,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE8D263A2040DBFC008EA287 /* FreNativeButton.swift in Sources */,
 				CE881050203889B7004FD8B4 /* BaseInput.swift in Sources */,
 				CE881059203889B7004FD8B4 /* SwiftController.swift in Sources */,
-				CE8D26392040DBFC008EA287 /* FreNativeImage.swift in Sources */,
 				CE881054203889B7004FD8B4 /* FreMLModelMetadataKey.swift in Sources */,
 				CE881056203889B7004FD8B4 /* URL.swift in Sources */,
 				CE881058203889B7004FD8B4 /* FreMLImageConstraint.swift in Sources */,
 				CE88105A203889B7004FD8B4 /* SwiftController+FreSwift.swift in Sources */,
 				CE3FC081204329D100FE313C /* PermissionEvent.swift in Sources */,
-				CE8D263B2040DBFC008EA287 /* FreNativeType.swift in Sources */,
 				CE881053203889B7004FD8B4 /* FreMLDictionaryConstraint.swift in Sources */,
 				CE881057203889B7004FD8B4 /* FreMLFeatureDescription.swift in Sources */,
 				CE881052203889B7004FD8B4 /* FreMLModelDescription.swift in Sources */,
@@ -698,7 +680,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
@@ -715,7 +698,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				FRAMEWORK_VERSION = A;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				INFOPLIST_FILE = "$(SRCROOT)/MLANE/Misc/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -735,7 +718,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -745,7 +728,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
@@ -762,7 +746,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				FRAMEWORK_VERSION = A;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				INFOPLIST_FILE = "$(SRCROOT)/MLANE/Misc/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -782,7 +766,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -791,7 +775,8 @@
 		CE6DC5D3205434C700E20217 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -813,7 +798,8 @@
 		CE6DC5D4205434C700E20217 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -836,7 +822,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
@@ -865,7 +852,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 11.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -877,7 +864,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
@@ -904,7 +892,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 11.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1028,6 +1016,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEVELOPMENT_TEAM = "";
@@ -1036,6 +1026,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1054,6 +1045,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEVELOPMENT_TEAM = "";
@@ -1062,6 +1055,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1079,6 +1073,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1092,6 +1088,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				INFOPLIST_FILE = "$(SRCROOT)/MLANE/Misc/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1108,7 +1105,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1119,6 +1116,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1132,6 +1131,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				INFOPLIST_FILE = "$(SRCROOT)/MLANE/Misc/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1148,7 +1148,7 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

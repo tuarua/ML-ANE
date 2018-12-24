@@ -19,13 +19,8 @@ import FreSwift
 
 public extension MLDictionaryConstraint {
     func toFREObject() -> FREObject? {
-        do {
-            let ret = try FREObject(className: "com.tuarua.mlane.DictionaryConstraint",
+            return FREObject(className: "com.tuarua.mlane.DictionaryConstraint",
                                     args: self.keyType.rawValue
             )
-            return ret
-        } catch {
-        }
-        return nil
     }
 }

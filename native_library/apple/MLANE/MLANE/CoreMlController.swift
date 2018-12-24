@@ -21,7 +21,7 @@ import Vision
 import AVFoundation
 #endif
 class CoreMlController: NSObject, FreSwiftController {
-    var TAG: String? = "CoreMlController"
+    static var TAG: String = "CoreMlController"
     var context: FreContextSwift!
     internal var models: [String: MLModel] = [:]
     internal let userInitiatedQueue = DispatchQueue(label: "com.tuarua.mlane.userInitiatedQueue", qos: .userInitiated)
@@ -119,9 +119,11 @@ class CoreMlController: NSObject, FreSwiftController {
                             feature["dictionaryV"] = [:]
                         } else {
                             let slicedArray = dictionaryValue.sorted { $0.value > $1.value }.prefix(maxResults)
-                            feature["dictionaryV"] = slicedArray.map { item in
-                                return ["k": item.key, "v": item.value]
+                            var arr: [[String: Any]] = []
+                            for (key, value) in slicedArray {
+                                arr.append(["k": key, "v": value])
                             }
+                            feature["dictionaryV"] = arr
                         }
                     case .double:
                         feature["doubleV"] = val.doubleValue

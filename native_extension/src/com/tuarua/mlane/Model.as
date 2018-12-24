@@ -119,7 +119,7 @@ public class Model extends EventDispatcher {
      * @param onCompiled Function to call when model is compiled
      *
      * @return Created model
-     *
+     *dictionaryV
      */
     public static function fromPath(path:String, onCompiled:Function = null):Model {
         if (!MLANEContext.context) throw new Error("NO ANE context");

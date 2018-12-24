@@ -19,27 +19,25 @@ import FreSwift
 
 public extension MLModelDescription {
     func toFREObject() -> FREObject? {
-        do {
-            let ret = try FREObject(className: "com.tuarua.mlane.ModelDescription")
-            try ret?.setProp(name: "predictedFeatureName",
-                                   value: self.predictedFeatureName)
-            try ret?.setProp(name: "predictedProbabilitiesName",
-                                   value: self.predictedProbabilitiesName)
-            try ret?.setProp(name: "metadata", value: self.metadata.toFREObject())
-            let freInputDict = try FREObject(className: "flash.utils.Dictionary")
-            for input in self.inputDescriptionsByName {
-                try freInputDict?.setProp(name: input.key, value: input.value.toFREObject())
-            }
-            try ret?.setProp(name: "inputDescriptionsByName", value: freInputDict)
-            
-            let freOutputDict = try FREObject(className: "flash.utils.Dictionary")
-            for output in self.outputDescriptionsByName {
-                try freOutputDict?.setProp(name: output.key, value: output.value.toFREObject())
-            }
-            try ret?.setProp(name: "outputDescriptionsByName", value: freOutputDict)
-            return ret
-        } catch {
+        guard let fre = FreObjectSwift(className: "com.tuarua.mlane.FeatureDescription") else {
+            return nil
         }
-        return nil
+        
+        fre.predictedFeatureName = self.predictedFeatureName
+        fre.predictedProbabilitiesName = self.predictedProbabilitiesName
+        fre.metadata = self.metadata.toFREObject()
+
+        var freInputDict = FREObject(className: "flash.utils.Dictionary")
+        for input in self.inputDescriptionsByName {
+            freInputDict?[input.key] = input.value.toFREObject()
+        }
+        fre.inputDescriptionsByName = freInputDict
+        
+        var freOutputDict = FREObject(className: "flash.utils.Dictionary")
+        for output in self.outputDescriptionsByName {
+            freOutputDict?[output.key] = output.value.toFREObject()
+        }
+        fre.outputDescriptionsByName = freOutputDict
+        return fre.rawValue
     }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<application xmlns="http://ns.adobe.com/air/application/30.0">
+<application xmlns="http://ns.adobe.com/air/application/32.0">
     <id>com.tuarua.MLANE.Example2</id>
     <filename>Main</filename>
     <name>MLANEExample2</name>
-    <versionNumber>0.0.8</versionNumber>
+    <versionNumber>1.0.0</versionNumber>
     <extensions>
         <extensionID>com.tuarua.MLANE</extensionID>
     </extensions>
