@@ -31,9 +31,9 @@ N.B. You must use a Mac to build an iOS app using this ANE. Windows is NOT suppo
 
 From the command line cd into /example-mobile and run:
 
-````shell
+```shell
 bash get_ios_dependencies.sh
-`````
+```
 
 This folder, ios_dependencies/device/Frameworks, must be packaged as part of your app when creating the ipa. How this is done will depend on the IDE you are using.
 After the ipa is created unzip it and confirm there is a "Frameworks" folder in the root of the .app package.
@@ -42,7 +42,10 @@ After the ipa is created unzip it and confirm there is a "Frameworks" folder in 
 
 We need to patch some files in AIR SDK. 
 
-Copy the files from **AIRSDK_patch** into the corresponding folders in your AIR SDK.
+1. Copy adt.jar from **AIRSDK_patch** into the corresponding folder in your AIR SDK.
+2. Delete ld64 in your AIR SDK from `/lib/aot/bin/ld64/ld64`
+3. in Terminal:
+`ln -s /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld /PATH/TO/YOUR/AIRSDK_32/lib/aot/bin/ld64/ld64` 
 
 ## tvOS
 
@@ -52,9 +55,9 @@ N.B. You must use a Mac to build an tvOS app using this ANE. Windows is NOT supp
 
 From the command line cd into /example-tvos and run:
 
-````shell
+```shell
 bash get_tvos_dependencies.sh
-`````
+```
 
 This folder, tvos_dependencies/device/Frameworks, must be packaged as part of your app when creating the ipa. How this is done will depend on the IDE you are using.
 After the ipa is created unzip it and confirm there is a "Frameworks" folder in the root of the .app package.
@@ -65,17 +68,17 @@ Firstly, familiarise yourself with the concepts of Apple's CoreML.
 
 ### Usage
 #### Check CoreML is supported
-````actionscript
+```actionscript
 coreml = MLANE.coreml;
 if (coreml.isSupported) {
 
 } else {
 
 }
-`````
+```
 
 #### Download Model from url and compile
-````actionscript
+```actionscript
 var mobileNetUrl:String = "https://docs-assets.developer.apple.com/coreml/models/MobileNet.mlmodel"
 var model:Model = Model.fromUrl(mobileNetUrl, onDownloadProgress, onDownloadComplete, onModelCompiled);
 private function onDownloadProgress(event:ProgressEvent):void {
@@ -87,23 +90,23 @@ private function onDownloadComplete(event:Event):void {
 private function onModelCompiled(event:ModelEvent):void {
     model.load();
 }
-````
+```
 
 #### load Model from storage directory and compile
-````actionscript
+```actionscript
 var model:Model = Model.fromPath(File.applicationStorageDirectory.resolvePath("MobileNet.mlmodel").nativePath, onCompiled);
 private function onModelCompiled(event:ModelEvent):void {
     model.load();
 }
-``````
+```
 
 #### perform prediction with bitmapData as input
-````actionscript
+```actionscript
 var testImage:Bitmap = new TestImage() as Bitmap;
 var mobileNet:MobileNet = new MobileNet(testImage.bitmapData);
     model.prediction(mobileNet, onMobileNetResult);
 }
-``````
+```
 
 ### Prerequisites
 
