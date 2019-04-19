@@ -185,7 +185,7 @@ public class SwiftController: NSObject {
             else {
                 return FreArgError(message: "inputFromCamera").getError(#file, #line, #column)
         }
-        var mask: CGImage? = nil
+        var mask: CGImage?
         if let freMask = argv[1] {
             let asBitmapData = FreBitmapDataSwift(freObject: freMask)
             defer {
