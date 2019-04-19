@@ -1,3 +1,7 @@
+### 1.1.0
+- Upgraded to AIR 32.0.0.116
+- iOS/OSX/tvOS: Updated to FreSwift 3.1.0
+
 ### 1.0.0
 - Updated to FreSwift 3.0.0
 - Updated to AIR 32

@@ -23,7 +23,7 @@ import AVFoundation
 class CoreMlController: NSObject, FreSwiftController {
     static var TAG: String = "CoreMlController"
     var context: FreContextSwift!
-    internal var models: [String: MLModel] = [:]
+    internal var models = [String: MLModel]()
     internal let userInitiatedQueue = DispatchQueue(label: "com.tuarua.mlane.userInitiatedQueue", qos: .userInitiated)
 #if os(iOS)
     internal lazy var captureSession = AVCaptureSession()
