@@ -20,7 +20,7 @@
 #import <MLANE/MLANE-Swift.h>
 #else
 #import <MLANE_FW/MLANE_FW.h>
-#define FRE_OBJC_BRIDGE TRCML_FlashRuntimeExtensionsBridge // use unique prefix throughout to prevent clashes with other ANEs
+#define FRE_OBJC_BRIDGE TRCML_FlashRuntimeExtensionsBridge
 @interface FRE_OBJC_BRIDGE : NSObject<FreSwiftBridgeProtocol>
 @end
 @implementation FRE_OBJC_BRIDGE {
@@ -29,14 +29,11 @@ FRE_OBJC_BRIDGE_FUNCS
 @end
 #endif
 @implementation MLANE_LIB
-SWIFT_DECL(TRCML) // use unique prefix throughout to prevent clashes with other ANEs
+SWIFT_DECL(TRCML)
 
 CONTEXT_INIT(TRCML) {
     SWIFT_INITS(TRCML)
     
-    /**************************************************************************/
-    /******* MAKE SURE TO ADD FUNCTIONS HERE THE SAME AS SWIFT CONTROLLER *****/
-    /**************************************************************************/
     static FRENamedFunction extensionFunctions[] =
     {
          MAP_FUNCTION(TRCML, init)
@@ -46,12 +43,11 @@ CONTEXT_INIT(TRCML) {
         ,MAP_FUNCTION(TRCML, disposeModel)
         ,MAP_FUNCTION(TRCML, prediction)
         ,MAP_FUNCTION(TRCML, getDescription)
+        ,MAP_FUNCTION(TRCML, getTrainingInputDescriptionsByName)
         ,MAP_FUNCTION(TRCML, inputFromCamera)
         ,MAP_FUNCTION(TRCML, closeCamera)
         ,MAP_FUNCTION(TRCML, requestPermissions)
     };
-    /**************************************************************************/
-    /**************************************************************************/
     
     SET_FUNCTIONS
     

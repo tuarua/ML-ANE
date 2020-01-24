@@ -13,15 +13,15 @@ Much time, skill and effort has gone into this. Help support the project
 
 -------------
 
-## OSX
+## macOS
 
 ### The ANE + Dependencies
 
 From the command line cd into /example-desktop and run:
 
-````shell
+```shell
 bash get_dependencies.sh
-`````
+```
 
 ## iOS
 
@@ -104,9 +104,9 @@ var mobileNet:MobileNet = new MobileNet(testImage.bitmapData);
 You will need:
 - a Mac. Windows is not supported
 - IntelliJ IDEA
-- AIR 32.0.0.103 or greater
-- Xcode 10.1
-- wget on OSX
+- AIR 33.0.2.338+
+- Xcode 11.3
+- [wget](http://rudix.org/packages/wget.html) on macOS
 
 ### Task List
 - [x] Sample input Models (MobileNet, SqueezeNet, Apple Mars, Hot Dog Not Hot Dog)

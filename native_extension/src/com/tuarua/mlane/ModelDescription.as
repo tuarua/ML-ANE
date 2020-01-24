@@ -27,9 +27,20 @@ public class ModelDescription {
     public var outputDescriptionsByName:Dictionary; //FeatureDescription
     /** Optional metadata describing the model */
     public var metadata:ModelMetadata;
+    /** Indicates if the model has to been configured for updation using model update API. */
+    public var isUpdatable:Boolean;
+    private var _modelId:String;
     /** @private */
-    public function ModelDescription() {
+    public function ModelDescription(modelId:String) {
+        this._modelId = modelId;
     }
+
+    public function trainingInputDescriptionsByName(name:String):FeatureDescription {
+        // TODO
+        // get full dictionary and save on as3 side??
+        return null
+    }
+
 }
 }
 

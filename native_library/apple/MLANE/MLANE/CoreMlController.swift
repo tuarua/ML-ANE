@@ -17,6 +17,8 @@ import Foundation
 import FreSwift
 import CoreML
 import Vision
+import SwiftyJSON
+
 #if os(iOS)
 import AVFoundation
 #endif
@@ -41,7 +43,7 @@ class CoreMlController: NSObject, FreSwiftController {
     }
 
     func compileModel(id: String, path: String) {
-        var props: [String: Any] = Dictionary()
+        var props = [String: Any]()
         props["id"] = id
         guard let modelUrl = URL(safe: path) else {
             props["error"] = "invalid path"
@@ -76,7 +78,7 @@ class CoreMlController: NSObject, FreSwiftController {
     }
     
     func loadModel(id: String, path: String) {
-        var props: [String: Any] = Dictionary()
+        var props = [String: Any]()
         props["id"] = id
         userInitiatedQueue.async {
             do {
@@ -102,10 +104,10 @@ class CoreMlController: NSObject, FreSwiftController {
     func prediction(id: String, input: [String: MLFeatureValue], maxResults: Int) {
         guard let model = models[id] else { return  }
 
-        var props: [String: Any] = Dictionary()
+        var props = [String: Any]()
         props["id"] = id
         let modelDescription = model.modelDescription
-        let featureProvider = BaseInput.init(modelDescription: modelDescription)
+        let featureProvider = BaseInput(modelDescription: modelDescription)
         featureProvider.setValues(dictionary: input)
         do {
             let prediction = try model.prediction(from: featureProvider)
@@ -118,7 +120,9 @@ class CoreMlController: NSObject, FreSwiftController {
                         if dictionaryValue.isEmpty {
                             feature["dictionaryV"] = [:]
                         } else {
-                            let slicedArray = dictionaryValue.sorted { $0.value > $1.value }.prefix(maxResults)
+                            let slicedArray = dictionaryValue.sorted {
+                                Double(truncating: $0.value) > Double(truncating: $1.value)
+                            }.prefix(maxResults)
                             var arr: [[String: Any]] = []
                             for (key, value) in slicedArray {
                                 arr.append(["k": key, "v": value])
@@ -134,8 +138,6 @@ class CoreMlController: NSObject, FreSwiftController {
                     default:
                         break
                     }
-                    // TODO val.imageBufferValue
-                    // TODO val.multiArrayValue
                     props[featureName] = feature
                 }
             }
@@ -149,4 +151,10 @@ class CoreMlController: NSObject, FreSwiftController {
     func getModelDescription(id: String) -> MLModelDescription? {
         return models[id]?.modelDescription
     }
+    
+    @available(iOS 13.0, OSX 10.15, tvOS 13.0, *)
+    func getTrainingInputDescriptionsByName(id: String, name: String) -> MLFeatureDescription? {
+        return models[id]?.modelDescription.trainingInputDescriptionsByName[name]
+    }
+    
 }

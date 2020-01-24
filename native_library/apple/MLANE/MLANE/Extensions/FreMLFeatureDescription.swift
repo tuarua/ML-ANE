@@ -33,7 +33,7 @@ public extension MLFeatureDescription {
 }
 
 public extension FreObjectSwift {
-    public subscript(dynamicMember name: String) -> MLImageConstraint? {
+    subscript(dynamicMember name: String) -> MLImageConstraint? {
         get { return nil }
         set { rawValue?[name] = newValue?.toFREObject() }
     }
