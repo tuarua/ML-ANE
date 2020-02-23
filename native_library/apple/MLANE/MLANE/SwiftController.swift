@@ -130,7 +130,7 @@ public class SwiftController: NSObject {
             else {
                 return FreArgError().getError()
         }
-        var input: Dictionary = [String: MLFeatureValue]()
+        var input = [String: MLFeatureValue]()
         guard let modelDescription = mc.getModelDescription(id: id),
             let inFRE1 = argv[1],
             let rv = inFRE1["input"],

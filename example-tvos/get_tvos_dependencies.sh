@@ -1,7 +1,7 @@
 #!/bin/sh
 
 AneVersion="1.2.0"
-FreSwiftVersion="4.2.0"
+FreSwiftVersion="4.3.0"
 
 rm -r tvos_dependencies/device
 rm -r tvos_dependencies/simulator
