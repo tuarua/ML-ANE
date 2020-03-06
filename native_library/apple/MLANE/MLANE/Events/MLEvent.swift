@@ -16,12 +16,12 @@
 import Foundation
 
 public struct ModelEvent {
-    public static let COMPILED: String = "MLANE.OnModelCompiled"
-    public static let RESULT: String = "MLANE.OnModelResult"
-    public static let LOADED: String = "MLANE.OnModelLoaded"
-    public static let ERROR: String = "MLANE.OnModelLoadError"
+    public static let COMPILED = "MLANE.OnModelCompiled"
+    public static let RESULT = "MLANE.OnModelResult"
+    public static let LOADED = "MLANE.OnModelLoaded"
+    public static let ERROR = "MLANE.OnModelLoadError"
 }
 public struct VisionEvent {
-    public static let RESULT: String = "MLANE.OnVisionResult"
-    public static let ERROR: String = "MLANE.OnVisionError"
+    public static let RESULT = "MLANE.OnVisionResult"
+    public static let ERROR = "MLANE.OnVisionError"
 }

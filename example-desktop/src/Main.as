@@ -229,7 +229,7 @@ public class Main extends Sprite {
 
     private function onExiting(event:Event):void {
         MLANE.dispose();
-        freSwiftANE.dispose();
+        FreSwift.dispose();
     }
 
 }

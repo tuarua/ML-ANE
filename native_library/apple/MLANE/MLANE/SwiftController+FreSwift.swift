@@ -27,6 +27,7 @@ extension SwiftController: FreSwiftMainController {
         functionsToSet["\(prefix)disposeModel"] = disposeModel
         functionsToSet["\(prefix)prediction"] = prediction
         functionsToSet["\(prefix)getDescription"] = getDescription
+        functionsToSet["\(prefix)getTrainingInputDescriptionsByName"] = getTrainingInputDescriptionsByName
         functionsToSet["\(prefix)inputFromCamera"] = inputFromCamera
         functionsToSet["\(prefix)closeCamera"] = closeCamera
         functionsToSet["\(prefix)requestPermissions"] = requestPermissions
@@ -55,7 +56,7 @@ extension SwiftController: FreSwiftMainController {
     }
     
     @objc public func setFREContext(ctx: FREContext) {
-        self.context = FreContextSwift.init(freContext: ctx)
+        self.context = FreContextSwift(freContext: ctx)
     }
     
     @objc public func onLoad() {

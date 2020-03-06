@@ -18,8 +18,8 @@ import CoreML
 import FreSwift
 
 public extension MLModelDescription {
-    func toFREObject() -> FREObject? {
-        guard let fre = FreObjectSwift(className: "com.tuarua.mlane.FeatureDescription") else {
+    func toFREObject(id: String) -> FREObject? {
+        guard let fre = FreObjectSwift(className: "com.tuarua.mlane.ModelDescription", args: id) else {
             return nil
         }
         
@@ -38,6 +38,11 @@ public extension MLModelDescription {
             freOutputDict?[output.key] = output.value.toFREObject()
         }
         fre.outputDescriptionsByName = freOutputDict
+        
+        if #available(iOS 13.0, OSX 10.15, tvOS 13.0, *) {
+            fre.isUpdatable = self.isUpdatable
+        }
+        
         return fre.rawValue
     }
 }

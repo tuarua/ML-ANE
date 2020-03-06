@@ -19,6 +19,7 @@ import CoreML
 import Vision
 import AVFoundation
 import Accelerate
+import SwiftyJSON
 
 extension CoreMlController: AVCaptureVideoDataOutputSampleBufferDelegate {
     
@@ -27,7 +28,7 @@ extension CoreMlController: AVCaptureVideoDataOutputSampleBufferDelegate {
     }
     
     private func setUpCaptureSessionInput() {
-        var props: [String: Any] = Dictionary()
+        var props = [String: Any]()
         sessionQueue.async {
             guard let device = self.captureDevice(forPosition: .back) else { return }
             do {
@@ -47,7 +48,7 @@ extension CoreMlController: AVCaptureVideoDataOutputSampleBufferDelegate {
     }
     
     private func setUpCaptureSessionOutput() {
-        var props: [String: Any] = Dictionary()
+        var props = [String: Any]()
         sessionQueue.async {
             self.captureSession.beginConfiguration()
             self.captureSession.sessionPreset = AVCaptureSession.Preset.high
@@ -70,7 +71,7 @@ extension CoreMlController: AVCaptureVideoDataOutputSampleBufferDelegate {
     }
     
     private func setUpPreviewLayer(rootViewController: UIViewController, mask: CGImage?) {
-        var props: [String: Any] = Dictionary()
+        var props = [String: Any]()
         videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         guard let videoPreviewLayer = videoPreviewLayer,
             let cameraView = cameraView else {
@@ -85,7 +86,7 @@ extension CoreMlController: AVCaptureVideoDataOutputSampleBufferDelegate {
         if let mask = mask {
             let newLayer = CALayer()
             newLayer.backgroundColor = UIColor.clear.cgColor
-            newLayer.frame = CGRect.init(x: 0,
+            newLayer.frame = CGRect(x: 0,
                                          y: 0,
                                          width: rootViewController.view.frame.width,
                                          height: rootViewController.view.frame.height)
@@ -105,7 +106,7 @@ extension CoreMlController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer,
                        from connection: AVCaptureConnection) {
         guard let visionModel = visionModel,
-            let img = CIImage.init(cmSampleBuffer: sampleBuffer) else { return }
+            let img = CIImage(cmSampleBuffer: sampleBuffer) else { return }
         
         let request = VNCoreMLRequest(model: visionModel, completionHandler: { [weak self] request, error in
             self?.processClassifications(for: request, error: error)
@@ -134,7 +135,7 @@ extension CoreMlController: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     func inputFromCamera(rootViewController: UIViewController, id: String, mask: CGImage?) {
         guard let model = models[id] else { return }
-        var props: [String: Any] = Dictionary()
+        var props = [String: Any]()
         props["id"] = id
         do {
             visionModel = try VNCoreMLModel(for: model)

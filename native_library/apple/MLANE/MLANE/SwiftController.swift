@@ -65,7 +65,7 @@ public class SwiftController: NSObject {
             let id = String(argv[0]),
             let path = String(argv[1])
             else {
-                return FreArgError(message: "compileModel").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         
         mc.compileModel(id: id, path: path)
@@ -79,7 +79,7 @@ public class SwiftController: NSObject {
             let id = String(argv[0]),
             let path = String(argv[1])
           else {
-            return FreArgError(message: "loadModel").getError(#file, #line, #column)
+            return FreArgError().getError()
         }
         mc.loadModel(id: id, path: path)
         return nil
@@ -90,7 +90,7 @@ public class SwiftController: NSObject {
             let mc = mlController,
             let id = String(argv[0])
             else {
-                return FreArgError(message: "disposeModel").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         mc.disposeModel(id: id)
         return nil
@@ -101,9 +101,23 @@ public class SwiftController: NSObject {
             let mc = mlController,
             let id = String(argv[0])
             else {
-                return FreArgError(message: "getDescription").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
-        return mc.getModelDescription(id: id)?.toFREObject()
+        return mc.getModelDescription(id: id)?.toFREObject(id: id)
+    }
+    
+    func getTrainingInputDescriptionsByName(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+        guard argc > 0,
+            let mc = mlController,
+            let id = String(argv[0]),
+            let name = String(argv[1])
+            else {
+                return FreArgError().getError()
+        }
+        if #available(iOS 13.0, OSX 10.15, tvOS 13.0, *) {
+            return mc.getTrainingInputDescriptionsByName(id: id, name: name)?.toFREObject()
+        }
+        return nil
     }
     
     // MARK: - Prediction
@@ -114,15 +128,15 @@ public class SwiftController: NSObject {
             let id = String(argv[0]),
             let maxResults = Int(argv[2])
             else {
-                return FreArgError(message: "prediction").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
-        var input: Dictionary = [String: MLFeatureValue]()
+        var input = [String: MLFeatureValue]()
         guard let modelDescription = mc.getModelDescription(id: id),
             let inFRE1 = argv[1],
             let rv = inFRE1["input"],
             let properties = rv.call(method: "getProperties") else {
                 return FreError(stackTrace: "", message: "invalid prediction inputs",
-                                     type: .invalidArgument).getError(#file, #line, #column)
+                                     type: .invalidArgument).getError()
         }
         let array = FREArray(properties)
         
@@ -183,7 +197,7 @@ public class SwiftController: NSObject {
             let id = String(argv[0]),
             let rvc = UIApplication.shared.keyWindow?.rootViewController
             else {
-                return FreArgError(message: "inputFromCamera").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         var mask: CGImage?
         if let freMask = argv[1] {
@@ -207,7 +221,7 @@ public class SwiftController: NSObject {
         guard let mc = mlController,
             let rvc = UIApplication.shared.keyWindow?.rootViewController
             else {
-                return FreArgError(message: "closeCamera").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         mc.closeCamera(rootViewController: rvc)
 #else

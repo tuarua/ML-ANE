@@ -3,20 +3,22 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		900B70942397FE730071EFBF /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 900B70932397FE730071EFBF /* SwiftyJSON */; };
+		900B70962397FE870071EFBF /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 900B70952397FE870071EFBF /* SwiftyJSON */; };
+		900B70982397FE910071EFBF /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 900B70972397FE910071EFBF /* SwiftyJSON */; };
 		90CC24CC21274ED0000CE135 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90CC24CB21274ED0000CE135 /* Cocoa.framework */; };
-		CE05603F1FB25CE200D06976 /* FreSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE05603E1FB25CE200D06976 /* FreSwift.framework */; };
-		CE0560401FB25CE200D06976 /* FreSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE05603E1FB25CE200D06976 /* FreSwift.framework */; };
-		CE0560451FB25DD000D06976 /* MLANE_FW.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE87F4831FB259FA005CF7DF /* MLANE_FW.framework */; };
-		CE05604E1FB25E8E00D06976 /* FreMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = CE05604D1FB25E8E00D06976 /* FreMacros.h */; };
-		CE05604F1FB25E9F00D06976 /* FreMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = CE05604D1FB25E8E00D06976 /* FreMacros.h */; };
-		CE26D95B2038EAF1004084F0 /* CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26D95A2038EAF1004084F0 /* CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift */; };
-		CE3FC07F204329B300FE313C /* PermissionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3FC07E204329B300FE313C /* PermissionController.swift */; };
-		CE3FC081204329D100FE313C /* PermissionEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3FC080204329D100FE313C /* PermissionEvent.swift */; };
-		CE6DC5AE20542E3100E20217 /* SwiftyJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = CE88103F203889A1004FD8B4 /* SwiftyJSON.h */; };
+		CE05603F1FB25CE200D06976 /* FreSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE05603E1FB25CE200D06976 /* FreSwift.framework */; platformFilter = ios; };
+		CE0560401FB25CE200D06976 /* FreSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE05603E1FB25CE200D06976 /* FreSwift.framework */; platformFilter = ios; };
+		CE0560451FB25DD000D06976 /* MLANE_FW.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE87F4831FB259FA005CF7DF /* MLANE_FW.framework */; platformFilter = ios; };
+		CE05604E1FB25E8E00D06976 /* FreMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = CE05604D1FB25E8E00D06976 /* FreMacros.h */; platformFilter = ios; };
+		CE05604F1FB25E9F00D06976 /* FreMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = CE05604D1FB25E8E00D06976 /* FreMacros.h */; platformFilter = ios; };
+		CE26D95B2038EAF1004084F0 /* CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26D95A2038EAF1004084F0 /* CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift */; platformFilter = ios; };
+		CE3FC07F204329B300FE313C /* PermissionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3FC07E204329B300FE313C /* PermissionController.swift */; platformFilter = ios; };
+		CE3FC081204329D100FE313C /* PermissionEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3FC080204329D100FE313C /* PermissionEvent.swift */; platformFilter = ios; };
 		CE6DC5AF20542E3800E20217 /* MLANE_oc.h in Headers */ = {isa = PBXBuildFile; fileRef = CE88103A20388975004FD8B4 /* MLANE_oc.h */; };
 		CE6DC5B020542E3B00E20217 /* FreMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = CE05604D1FB25E8E00D06976 /* FreMacros.h */; };
 		CE6DC5B420542E7800E20217 /* Adobe AIR_64 in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6DC5A020542D2800E20217 /* Adobe AIR_64 */; };
@@ -30,7 +32,6 @@
 		CE6DC5BC20542EB400E20217 /* MLEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104F203889B7004FD8B4 /* MLEvent.swift */; };
 		CE6DC5BD20542EB800E20217 /* FreMLDictionaryConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881046203889B6004FD8B4 /* FreMLDictionaryConstraint.swift */; };
 		CE6DC5BE20542EBD00E20217 /* SwiftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104C203889B6004FD8B4 /* SwiftController.swift */; };
-		CE6DC5BF20542EC400E20217 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88103E203889A1004FD8B4 /* SwiftyJSON.swift */; };
 		CE6DC5C020542EC800E20217 /* SwiftController+FreSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104D203889B7004FD8B4 /* SwiftController+FreSwift.swift */; };
 		CE6DC5C120542ECC00E20217 /* BaseInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881042203889B6004FD8B4 /* BaseInput.swift */; };
 		CE6DC5C220542ED100E20217 /* FreMLModelMetadataKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881047203889B6004FD8B4 /* FreMLModelMetadataKey.swift */; };
@@ -43,7 +44,6 @@
 		CE6DC5F6205436B700E20217 /* MLANE.m in Sources */ = {isa = PBXBuildFile; fileRef = CE88103920388975004FD8B4 /* MLANE.m */; };
 		CE6DC5F7205436CC00E20217 /* MLANE_FW.h in Headers */ = {isa = PBXBuildFile; fileRef = CE87F4851FB259FA005CF7DF /* MLANE_FW.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE6DC5F8205436DA00E20217 /* FreMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = CE05604D1FB25E8E00D06976 /* FreMacros.h */; };
-		CE6DC5F9205436DD00E20217 /* SwiftyJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = CE88103F203889A1004FD8B4 /* SwiftyJSON.h */; };
 		CE6DC5FA2054371A00E20217 /* SwiftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104C203889B6004FD8B4 /* SwiftController.swift */; };
 		CE6DC5FB2054371C00E20217 /* SwiftController+FreSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104D203889B7004FD8B4 /* SwiftController+FreSwift.swift */; };
 		CE6DC5FC2054374300E20217 /* BaseInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881042203889B6004FD8B4 /* BaseInput.swift */; };
@@ -55,26 +55,23 @@
 		CE6DC6022054374300E20217 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881049203889B6004FD8B4 /* URL.swift */; };
 		CE6DC6032054374300E20217 /* FreMLFeatureDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104A203889B6004FD8B4 /* FreMLFeatureDescription.swift */; };
 		CE6DC6042054374300E20217 /* FreMLImageConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104B203889B6004FD8B4 /* FreMLImageConstraint.swift */; };
-		CE6DC6052054374300E20217 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88103E203889A1004FD8B4 /* SwiftyJSON.swift */; };
 		CE6DC6062054376400E20217 /* CoreMlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881043203889B6004FD8B4 /* CoreMlController.swift */; };
 		CE6DC607205437A800E20217 /* MLANE_FW.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6DC5E72054354900E20217 /* MLANE_FW.framework */; };
-		CE87F4871FB259FA005CF7DF /* MLANE_FW.h in Headers */ = {isa = PBXBuildFile; fileRef = CE87F4851FB259FA005CF7DF /* MLANE_FW.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CE88103B20388976004FD8B4 /* MLANE.m in Sources */ = {isa = PBXBuildFile; fileRef = CE88103920388975004FD8B4 /* MLANE.m */; };
-		CE88103C20388976004FD8B4 /* MLANE_oc.h in Headers */ = {isa = PBXBuildFile; fileRef = CE88103A20388975004FD8B4 /* MLANE_oc.h */; };
-		CE881040203889A2004FD8B4 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88103E203889A1004FD8B4 /* SwiftyJSON.swift */; };
-		CE881041203889A2004FD8B4 /* SwiftyJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = CE88103F203889A1004FD8B4 /* SwiftyJSON.h */; };
-		CE881050203889B7004FD8B4 /* BaseInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881042203889B6004FD8B4 /* BaseInput.swift */; };
-		CE881051203889B7004FD8B4 /* CoreMlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881043203889B6004FD8B4 /* CoreMlController.swift */; };
-		CE881052203889B7004FD8B4 /* FreMLModelDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881045203889B6004FD8B4 /* FreMLModelDescription.swift */; };
-		CE881053203889B7004FD8B4 /* FreMLDictionaryConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881046203889B6004FD8B4 /* FreMLDictionaryConstraint.swift */; };
-		CE881054203889B7004FD8B4 /* FreMLModelMetadataKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881047203889B6004FD8B4 /* FreMLModelMetadataKey.swift */; };
-		CE881055203889B7004FD8B4 /* CIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881048203889B6004FD8B4 /* CIImage.swift */; };
-		CE881056203889B7004FD8B4 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881049203889B6004FD8B4 /* URL.swift */; };
-		CE881057203889B7004FD8B4 /* FreMLFeatureDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104A203889B6004FD8B4 /* FreMLFeatureDescription.swift */; };
-		CE881058203889B7004FD8B4 /* FreMLImageConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104B203889B6004FD8B4 /* FreMLImageConstraint.swift */; };
-		CE881059203889B7004FD8B4 /* SwiftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104C203889B6004FD8B4 /* SwiftController.swift */; };
-		CE88105A203889B7004FD8B4 /* SwiftController+FreSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104D203889B7004FD8B4 /* SwiftController+FreSwift.swift */; };
-		CE88105B203889B7004FD8B4 /* MLEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104F203889B7004FD8B4 /* MLEvent.swift */; };
+		CE87F4871FB259FA005CF7DF /* MLANE_FW.h in Headers */ = {isa = PBXBuildFile; fileRef = CE87F4851FB259FA005CF7DF /* MLANE_FW.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		CE88103B20388976004FD8B4 /* MLANE.m in Sources */ = {isa = PBXBuildFile; fileRef = CE88103920388975004FD8B4 /* MLANE.m */; platformFilter = ios; };
+		CE88103C20388976004FD8B4 /* MLANE_oc.h in Headers */ = {isa = PBXBuildFile; fileRef = CE88103A20388975004FD8B4 /* MLANE_oc.h */; platformFilter = ios; };
+		CE881050203889B7004FD8B4 /* BaseInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881042203889B6004FD8B4 /* BaseInput.swift */; platformFilter = ios; };
+		CE881051203889B7004FD8B4 /* CoreMlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881043203889B6004FD8B4 /* CoreMlController.swift */; platformFilter = ios; };
+		CE881052203889B7004FD8B4 /* FreMLModelDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881045203889B6004FD8B4 /* FreMLModelDescription.swift */; platformFilter = ios; };
+		CE881053203889B7004FD8B4 /* FreMLDictionaryConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881046203889B6004FD8B4 /* FreMLDictionaryConstraint.swift */; platformFilter = ios; };
+		CE881054203889B7004FD8B4 /* FreMLModelMetadataKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881047203889B6004FD8B4 /* FreMLModelMetadataKey.swift */; platformFilter = ios; };
+		CE881055203889B7004FD8B4 /* CIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881048203889B6004FD8B4 /* CIImage.swift */; platformFilter = ios; };
+		CE881056203889B7004FD8B4 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE881049203889B6004FD8B4 /* URL.swift */; platformFilter = ios; };
+		CE881057203889B7004FD8B4 /* FreMLFeatureDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104A203889B6004FD8B4 /* FreMLFeatureDescription.swift */; platformFilter = ios; };
+		CE881058203889B7004FD8B4 /* FreMLImageConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104B203889B6004FD8B4 /* FreMLImageConstraint.swift */; platformFilter = ios; };
+		CE881059203889B7004FD8B4 /* SwiftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104C203889B6004FD8B4 /* SwiftController.swift */; platformFilter = ios; };
+		CE88105A203889B7004FD8B4 /* SwiftController+FreSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104D203889B7004FD8B4 /* SwiftController+FreSwift.swift */; platformFilter = ios; };
+		CE88105B203889B7004FD8B4 /* MLEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88104F203889B7004FD8B4 /* MLEvent.swift */; platformFilter = ios; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,8 +112,6 @@
 		CE8810382038888D004FD8B4 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		CE88103920388975004FD8B4 /* MLANE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLANE.m; sourceTree = "<group>"; };
 		CE88103A20388975004FD8B4 /* MLANE_oc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLANE_oc.h; sourceTree = "<group>"; };
-		CE88103E203889A1004FD8B4 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
-		CE88103F203889A1004FD8B4 /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyJSON.h; sourceTree = "<group>"; };
 		CE881042203889B6004FD8B4 /* BaseInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseInput.swift; sourceTree = "<group>"; };
 		CE881043203889B6004FD8B4 /* CoreMlController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreMlController.swift; sourceTree = "<group>"; };
 		CE881045203889B6004FD8B4 /* FreMLModelDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreMLModelDescription.swift; sourceTree = "<group>"; };
@@ -139,6 +134,7 @@
 				90CC24CC21274ED0000CE135 /* Cocoa.framework in Frameworks */,
 				CE6DC5B420542E7800E20217 /* Adobe AIR_64 in Frameworks */,
 				CE6DC5B520542E7A00E20217 /* Adobe AIR in Frameworks */,
+				900B70942397FE730071EFBF /* SwiftyJSON in Frameworks */,
 				CE6DC5C520542F0000E20217 /* FreSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,6 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				900B70982397FE910071EFBF /* SwiftyJSON in Frameworks */,
 				CE6DC5F5205436A500E20217 /* FreSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -173,6 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				900B70962397FE870071EFBF /* SwiftyJSON in Frameworks */,
 				CE0560401FB25CE200D06976 /* FreSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -243,22 +241,12 @@
 				CE881044203889B6004FD8B4 /* Extensions */,
 				CE88104C203889B6004FD8B4 /* SwiftController.swift */,
 				CE88104D203889B7004FD8B4 /* SwiftController+FreSwift.swift */,
-				CE88103D203889A1004FD8B4 /* SwiftyJSON */,
 				CE6DC59D20542B9A00E20217 /* Headers */,
 				CE6DC59E20542BA500E20217 /* Misc */,
 				CE26D95A2038EAF1004084F0 /* CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift */,
 				CE88103920388975004FD8B4 /* MLANE.m */,
 			);
 			path = MLANE;
-			sourceTree = "<group>";
-		};
-		CE88103D203889A1004FD8B4 /* SwiftyJSON */ = {
-			isa = PBXGroup;
-			children = (
-				CE88103E203889A1004FD8B4 /* SwiftyJSON.swift */,
-				CE88103F203889A1004FD8B4 /* SwiftyJSON.h */,
-			);
-			path = SwiftyJSON;
 			sourceTree = "<group>";
 		};
 		CE881044203889B6004FD8B4 /* Extensions */ = {
@@ -300,7 +288,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE6DC5AE20542E3100E20217 /* SwiftyJSON.h in Headers */,
 				CE6DC5B020542E3B00E20217 /* FreMacros.h in Headers */,
 				CE6DC5AF20542E3800E20217 /* MLANE_oc.h in Headers */,
 			);
@@ -312,7 +299,6 @@
 			files = (
 				CE6DC5F7205436CC00E20217 /* MLANE_FW.h in Headers */,
 				CE6DC5F8205436DA00E20217 /* FreMacros.h in Headers */,
-				CE6DC5F9205436DD00E20217 /* SwiftyJSON.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,7 +315,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE881041203889A2004FD8B4 /* SwiftyJSON.h in Headers */,
 				CE87F4871FB259FA005CF7DF /* MLANE_FW.h in Headers */,
 				CE05604F1FB25E9F00D06976 /* FreMacros.h in Headers */,
 			);
@@ -338,9 +323,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		CE6DC5A520542D5600E20217 /* MLANE (OSX) */ = {
+		CE6DC5A520542D5600E20217 /* MLANE (macOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CE6DC5AB20542D5600E20217 /* Build configuration list for PBXNativeTarget "MLANE (OSX)" */;
+			buildConfigurationList = CE6DC5AB20542D5600E20217 /* Build configuration list for PBXNativeTarget "MLANE (macOS)" */;
 			buildPhases = (
 				CE6DC5A120542D5600E20217 /* Sources */,
 				CE6DC5A220542D5600E20217 /* Frameworks */,
@@ -352,7 +337,10 @@
 			);
 			dependencies = (
 			);
-			name = "MLANE (OSX)";
+			name = "MLANE (macOS)";
+			packageProductDependencies = (
+				900B70932397FE730071EFBF /* SwiftyJSON */,
+			);
 			productName = MLANE;
 			productReference = CE6DC5A620542D5600E20217 /* MLANE.framework */;
 			productType = "com.apple.product-type.framework";
@@ -391,6 +379,9 @@
 			dependencies = (
 			);
 			name = "MLANE_FW (tvOS)";
+			packageProductDependencies = (
+				900B70972397FE910071EFBF /* SwiftyJSON */,
+			);
 			productName = "MLANE_FW (tvOS)";
 			productReference = CE6DC5E72054354900E20217 /* MLANE_FW.framework */;
 			productType = "com.apple.product-type.framework";
@@ -428,6 +419,9 @@
 			dependencies = (
 			);
 			name = "MLANE_FW (iOS)";
+			packageProductDependencies = (
+				900B70952397FE870071EFBF /* SwiftyJSON */,
+			);
 			productName = HelloWorldANE_FW;
 			productReference = CE87F4831FB259FA005CF7DF /* MLANE_FW.framework */;
 			productType = "com.apple.product-type.framework";
@@ -443,7 +437,7 @@
 				TargetAttributes = {
 					CE6DC5A520542D5600E20217 = {
 						CreatedOnToolsVersion = 9.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1100;
 						ProvisioningStyle = Manual;
 					};
 					CE6DC5CB205434C700E20217 = {
@@ -469,19 +463,23 @@
 			};
 			buildConfigurationList = CE87F4601FB259C9005CF7DF /* Build configuration list for PBXProject "MLANE" */;
 			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = CE87F45C1FB259C9005CF7DF;
+			packageReferences = (
+				900B70922397FE730071EFBF /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+			);
 			productRefGroup = CE87F4661FB259C9005CF7DF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				CE87F4741FB259DB005CF7DF /* MLANE_LIB (iOS) */,
 				CE87F4821FB259FA005CF7DF /* MLANE_FW (iOS) */,
-				CE6DC5A520542D5600E20217 /* MLANE (OSX) */,
+				CE6DC5A520542D5600E20217 /* MLANE (macOS) */,
 				CE6DC5CB205434C700E20217 /* MLANE_LIB (tvOS) */,
 				CE6DC5E62054354900E20217 /* MLANE_FW (tvOS) */,
 			);
@@ -596,7 +594,6 @@
 				CE6DC5BC20542EB400E20217 /* MLEvent.swift in Sources */,
 				CE6DC5BE20542EBD00E20217 /* SwiftController.swift in Sources */,
 				CE6DC5C020542EC800E20217 /* SwiftController+FreSwift.swift in Sources */,
-				CE6DC5BF20542EC400E20217 /* SwiftyJSON.swift in Sources */,
 				CE6DC5C220542ED100E20217 /* FreMLModelMetadataKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -623,7 +620,6 @@
 				CE6DC6022054374300E20217 /* URL.swift in Sources */,
 				CE6DC6032054374300E20217 /* FreMLFeatureDescription.swift in Sources */,
 				CE6DC6042054374300E20217 /* FreMLImageConstraint.swift in Sources */,
-				CE6DC6052054374300E20217 /* SwiftyJSON.swift in Sources */,
 				CE6DC5FA2054371A00E20217 /* SwiftController.swift in Sources */,
 				CE6DC5FB2054371C00E20217 /* SwiftController+FreSwift.swift in Sources */,
 			);
@@ -654,7 +650,6 @@
 				CE88105B203889B7004FD8B4 /* MLEvent.swift in Sources */,
 				CE26D95B2038EAF1004084F0 /* CoreMlController+ AVCaptureVideoDataOutputSampleBufferDelegate.swift in Sources */,
 				CE3FC07F204329B300FE313C /* PermissionController.swift in Sources */,
-				CE881040203889A2004FD8B4 /* SwiftyJSON.swift in Sources */,
 				CE881051203889B7004FD8B4 /* CoreMlController.swift in Sources */,
 				CE881055203889B7004FD8B4 /* CIImage.swift in Sources */,
 			);
@@ -665,6 +660,7 @@
 /* Begin PBXTargetDependency section */
 		CE0560471FB25DD600D06976 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = CE87F4821FB259FA005CF7DF /* MLANE_FW (iOS) */;
 			targetProxy = CE0560461FB25DD600D06976 /* PBXContainerItemProxy */;
 		};
@@ -708,6 +704,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = /Users/eoinlandy/SDKs/AIRSDK_30/runtimes/air/mac;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = 1.2.0;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					"\"Adobe AIR\"",
@@ -718,7 +715,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -756,6 +753,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = /Users/eoinlandy/SDKs/AIRSDK_30/runtimes/air/mac;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = 1.2.0;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					"\"Adobe AIR\"",
@@ -766,7 +764,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -852,7 +850,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 11.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -892,7 +890,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 11.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -955,6 +953,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1008,6 +1007,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1102,10 +1102,11 @@
 				PRODUCT_NAME = MLANE_FW;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1145,10 +1146,11 @@
 				PRODUCT_NAME = MLANE_FW;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1158,7 +1160,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CE6DC5AB20542D5600E20217 /* Build configuration list for PBXNativeTarget "MLANE (OSX)" */ = {
+		CE6DC5AB20542D5600E20217 /* Build configuration list for PBXNativeTarget "MLANE (macOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CE6DC5AC20542D5600E20217 /* Debug */,
@@ -1213,6 +1215,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		900B70922397FE730071EFBF /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		900B70932397FE730071EFBF /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 900B70922397FE730071EFBF /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		900B70952397FE870071EFBF /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 900B70922397FE730071EFBF /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		900B70972397FE910071EFBF /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 900B70922397FE730071EFBF /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CE87F45D1FB259C9005CF7DF /* Project object */;
 }
