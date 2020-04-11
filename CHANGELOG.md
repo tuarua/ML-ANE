@@ -1,3 +1,6 @@
+### 1.3.0
+- iOS/OSX/tvOS: Updated to FreSwift 4.4.0
+
 ### 1.2.0
 - iOS/OSX/tvOS: Updated to FreSwift 4.3.0
 
